@@ -1,7 +1,8 @@
 <h1 class="text-3xl font-bold underline">
     Hello world!
 </h1>
-
-<app-card *ngFor="let movie of movies" [movie]="movie"></app-card>
+<div class="container-cards">
+    <app-card *ngFor="let movie of movies" [movie]="movie"></app-card>
+</div>
 
 

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
 /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)
@@ -53,9 +54,9 @@ table {
   border-spacing: 0;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  font-family: "Open Sans", sans-serif;
+}
 
 .content-page {
   height: calc(100vh - var(--navbar-height));
@@ -78,4 +79,57 @@ table {
 #nav {
   height: 65px;
   background-color: #F1F1F1;
+}
+
+.container-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1254901961);
+  height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 45px;
+}
+
+#container-img {
+  height: 400px;
+  width: 100%;
+}
+
+#img-movie-preview {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+input#img {
+  display: none;
+}
+
+label[for=img] {
+  display: block;
+  height: 25px;
+  width: 100%;
+  background-color: #1C2137;
+}
+
+#form-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-left, .form-right {
+  padding: 25px;
 }/*# sourceMappingURL=styles.css.map */

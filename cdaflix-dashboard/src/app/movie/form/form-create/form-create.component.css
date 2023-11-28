@@ -1,0 +1,37 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 45px;
+}
+
+#container-img {
+  height: 400px;
+  width: 100%;
+}
+
+#img-movie-preview {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+input#img {
+  display: none;
+}
+
+label[for=img] {
+  display: block;
+  height: 25px;
+  width: 100%;
+  background-color: yellow;
+}
+
+#form-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-left, .form-right {
+  padding: 25px;
+}/*# sourceMappingURL=form-create.component.css.map */
