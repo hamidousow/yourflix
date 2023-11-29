@@ -33,6 +33,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
+  font-family: "Open Sans", sans-serif;
 }
 
 ol, ul {
@@ -54,82 +55,6 @@ table {
   border-spacing: 0;
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
-}
-
-.content-page {
-  height: calc(100vh - var(--navbar-height));
-  margin-top: var(--navbar-height);
-  margin-left: 265px;
-  background-color: var(--clr-grey-light);
-}
-
-#main {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-#aside-menu {
-  background-color: #1C2137;
-  color: #CED2E8;
-  height: 100dvh;
-}
-
-#nav {
-  height: 65px;
-  background-color: #F1F1F1;
-}
-
-.container-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  padding: 1rem;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1254901961);
-  height: 100%;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  padding: 45px;
-}
-
-#container-img {
-  height: 400px;
-  width: 100%;
-}
-
-#img-movie-preview {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-input#img {
-  display: none;
-}
-
-label[for=img] {
-  display: block;
-  height: 25px;
-  width: 100%;
-  background-color: #1C2137;
-}
-
-#form-content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.form-left, .form-right {
-  padding: 25px;
+* {
+  box-sizing: border-box;
 }/*# sourceMappingURL=styles.css.map */

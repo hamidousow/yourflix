@@ -3,7 +3,7 @@ export class Movie {
     id!: number;
     title!: string;
     actors!: Array<string>;
-    imgSrc!: string;
+    img!: string;
     description!: string
 
     public setTitre(title: string) {
@@ -12,8 +12,8 @@ export class Movie {
     public setDescription(description: string) {
         this.description = description;
     }
-    public setImg(imgSrc: string) {
-        this.imgSrc = imgSrc;
+    public setImg(img: string) {
+        this.img = img;
     }
     public setActors(actors: Array<string>) {
         this.actors = actors;

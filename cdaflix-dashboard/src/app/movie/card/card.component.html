@@ -1,18 +1,18 @@
 <div class="card">
     <header>
-        <img height="100" alt=""/>
+        <img height="100" alt="" src="../../../../../assets/images/{{movie.img}}.jpg"/>
         <div class="card-menu">
-            <ul>
-                <li>
-                    <a> Supprimer</a>
-                </li>
-            </ul>
+            <form id="form-delete-movie">
+                <input type="submit" value="supprimer">
+            </form>
         </div>
     </header>
     <div class="card-body">
-        <h2 class="card-title"> {{ movie.title }} </h2>
-        <h2>Description</h2>
-        <p>{{movie.description}}</p>
+        <h2 class="card-body_title"> {{ movie.title }} </h2>
+        <h5>Description</h5>
+        <p class="card-body_description">{{movie.description}}</p>
     </div>
-    <footer></footer>
+    <footer>
+        <span>last update: </span>
+    </footer>
 </div>

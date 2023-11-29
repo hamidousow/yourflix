@@ -1,22 +1,36 @@
-<main class="main" id="main">
-  <aside id="aside-menu" class='aside-menu'>
-    <img src="" alt="logo cdaflix" class='logo'/>
-      <ul class='aside-menu'>
-          <li class=''>
-              <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page"> Tous les films</a>
-          </li>
-          <li class=''>
-              <a routerLink="/create" routerLinkActive="active" ariaCurrentWhenActive="page">Ajouter un film</a>
-          </li>
-      </ul>
+<main id="main-content">
+  <aside id="aside-menu">
+    <h1 class="aside-menu_logo">cdaflix</h1>
+    <ul class='aside-menu_nav'>
+        <li class=''>
+            <a routerLink="" 
+                routerLinkActive="active-link" 
+                ariaCurrentWhenActive="page" 
+                [routerLinkActiveOptions]="{exact:
+                  true}"
+            > Tous les films</a>
+        </li>
+        <li class=''>
+            <a routerLink="/create" 
+                routerLinkActive="active-link" 
+                ariaCurrentWhenActive="page" 
+                [routerLinkActiveOptions]="{exact:
+                  true}"
+            >Ajouter un film</a>
+        </li>
+    </ul>
   </aside>  
-  <div class="content">
+  <div class="main-content_right">
     <nav id="nav" class="navigation">
-      <div class="container-fluid">
-          <div class="wrapper d-flex flex-row gap-3">
-              <a class="navbar-brand">Navbar</a>
-          </div>
-      </div>
+      <div class="nav_wrap-user-menu">
+        <div class="nav_user-img">
+          <img src="" alt="">
+        </div>
+        <div class="nav_user-infos">
+          <h3>Hamidou SOW</h3>
+          <span>admin</span>
+        </div>
+      </div>      
     </nav> 
     <div>
       <router-outlet></router-outlet>

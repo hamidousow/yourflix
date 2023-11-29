@@ -1,9 +1,17 @@
+.container-search-bar {
+    padding: 20px;
+}
+.container-search-bar input {
+    height: 39px;
+    width: 100%;
+    max-width: 650px;
+    border-radius: 5px;
+}
+
 .container-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem 1rem;
     padding: 1rem;
-
-    
 }
 

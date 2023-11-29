@@ -1,24 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import './app/app.component.scss';
-@import './app/movie/list-cards/list-cards.component.scss';
-@import './app/movie/card/card.component.scss';
-@import './app/movie/form/form-create/form-create.component.scss';
-
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
-
-
-$clr-blue-dark: #1C2137;
-$clr-blue-night: #171B2B;
-$clr-blue-navigation: #202945;
-$clr-white: #ffffff;
-$clr-white-light: #CED2E8;
-$clr-grey-light: #F1F1F1;
-
-$navbar-height: 55px;
-
-
-//------- reset --------
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
@@ -51,6 +32,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'Open Sans', sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -66,6 +48,10 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+* {
+	box-sizing: border-box;
 }
 //------------------------reset ---------------
 
