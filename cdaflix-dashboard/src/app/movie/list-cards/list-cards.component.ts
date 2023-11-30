@@ -1,9 +1,7 @@
 import { Component, inject, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
-import { Movie } from '../../models/Movie';
-import { MovieService } from '../../services/movie.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-list-cards',
@@ -11,32 +9,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   imports: [ 
     CommonModule,
     CardComponent,
+    SearchBarComponent
   ],
   templateUrl: './list-cards.component.html',
   styleUrl: './list-cards.component.scss'
 })
-export class ListCardsComponent implements OnInit {
+export class ListCardsComponent {
 
   @Input()
-  movie!: Movie
-
-  @Input()
-  movies: Array<any> = new Array<any>();
-
-  private movieService: MovieService = inject(MovieService)
-
-  constructor() { 
-    
-  }
-  
-  fetchMovies(): void  {
-    this.movieService.getAll().subscribe((movies: any) => {
-      this.movies = movies
-      console.log(this.movies)
-    })
-  }
-    
-  ngOnInit() {
-    this.fetchMovies()
-  }
+  movies!: Array<any>;  
 }

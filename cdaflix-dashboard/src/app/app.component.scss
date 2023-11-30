@@ -59,6 +59,7 @@ $nav-width: 300px;
 
 .main-content_right {
     margin-left: $nav-width;
+    min-height: 100dvh;
 }
 
 #nav {
