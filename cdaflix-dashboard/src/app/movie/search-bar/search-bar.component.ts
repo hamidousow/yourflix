@@ -24,11 +24,12 @@ export class SearchBarComponent {
   constructor(private movieService: MovieService) {}
 
   /**
-   * search movies by title within words in the searchbar's entries. If no entries in the searcbar, then return all movies
+   * search movies by title within words that matches the searchbar's entries. If no entries in the searchbar, then return all movies
    * @param args used to search movies
    */
   handleSearch(args: string) {
-    if(args.length > 0) {
+    args = args.trim()
+    if(args.length > 0 && args !== undefined) {
       this.movieService.find(args).subscribe({
         next: (r) => {
           this.movies = r
