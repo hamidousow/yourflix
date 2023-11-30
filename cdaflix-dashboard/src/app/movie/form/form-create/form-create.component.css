@@ -22,9 +22,8 @@ input#img {
 
 label[for=img] {
   display: block;
-  height: 25px;
+  height: 100px;
   width: 100%;
-  background-color: yellow;
 }
 
 #form-content {

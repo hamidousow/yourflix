@@ -1,3 +1,7 @@
+// @import '../../../styles.scss';
+@import 'styles';
+
+
 .container-search-bar {
     padding: 20px;
 }
@@ -7,3 +11,9 @@
     max-width: 650px;
     border-radius: 5px;
 }
+.container-search-bar input[type=search] {
+    background: $clr-blue-navigation;
+    border: 1px solid $clr-blue-light;
+    color: $clr-white-light;
+}
+
