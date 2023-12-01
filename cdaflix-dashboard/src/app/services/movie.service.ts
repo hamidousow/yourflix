@@ -3,22 +3,14 @@ import { Inject, Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Movie } from '../models/Movie';
 
+const BASE_URL: string = "http://localhost:8081/api"
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
 
-  private movies!: Array<Movie>
-
-  // getMovies() : Array<Movie> {
-  //   return this.movies
-  // }
-
-  // setMovies(movies: Array<Movie>) {
-  //   this.movies = movies
-  // }
-
+  private movies!: Array<Movie>;
   constructor(private http: HttpClient) {}
 
   getAll() {
@@ -51,6 +43,15 @@ export class MovieService {
     } : {}
 
     const res = this.http.get<any>("http://localhost:8081/api/film/find", options)
+    return res
+  }
+
+  findOne(id: string) {
+    const options = id ? {
+      params: new HttpParams().set('id', id)
+    } : {}
+
+    const res = this.http.get<any>(`${BASE_URL}/film/findOne/`, options)
     return res
   }
 

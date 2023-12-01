@@ -1,0 +1,20 @@
+@import 'styles.scss';
+
+* {
+    color: $clr-grey-light;
+}
+
+h1 {
+    font-size: 33px;
+    font-weight: 700;
+}
+
+.movie_header {
+    height: 25dvh;
+}
+
+.movie-content {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 25px;
+}

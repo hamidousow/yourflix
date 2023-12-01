@@ -13,10 +13,10 @@ import { MovieService } from '../../services/movie.service';
     ListCardsComponent,
     SearchBarComponent
   ],
-  templateUrl: './movies-views.component.html',
-  styleUrl: './movies-views.component.scss'
+  templateUrl: './movies-view.component.html',
+  styleUrl: './movies-view.component.scss'
 })
-export class MoviesViewsComponent implements OnInit {
+export class MoviesViewComponent implements OnInit {
 
   @Input()
   movies!: Array<Movie>
