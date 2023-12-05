@@ -1,17 +1,32 @@
 @import 'styles';
 
+a {
+    text-decoration: none;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
     background-color: $clr-blue-dark;
-    border: 1px solid $clr-blue-light;
+    border: 1px solid $clr-blue-night;
     height: 100%;
     position: relative;
 }
 .card header {
+    position: relative;
     height: 12rem;
+}
+
+.card .card_header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(28,33,55);
+    background: linear-gradient(0deg, rgba(28,33,55,1) 3%, rgba(28,33,55,0) 100%);
 }
 
 .card header img {

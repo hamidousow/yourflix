@@ -1,6 +1,4 @@
-// @import '../../../styles.scss';
 @import 'styles';
-
 
 .container-search-bar {
     padding: 20px;
@@ -13,7 +11,12 @@
 }
 .container-search-bar input[type=search] {
     background: $clr-blue-navigation;
-    border: 1px solid $clr-blue-light;
+    border: 1px solid $clr-blue-night;
     color: $clr-white-light;
+    padding: 0 10px;
+
+    &:focus-visible {
+        outline: 1px solid $clr-blue-light;
+    }
 }
 

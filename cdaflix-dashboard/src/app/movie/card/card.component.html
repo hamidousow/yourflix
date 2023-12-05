@@ -1,18 +1,14 @@
 <a href="/film/{{movie.id}}">
     <div class="card">
         <header>
-            <img height="100" alt="" src="../../../../../assets/images/{{movie.img}}.jpg"/>
-            <div class="card-menu">
-                <form id="form-delete-movie">
-                    <input type="submit" value="supprimer">
-                </form>
-            </div>
+            <div class="card_header-bg"></div>
+            <img height="100" alt="" src="../../../../../assets/images/{{movie.img}}.jpg"/>            
         </header>
         <div class="card-body">
             <h2 class="card-body_title"> {{ movie.title }} </h2>
         </div>
-        <footer>
+        <!-- <footer>
             <span>last update: </span>
-        </footer>
+        </footer> -->
     </div>
 </a>

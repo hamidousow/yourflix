@@ -8,7 +8,7 @@
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
                   true}"
-            > Tous les films</a>
+            > Nouveautés </a>
         </li>
         <li class=''>
             <a routerLink="/create" 
@@ -18,22 +18,39 @@
                   true}"
             >Ajouter un film</a>
         </li>
+        <li class=''>
+            <a routerLink="/films" 
+                routerLinkActive="active-link" 
+                ariaCurrentWhenActive="page" 
+                [routerLinkActiveOptions]="{exact:
+                  true}"
+            > Films </a>
+        </li>
+        <li class=''>
+            <a routerLink="/series" 
+                routerLinkActive="active-link" 
+                ariaCurrentWhenActive="page" 
+                [routerLinkActiveOptions]="{exact:
+                  true}"
+            > Séries </a>
+        </li>
+        <li class=''>
+            <a routerLink="/mylist" 
+                routerLinkActive="active-link" 
+                ariaCurrentWhenActive="page" 
+                [routerLinkActiveOptions]="{exact:
+                  true}"
+            > Ma liste </a>
+        </li>
     </ul>
   </aside>  
-  <div class="main-content_right">
-    <nav id="nav" class="navigation">
-      <div class="nav_wrap-user-menu">
-        <div class="nav_user-container-img">
-          <img src="./assets/images/user-profile.jpg" alt="">
-        </div>
-        <div class="nav_user-infos">
-          <h3>Hamidou SOW</h3>
-          <span>admin</span>
-        </div>
-      </div>      
-    </nav> 
-    <div>
-      <router-outlet></router-outlet>
+  <div class="">
+    <app-navigation></app-navigation>
+    <div class="main-content_right">
+      
+      <div>
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </main>

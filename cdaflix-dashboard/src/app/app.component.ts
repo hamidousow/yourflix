@@ -6,6 +6,8 @@ import { MovieModule } from './movie/movie.module';
 import { MovieService } from './services/movie.service';
 import { CardComponent } from './movie/card/card.component';
 import { FormsModule } from '@angular/forms';
+import { UserModule } from './user/user.module';
+import { NavigationComponent } from './user/navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     RouterLinkActive,
     MovieModule,
     HttpClientModule,
-    FormsModule
+    FormsModule, 
+    UserModule,
+    NavigationComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
