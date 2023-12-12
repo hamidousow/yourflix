@@ -21,7 +21,7 @@ export class MovieViewComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
     if(id) {
-      this.movieService.findOne(id).subscribe({
+      this.movieService.findById(id).subscribe({
         next: (r) => this.movie = r,
         error: (e) => console.log(e)
       })

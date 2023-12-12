@@ -1,4 +1,4 @@
-<a href="/film/{{movie.id}}">
+<a (click)="openModal()">
     <div class="card">
         <header>
             <div class="card_header-bg"></div>
@@ -7,8 +7,5 @@
         <div class="card-body">
             <h2 class="card-body_title"> {{ movie.title }} </h2>
         </div>
-        <!-- <footer>
-            <span>last update: </span>
-        </footer> -->
     </div>
 </a>

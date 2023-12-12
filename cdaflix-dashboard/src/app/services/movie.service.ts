@@ -46,7 +46,7 @@ export class MovieService {
     return res
   }
 
-  findOne(id: string) {
+  findById(id: string) {
     const options = id ? {
       params: new HttpParams().set('id', id)
     } : {}
