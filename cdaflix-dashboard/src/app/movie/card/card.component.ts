@@ -19,18 +19,9 @@ export class CardComponent {
 
   constructor(private modalService: NgbModal) {}
 
-  handleContent(content: CardComponent) {
-
-    console.log(content);
-    const movieNg =  this.modalService.open(CardComponent, { size: 'xl' });
-    movieNg.componentInstance
-  } 
-
   openModal() {
-    
     const movieNg =  this.modalService.open(MovieViewComponent, { size: 'xl' });
     movieNg.componentInstance.movie = this.movie
-    console.log( movieNg.componentInstance.movie)
   }
 }
 

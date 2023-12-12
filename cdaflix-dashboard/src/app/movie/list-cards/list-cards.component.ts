@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { Movie } from '../../models/Movie';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-list-cards',
@@ -25,11 +23,4 @@ export class ListCardsComponent {
   @Input()
   movie!: Movie;
 
-  constructor(private modalService: NgbModal) {}
-
-  // handleContent(content: CardComponent) {
-
-  //   console.log(content);
-  //   this.modalService.open(CardComponent, { size: 'xl' });
-  // }   
 }
