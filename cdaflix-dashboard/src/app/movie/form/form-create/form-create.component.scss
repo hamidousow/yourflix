@@ -21,11 +21,17 @@ input#img {
     display: none;
 }
 
+label {
+    color: $clr-grey-light;
+}
+
 label[for='img'] {
     display: block;
-    height: 100px;
+    padding: 25px 15px;
     width: 100%;
-    background-color: $clr-blue-dark;
+    background-color: $clr-blue-night;
+    text-align: center;
+    color: $clr-grey-light;
 }
 
 #form-content {
@@ -35,5 +41,10 @@ label[for='img'] {
 
 .form-left, .form-right {
     padding: 25px;
+}
+
+.wrap-label-input {
+    display: flex;
+    flex-direction: column;
 }
 
