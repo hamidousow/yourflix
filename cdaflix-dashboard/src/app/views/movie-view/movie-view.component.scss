@@ -16,6 +16,12 @@ h1 {
 
 .movie_header {
     height: 25dvh;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    };
 }
 
 .movie-content {
