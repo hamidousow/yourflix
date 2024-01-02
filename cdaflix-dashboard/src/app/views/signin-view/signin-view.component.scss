@@ -1,0 +1,17 @@
+
+@import 'styles.scss';
+
+#sign-page {
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container-form {
+    height: 250px;
+    width: 850px;
+    background-color: $clr-white;
+    border-radius: 10px;
+    display: flex;
+}

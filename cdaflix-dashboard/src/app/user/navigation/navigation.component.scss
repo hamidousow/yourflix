@@ -8,6 +8,30 @@
     justify-content: flex-end;
 }
 
+.nav_menu {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+
+    li {
+        border-radius: 5px;
+    }
+
+    li a {
+        padding: 12px 25px;
+        color: $clr-grey-light;
+        font-weight: 600;
+        text-decoration: none;
+        text-wrap: nowrap;
+        display: block;
+    }    
+}
+
+.active-link {
+    color: $clr-red!important;
+    border-radius: 5px;
+}
+
 .nav_wrap-user-menu {
     display: flex;
     flex-direction: row;
@@ -39,3 +63,4 @@
     font-weight: 600;
     font-size: 13px;
 }
+

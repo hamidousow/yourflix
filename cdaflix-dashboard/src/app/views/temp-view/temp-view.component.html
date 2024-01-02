@@ -1,11 +1,12 @@
-<nav id="nav" class="navigation">
-    <ul class='nav_menu'>
+<!-- <aside id="aside-menu">
+    <h1 class="aside-menu_logo">cdaflix</h1>
+    <ul class='aside-menu_nav'>
         <li class=''>
             <a routerLink="" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
-                true}"
+                  true}"
             > Nouveautés </a>
         </li>
         <li class=''>
@@ -13,7 +14,7 @@
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
-                true}"
+                  true}"
             >Ajouter un film</a>
         </li>
         <li class=''>
@@ -21,7 +22,7 @@
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
-                true}"
+                  true}"
             > Films </a>
         </li>
         <li class=''>
@@ -29,7 +30,7 @@
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
-                    true}"
+                  true}"
             > Séries </a>
         </li>
         <li class=''>
@@ -37,17 +38,17 @@
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
-                    true}"
+                  true}"
             > Ma liste </a>
         </li>
     </ul>
-    <div class="nav_wrap-user-menu">
-        <div class="nav_user-container-img">
-        <img src="./assets/images/user-profile.jpg" alt="">
-        </div>
-        <div class="nav_user-infos">
-        <h3>Hamidou SOW</h3>
-        <span>admin</span>
-        </div>
-    </div>      
-</nav> 
+  </aside>   -->
+  <div class="">
+    <app-navigation></app-navigation>
+    <div class="main-content_right">
+      
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
