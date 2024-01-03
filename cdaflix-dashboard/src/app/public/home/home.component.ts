@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from '../../user/navigation/navigation.component';
+import { NavigationComponent } from '../navigation/navigation.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ListMoviesComponent } from '../../movie/list-movies/list-movies.component';
 
 @Component({
-  selector: 'app-temp-view',
+  selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
@@ -12,10 +13,11 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     RouterOutlet,
     RouterLink, 
     RouterLinkActive,
+    ListMoviesComponent
   ],
-  templateUrl: './temp-view.component.html',
-  styleUrl: './temp-view.component.scss'
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
-export class TempViewComponent {
+export class HomeComponent {
 
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TempViewComponent } from './temp-view.component';
+import { RegisterComponent } from './register.component';
 
-describe('TempViewComponent', () => {
-  let component: TempViewComponent;
-  let fixture: ComponentFixture<TempViewComponent>;
+describe('RegisterComponent', () => {
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TempViewComponent]
+      imports: [RegisterComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TempViewComponent);
+    fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,101 @@
+@import 'styles.scss';
+
+#sign-page {
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../../assets/images/movies-poster.jpg');
+    background-size: cover;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: $clr-white;
+    font-weight: 700;
+    font-size: 23px;
+    text-decoration: none;
+}
+
+#container-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-overlay {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(#171b2b3b, #171b2b);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+
+    padding: 25px 50px; 
+    width: 100%;
+    max-width: 700px;
+    background-color: $clr-blue-night;
+    border-radius: 10px;
+    
+    z-index: 10;
+    padding: 25px;
+
+    h1 {
+        font-size: 23px;
+        text-transform: capitalize;
+        color: $clr-white;
+        margin-bottom: 25px;
+    }
+
+    p {
+        color: $clr-white;
+    }
+
+    a {
+        color: $clr-blue-light;
+    }
+}
+
+.wrap-label-input {
+    width: 100%;
+}
+
+.wrap-label-input input {
+    height: 39px;
+    width: 100%;
+    border-radius: 5px;
+
+    background: $clr-blue-navigation;
+    border: 1px solid $clr-blue-night;
+    color: $clr-white-light;
+    padding: 0 10px;
+    margin-bottom: 15px;
+
+    &:focus-visible {
+        outline: 1px solid $clr-blue-light;
+    }
+}
+
+.container-btn-submit {
+    margin: 25px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-submit {
+    width: 150px;
+    background-color: $clr-blue-light;
+    color: $clr-white;
+    border: 1px solid $clr-blue-light;
+    border-radius: 50px;
+    padding: 10px 25px;
+}

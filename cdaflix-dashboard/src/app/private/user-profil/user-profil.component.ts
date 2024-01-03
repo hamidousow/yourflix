@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home-view',
+  selector: 'app-user-profil',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './home-view.component.html',
-  styleUrl: './home-view.component.scss'
+  templateUrl: './user-profil.component.html',
+  styleUrl: './user-profil.component.scss'
 })
-export class HomeViewComponent {
+export class UserProfilComponent {
 
 }

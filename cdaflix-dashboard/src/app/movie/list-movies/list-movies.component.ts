@@ -1,14 +1,13 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListCardsComponent } from '../../movie/list-cards/list-cards.component';
-import { SearchBarComponent } from '../../movie/search-bar/search-bar.component';
+import { ListCardsComponent } from '../list-cards/list-cards.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { ModalComponent } from '../modal/modal.component';
 import { Movie } from '../../models/Movie';
 import { MovieService } from '../../services/movie.service';
-import { ModalComponent } from '../../movie/modal/modal.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-movies-views',
+  selector: 'app-list-movies',
   standalone: true,
   imports: [
     CommonModule,
@@ -16,10 +15,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     SearchBarComponent,
     ModalComponent
   ],
-  templateUrl: './movies-view.component.html',
-  styleUrl: './movies-view.component.scss'
+  templateUrl: './list-movies.component.html',
+  styleUrl: './list-movies.component.scss'
 })
-export class MoviesViewComponent implements OnInit {
+export class ListMoviesComponent implements OnInit {
 
   @Input()
   movies!: Array<Movie>
