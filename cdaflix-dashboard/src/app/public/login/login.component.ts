@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { UserService } from '../../services/user.service';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../../models/User';
+import { LocalService } from '../../services/local.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ import { User } from '../../models/User';
 })
 export class LoginComponent {
 
-  userLogged!: User
+  userLogged!: string | null
 
 
   loginFormGroup = new FormGroup({
@@ -27,12 +28,17 @@ export class LoginComponent {
     password: new FormControl("")
   })
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private router: Router, 
+    private localService: LocalService
+  ) {}
 
   onSubmit(form: FormGroup) {
     this.userService.signin(form.value).subscribe({
       next: (res) => {
-        this.userLogged = res
+        this.localService.saveData('user', res)
+        this.userLogged = this.localService.getData('user');
         this.router.navigate([''])
         console.log(this.userLogged)
       },

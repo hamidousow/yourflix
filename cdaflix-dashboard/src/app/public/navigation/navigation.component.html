@@ -36,16 +36,17 @@
         </li> -->
     </ul>
     <!-- user connecté uniquement -->
-    <!-- <div class="nav_wrap-user-menu">
+    
+    <div class="nav_wrap-user-menu" *ngIf="userLogged != null">
         <div class="nav_user-container-img">
             <img src="./assets/images/user-profile.jpg" alt="">
         </div>
         <div class="nav_user-infos">
             <h3>Hamidou SOW</h3>
-            <span>admin</span>
+            <span>admin <button (click)="disconnectUser()">se déconnecter </button> </span>
         </div>
-    </div>       -->
-    <button class="nav_btn-login">
+    </div>      
+    <button class="nav_btn-login" *ngIf="userLogged == null">
         <a routerLink="/login"> connexion </a>
     </button>
 </nav> 
