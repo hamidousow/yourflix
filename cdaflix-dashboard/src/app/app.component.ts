@@ -6,7 +6,6 @@ import { MovieModule } from './movie/movie.module';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './public/navigation/navigation.component';
 import { SigninViewComponent } from './views/signin-view/signin-view.component';
-import { MoviesViewComponent } from './views/movies-view/movies-view.component';
 import { HomeComponent } from './public/home/home.component';
 
 @Component({
@@ -22,7 +21,6 @@ import { HomeComponent } from './public/home/home.component';
     FormsModule, 
     NavigationComponent,
     SigninViewComponent,
-    MoviesViewComponent,
     HomeComponent
   ],
   templateUrl: './app.component.html',
