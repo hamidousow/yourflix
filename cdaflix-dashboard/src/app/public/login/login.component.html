@@ -1,15 +1,22 @@
 <main id="sign-page">
     <div id="container-form">
+        <h1>Connexion</h1>
         <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit(loginFormGroup)" >
             <div class="wrap-label-input">
-                <label for="mail">Email</label>
                 <input type="email" name="mail" id="mail" formControlName="mail" placeholder="Email">
             </div>
             <div class="wrap-label-input">
-                <label for="description">Password</label>
-                <input type="password" name="passowrd" id="password" formControlName="password" placeholder="Enter your password">
+                <input type="password" name="passowrd" id="password" formControlName="password" placeholder="Password">
             </div>
-            <input type="submit" value="connexion">
+            <div class="register-suggestion">
+                <p>Pas encore inscrit ? <a routerLink="/register" >Créer un compte</a></p>
+                
+            </div>
+            
+            <div class="container-btn-submit">
+                <input class="btn-submit" type="submit" value="connexion">
+            </div>
         </form>
     </div>
+    <img id="sign-page_background-img" src="../../../assets/images/movies-poster.jpg" alt="" srcset="">
 </main>
