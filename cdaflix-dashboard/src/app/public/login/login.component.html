@@ -1,7 +1,8 @@
 <main id="sign-page">
-    <div id="container-form">
-        <h1>Connexion</h1>
+    <a class="logo" routerLink="">CDAFLIX</a>
+    <div id="container-form" class="form-overlay">
         <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit(loginFormGroup)" >
+            <h1>Connexion</h1>
             <div class="wrap-label-input">
                 <input type="email" name="mail" id="mail" formControlName="mail" placeholder="Email">
             </div>
@@ -17,6 +18,5 @@
                 <input class="btn-submit" type="submit" value="connexion">
             </div>
         </form>
-    </div>
-    <img id="sign-page_background-img" src="../../../assets/images/movies-poster.jpg" alt="" srcset="">
+    </div>    
 </main>
