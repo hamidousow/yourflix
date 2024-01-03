@@ -1,4 +1,4 @@
-<nav id="nav" class="navigation">
+<nav id="nav" class="nav">
     <ul class='nav_menu'>
         <li class=''>
             <a routerLink="" 
@@ -8,14 +8,15 @@
                 true}"
             > Nouveautés </a>
         </li>
-        <li class=''>
+        <!-- fonctionnalité accessible que pour l'admin -->
+        <!-- <li class=''>
             <a routerLink="/create" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
                 true}"
             >Ajouter un film</a>
-        </li>
+        </li> -->
         <li class=''>
             <a routerLink="/films" 
                 routerLinkActive="active-link" 
@@ -32,22 +33,27 @@
                     true}"
             > Séries </a>
         </li>
-        <li class=''>
+        <!-- user connecté uniquement -->
+        <!-- <li class=''>
             <a routerLink="/mylist" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
                     true}"
             > Ma liste </a>
-        </li>
+        </li> -->
     </ul>
-    <div class="nav_wrap-user-menu">
+    <!-- user connecté uniquement -->
+    <!-- <div class="nav_wrap-user-menu">
         <div class="nav_user-container-img">
-        <img src="./assets/images/user-profile.jpg" alt="">
+            <img src="./assets/images/user-profile.jpg" alt="">
         </div>
         <div class="nav_user-infos">
-        <h3>Hamidou SOW</h3>
-        <span>admin</span>
+            <h3>Hamidou SOW</h3>
+            <span>admin</span>
         </div>
-    </div>      
+    </div>       -->
+    <button class="nav_btn-login">
+        <a routerLink="/login"> connexion </a>
+    </button>
 </nav> 

@@ -1,0 +1,15 @@
+<main id="sign-page">
+    <div id="container-form">
+        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit(loginFormGroup)" >
+            <div class="wrap-label-input">
+                <label for="mail">Email</label>
+                <input type="email" name="mail" id="mail" formControlName="mail" placeholder="Email">
+            </div>
+            <div class="wrap-label-input">
+                <label for="description">Password</label>
+                <input type="password" name="passowrd" id="password" formControlName="password" placeholder="Enter your password">
+            </div>
+            <input type="submit" value="connexion">
+        </form>
+    </div>
+</main>

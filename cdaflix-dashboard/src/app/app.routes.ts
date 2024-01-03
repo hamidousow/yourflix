@@ -1,23 +1,23 @@
 import { Routes } from '@angular/router';
-import { ListCardsComponent } from './movie/list-cards/list-cards.component';
-import { FormCreateComponent } from './movie/form/form-create/form-create.component';
-import { SearchBarComponent } from './movie/search-bar/search-bar.component';
 import { MovieViewComponent } from './views/movie-view/movie-view.component';
-import { MoviesViewComponent } from './views/movies-view/movies-view.component';
-import { SigninViewComponent } from './views/signin-view/signin-view.component';
+
 
 export const routes: Routes = [
     {
         path: '', 
-        component: MoviesViewComponent
+        loadComponent:  () => import('./public/home/home.component').then(module => module.HomeComponent)
     },
     {
-        path: 'user', 
-        loadChildren: () => import('./user/user.module').then(c => c.UserModule)
-    },    
+        path: 'login', 
+        loadComponent: () => import("./public/login/login.component").then(module => module.LoginComponent)
+    },
+    // {
+    //     path: 'user', 
+    //     loadChildren: () => import('./user/user.module').then(c => c.UserModule)
+    // },    
     {
-        path: 'create', 
-        component: FormCreateComponent,
+        path: 'film/create', 
+        loadComponent:  () => import('./movie/form/form-create/form-create.component').then(module => module.FormCreateComponent),
     },
     {
         path: 'film/:id', 

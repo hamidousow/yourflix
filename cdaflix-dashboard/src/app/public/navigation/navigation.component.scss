@@ -5,7 +5,7 @@
     padding: 16px 60px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .nav_menu {
@@ -62,5 +62,17 @@
 .nav_user-infos span {
     font-weight: 600;
     font-size: 13px;
+}
+
+.nav_btn-login {
+    border-radius: 50px;
+    border: transparent;
+    background-color: $clr-blue-light;
+    padding: 5px 15px;
+    
+    a {
+        color: $clr-white;
+        text-decoration: none;
+    }
 }
 
