@@ -1,0 +1,10 @@
+services:
+
+  backend:
+    image: 
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
