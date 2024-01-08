@@ -1,7 +1,7 @@
-@import 'styles';
+// @import 'styles';
 
 #nav {
-    background-color: $clr-blue-navigation;
+    background-color: var(--clr-blue-navigation);
     padding: 16px 60px;
     display: flex;
     flex-direction: row;
@@ -19,7 +19,7 @@
 
     li a {
         padding: 12px 25px;
-        color: $clr-grey-light;
+        color: var(--clr-grey-light);
         font-weight: 600;
         text-decoration: none;
         text-wrap: nowrap;
@@ -28,7 +28,7 @@
 }
 
 .active-link {
-    color: $clr-red!important;
+    color: var(--clr-red)!important;
     border-radius: 5px;
 }
 
@@ -67,11 +67,11 @@
 .nav_btn-login {
     border-radius: 50px;
     border: transparent;
-    background-color: $clr-blue-light;
+    background-color: var(--clr-blue-light);
     padding: 5px 15px;
     
     a {
-        color: $clr-white;
+        color: var(--clr-white);
         text-decoration: none;
     }
 }

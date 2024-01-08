@@ -1,11 +1,11 @@
-@import 'styles.scss';
+// @import 'styles.scss';
 
 * {
-    color: $clr-grey-light;
+    color: var(--clr-grey-light);
 }
 
 .movie-wrapper {
-    background-color: $clr-blue-night;
+    background-color: var(--clr-blue-night);
     height: 80dvh;
 }
 
