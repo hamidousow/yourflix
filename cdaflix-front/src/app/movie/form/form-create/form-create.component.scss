@@ -1,4 +1,4 @@
-@import 'styles';
+// @import 'styles';
 
 form {
     display: flex;
@@ -22,16 +22,16 @@ input#img {
 }
 
 label {
-    color: $clr-grey-light;
+    color: var(--clr-grey-light);
 }
 
 label[for='img'] {
     display: block;
     padding: 25px 15px;
     width: 100%;
-    background-color: $clr-blue-night;
+    background-color: var(--clr-blue-night);
     text-align: center;
-    color: $clr-grey-light;
+    color: var(--clr-grey-light);
 }
 
 #form-content {

@@ -1,10 +1,10 @@
-@import 'styles';
+// @import 'styles';
 
 $navbar-height: 55px;
 $nav-width: 300px;
 
 #main-content {
-    background-color: $clr-blue-dark;
+    background-color: var(--clr-blue-dark);
 }
 
 // #aside-menu {
@@ -49,6 +49,6 @@ $nav-width: 300px;
 .main-content_right {
     // margin-left: $nav-width;
     min-height: 100dvh;
-    padding: $padding-16-60px;
+    padding: var(--padding-16-60px);
 }
 

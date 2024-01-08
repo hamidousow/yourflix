@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+    db:
+      image: postgres
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: postgres
+      volumes:
+        - PostgresData:/var/lib/postgresql/data
+
+    backend:
+        image: cdaflix-api
+        container_name: cdaflix-api
+        build:
+            context: ./cdaflix-api
+        ports:
+            - "9000:80"
+    frontend:
+        image: cdaflix-front
+        container_name: cdaflix-front
+        build:
+            context: ./cdaflix-front
+        ports:
+            - "4200:80"
+        depends_on:
+            - backend
+
+volumes:
+  PostgresData:

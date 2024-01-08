@@ -1,4 +1,4 @@
-@import 'styles';
+// @import 'styles';
 
 a {
     text-decoration: none;
@@ -9,8 +9,8 @@ a {
     flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
-    background-color: $clr-blue-dark;
-    border: 1px solid $clr-blue-night;
+    background-color: var(--clr-blue-dark);
+    border: 1px solid var(--clr-blue-night);
     height: 100%;
     position: relative;
 }
@@ -44,7 +44,7 @@ a {
 
 .card-body {
     padding: 10px 20px;
-    color: $clr-white-light;
+    color: var(--clr-white-light);
 }
 
 .card-body_title {
@@ -62,7 +62,7 @@ a {
 }
 
 .card footer {
-    color: $clr-white-light;
+    color: var(--clr-white-light);
     font-size: 13px;
     padding: 10px 20px;
 

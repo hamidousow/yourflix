@@ -1,4 +1,4 @@
-@import 'styles.scss';
+// @import 'styles.scss';
 
 #sign-page {
     height: 100dvh;
@@ -16,7 +16,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    color: $clr-white;
+    color: var(--clr-white);
     font-weight: 700;
     font-size: 23px;
     text-decoration: none;
@@ -43,7 +43,7 @@ form {
     padding: 25px 50px; 
     width: 100%;
     max-width: 700px;
-    background-color: $clr-blue-night;
+    background-color: var(--clr-blue-night);
     border-radius: 10px;
     
     z-index: 10;
@@ -52,16 +52,16 @@ form {
     h1 {
         font-size: 23px;
         text-transform: capitalize;
-        color: $clr-white;
+        color: var(--clr-white);
         margin-bottom: 25px;
     }
 
     p {
-        color: $clr-white;
+        color: var(--clr-white);
     }
 
     a {
-        color: $clr-blue-light;
+        color: var(--clr-blue-light);
     }
 }
 
@@ -74,14 +74,14 @@ form {
     width: 100%;
     border-radius: 5px;
 
-    background: $clr-blue-navigation;
-    border: 1px solid $clr-blue-night;
-    color: $clr-white-light;
+    background: var(--clr-blue-navigation);
+    border: 1px solid var(--clr-blue-night);
+    color: var(--clr-white-light);
     padding: 0 10px;
     margin-bottom: 15px;
 
     &:focus-visible {
-        outline: 1px solid $clr-blue-light;
+        outline: 1px solid var(--clr-blue-light);
     }
 }
 
@@ -93,9 +93,9 @@ form {
 
 .btn-submit {
     width: 150px;
-    background-color: $clr-blue-light;
-    color: $clr-white;
-    border: 1px solid $clr-blue-light;
+    background-color: var(--clr-blue-light);
+    color: var(--clr-white);
+    border: 1px solid var(--clr-blue-light);
     border-radius: 50px;
     padding: 10px 25px;
 }
