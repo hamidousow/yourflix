@@ -1,14 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../models/Movie';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../modal/modal.component';
-import { MovieViewComponent } from '../../views/movie-view/movie-view.component';
+import { MovieModalComponent } from '../../public/movie-modal/movie-modal.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterLink
+  ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
@@ -16,12 +19,19 @@ export class CardComponent {
 
   @Input()
   movie!: Movie 
+  
 
   constructor(private modalService: NgbModal) {}
 
   openModal() {
-    const movieNg =  this.modalService.open(MovieViewComponent, { size: 'xl' });
+    console.log('ouvre modal')
+    const movieNg =  this.modalService.open(MovieModalComponent, { size: 'xl' });
     movieNg.componentInstance.movie = this.movie
   }
+
+  openXl(movie: Movie) {
+    this.modalService.open(movie, { size: 'xl' });
+  }
+  
 }
 

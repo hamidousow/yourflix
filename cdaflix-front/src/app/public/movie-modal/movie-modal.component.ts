@@ -1,20 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../models/Movie';
 import { MovieService } from '../../services/movie.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgbActiveModal, NgbModal, NgbModalUpdatableOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-movie-view',
+  selector: 'app-movie-modal',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './movie-view.component.html',
+  templateUrl: './movie-modal.component.html',
   styleUrl: './movie-view.component.scss'
 })
-export class MovieViewComponent implements OnInit {
+export class MovieModalComponent implements OnInit {
 
   @Input()
-  movie!: Movie
+  movie!: Movie  
 
   constructor(private movieService: MovieService, private route: ActivatedRoute) {}
 

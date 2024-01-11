@@ -5,8 +5,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MovieModule } from './movie/movie.module';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './public/navigation/navigation.component';
-import { SigninViewComponent } from './views/signin-view/signin-view.component';
 import { HomeComponent } from './public/home/home.component';
+import { MovieModalComponent } from './public/movie-modal/movie-modal.component';
+import { ListMoviesComponent } from './movie/list-movies/list-movies.component';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,9 @@ import { HomeComponent } from './public/home/home.component';
     HttpClientModule,
     FormsModule, 
     NavigationComponent,
-    SigninViewComponent,
-    HomeComponent
+    HomeComponent,
+    MovieModalComponent,
+    ListMoviesComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

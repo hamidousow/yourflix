@@ -1,17 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
-// @import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 @import "./styles/variables.scss";
 @import "./app/public/home/home.component.scss";
 @import "./app/public/login/login.component.scss";
 @import "./app/public/navigation/navigation.component.scss";
 @import "./app/public/register/register.component.scss";
+@import "./app/public/movie-modal/movie-view.component.scss";
 @import "./app/movie/card/card.component.scss";
 @import "./app/movie/form/form-create/form-create.component.scss";
 @import "./app/movie/list-cards/list-cards.component.scss";
 @import "./app/movie/list-movies/list-movies.component.scss";
-@import "./app/movie/modal/modal.component.scss";
 @import "./app/movie/search-bar/search-bar.component.scss";
+
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
