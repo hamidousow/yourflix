@@ -55,5 +55,17 @@ export class MovieService {
     return res
   }
 
+  addMovieInFavorite(idMovie: string, idUser: string | null) {
+    const options = idMovie && idUser ? {
+      params: new HttpParams()
+                    .set('idMovie', idMovie)
+                    .set('idUser', idUser)
+    } : {}
+
+    const res = this.http.get<any>(`${BASE_URL}/film/addMovieToFavoriteList`, options)
+    return res
+
+  }
+
 
 }

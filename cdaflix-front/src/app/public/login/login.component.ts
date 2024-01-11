@@ -37,10 +37,10 @@ export class LoginComponent {
   onSubmit(form: FormGroup) {
     this.userService.signin(form.value).subscribe({
       next: (res) => {
-        this.localService.saveData('user', res)
+        this.localService.saveData('user', res.id)
         this.userLogged = this.localService.getData('user');
         this.router.navigate([''])
-        console.log(this.userLogged)
+        
       },
       error: (error) => console.log(error)
     })

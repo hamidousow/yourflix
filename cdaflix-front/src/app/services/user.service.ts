@@ -1,6 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+
+const BASE_URL: string = "http://localhost:8081/api";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +37,16 @@ export class UserService {
     })}
 
     const res = this.http.post<any>("http://localhost:8081/api/film/create", formData)
+    return res
+  }
+
+  getUserMoviesList(idUser: string | null) {
+    // let result!: any;
+    const options = idUser ? {
+      params: new HttpParams().set('idUser', idUser)
+    } : {}
+
+    const res = this.http.get<any>(`${BASE_URL}/film/getMoviesByUser`, options)
     return res
   }
 }

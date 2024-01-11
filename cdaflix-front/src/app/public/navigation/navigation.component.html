@@ -26,17 +26,15 @@
             > Films </a>
         </li>
         <!-- user connecté uniquement -->
-        <!-- <li class=''>
-            <a routerLink="/mylist" 
+        <li class='' *ngIf="userLogged != null">
+            <a routerLink="/user/movies" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
                     true}"
             > Ma liste </a>
-        </li> -->
-    </ul>
-    <!-- user connecté uniquement -->
-    
+        </li>
+    </ul>    
     <div class="nav_wrap-user-menu" *ngIf="userLogged != null">
         <div class="nav_user-container-img">
             <img src="./assets/images/user-profile.jpg" alt="">

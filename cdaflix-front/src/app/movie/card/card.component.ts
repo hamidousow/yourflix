@@ -4,6 +4,8 @@ import { Movie } from '../../models/Movie';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovieModalComponent } from '../../public/movie-modal/movie-modal.component';
 import { RouterLink } from '@angular/router';
+import { MovieService } from '../../services/movie.service';
+import { LocalService } from '../../services/local.service';
 
 @Component({
   selector: 'app-card',
@@ -21,7 +23,7 @@ export class CardComponent {
   movie!: Movie 
   
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private movieService: MovieService, private localService: LocalService) {}
 
   openModal() {
     console.log('ouvre modal')
@@ -29,8 +31,18 @@ export class CardComponent {
     movieNg.componentInstance.movie = this.movie
   }
 
-  openXl(movie: Movie) {
-    this.modalService.open(movie, { size: 'xl' });
+  handleFavorite(event: any) {
+    event.stopPropagation()
+    console.log("j'aime le film " + this.movie.title)
+    const res = this.movieService.addMovieInFavorite(JSON.stringify(this.movie.id), this.localService.getData('user'))
+    res.subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (e) => {
+        console.log(e);
+      }
+    })
   }
   
 }
