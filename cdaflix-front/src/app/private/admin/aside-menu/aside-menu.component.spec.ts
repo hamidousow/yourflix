@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SigninViewComponent } from './signin-view.component';
+import { AsideMenuComponent } from './aside-menu.component';
 
-describe('SigninViewComponent', () => {
-  let component: SigninViewComponent;
-  let fixture: ComponentFixture<SigninViewComponent>;
+describe('AsideMenuComponent', () => {
+  let component: AsideMenuComponent;
+  let fixture: ComponentFixture<AsideMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SigninViewComponent]
+      imports: [AsideMenuComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SigninViewComponent);
+    fixture = TestBed.createComponent(AsideMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

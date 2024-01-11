@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { Movie } from '../../models/Movie';
+import { MovieModalComponent } from '../../public/movie-modal/movie-modal.component';
 
 @Component({
   selector: 'app-list-cards',
@@ -10,7 +11,7 @@ import { Movie } from '../../models/Movie';
   imports: [ 
     CommonModule,
     CardComponent,
-    SearchBarComponent
+    SearchBarComponent,
   ],
   templateUrl: './list-cards.component.html',
   styleUrl: './list-cards.component.scss'

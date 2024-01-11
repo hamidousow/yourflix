@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MovieViewComponent } from './views/movie-view/movie-view.component';
+import { MovieModalComponent } from './public/movie-modal/movie-modal.component';
 
 
 export const routes: Routes = [
@@ -23,8 +23,8 @@ export const routes: Routes = [
         path: 'film/create', 
         loadComponent:  () => import('./movie/form/form-create/form-create.component').then(module => module.FormCreateComponent),
     },
-    {
-        path: 'film/:id', 
-        component: MovieViewComponent,
-    },
+    // {
+    //     path: 'film/:id', 
+    //     loadComponent: () => import('./public/movie-modal/movie-modal.component').then(module => module.MovieModalComponent)
+    // },
 ];
