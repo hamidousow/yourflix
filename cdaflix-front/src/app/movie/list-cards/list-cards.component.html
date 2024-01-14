@@ -1,8 +1,9 @@
 <div class="container-cards">
-    <app-card 
-        *ngFor="let movie of movies" 
-        [movie]="movie"
-    ></app-card>
+    @for (movie of movies; track movie.id) {
+        @defer {
+            <app-card [movie]="movie"></app-card>
+        }
+    }
 </div>
 
 

@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Movie } from '../../models/Movie';
-import { ListCardsComponent } from '../../movie/list-cards/list-cards.component';
-import { UserService } from '../../services/user.service';
-import { LocalService } from '../../services/local.service';
+import { Movie } from '../../../models/Movie';
+import { ListCardsComponent } from '../../../movie/list-cards/list-cards.component';
+import { UserService } from '../../../services/user.service';
+import { LocalService } from '../../../services/local.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-movies-list',
@@ -17,7 +18,7 @@ export class UserMoviesListComponent implements OnInit {
   @Input()
   movies!: Array<Movie>
 
-  constructor(private userService: UserService, private localService: LocalService) {
+  constructor(private userService: UserService, private localService: LocalService, private route: ActivatedRoute) {
 
   }
 
@@ -33,6 +34,8 @@ export class UserMoviesListComponent implements OnInit {
       error: (e) => {
         console.log(e);
       }
-    })    
+    }) 
+    
+    // this.router.navigate(['mylist'])   
   }
 }

@@ -1,7 +1,7 @@
 <nav id="nav" class="nav">
     <ul class='nav_menu'>
         <li class=''>
-            <a routerLink="" 
+            <a routerLink="/cdaflix" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
@@ -25,9 +25,8 @@
                 true}"
             > Films </a>
         </li>
-        <!-- user connecté uniquement -->
         <li class='' *ngIf="userLogged != null">
-            <a routerLink="/user/movies" 
+            <a routerLink="/cdaflix/user/:id/mylist" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:

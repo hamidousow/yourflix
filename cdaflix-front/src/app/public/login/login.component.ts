@@ -39,7 +39,7 @@ export class LoginComponent {
       next: (res) => {
         this.localService.saveData('user', res.id)
         this.userLogged = this.localService.getData('user');
-        this.router.navigate([''])
+        this.router.navigate([`cdaflix/user/${res.id}`])
         
       },
       error: (error) => console.log(error)
