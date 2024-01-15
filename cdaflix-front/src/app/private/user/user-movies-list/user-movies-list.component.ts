@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Movie } from '../../../models/Movie';
 import { ListCardsComponent } from '../../../movie/list-cards/list-cards.component';
 import { UserService } from '../../../services/user.service';
-import { LocalService } from '../../../services/local.service';
+import { LocalService } from '../../../services/localstorage-service/local.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

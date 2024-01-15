@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule, FormStyle } from '@angular/common';
 import { Event } from '../../../interfaces/Event';
 import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MovieService } from '../../../services/movie.service';
+import { MovieService } from '../../../services/movie-service/movie.service';
 
 @Component({
   selector: 'app-form-create',

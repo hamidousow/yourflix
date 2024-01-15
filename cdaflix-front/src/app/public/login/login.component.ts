@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { UserService } from '../../services/user.service';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../../models/User';
-import { LocalService } from '../../services/local.service';
+import { LocalService } from '../../services/localstorage-service/local.service';
 
 @Component({
   selector: 'app-login',

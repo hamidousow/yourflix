@@ -4,8 +4,8 @@ import { Movie } from '../../models/Movie';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovieModalComponent } from '../../public/movie-modal/movie-modal.component';
 import { RouterLink } from '@angular/router';
-import { MovieService } from '../../services/movie.service';
-import { LocalService } from '../../services/local.service';
+import { MovieService } from '../../services/movie-service/movie.service';
+import { LocalService } from '../../services/localstorage-service/local.service';
 
 @Component({
   selector: 'app-card',

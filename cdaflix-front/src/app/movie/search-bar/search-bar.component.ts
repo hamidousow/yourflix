@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/movie-service/movie.service';
 import { Movie } from '../../models/Movie';
 
 @Component({

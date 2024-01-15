@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { User } from '../../models/User';
-import { LocalService } from '../../services/local.service';
+import { LocalService } from '../../services/localstorage-service/local.service';
 
 @Component({
   selector: 'app-navigation',

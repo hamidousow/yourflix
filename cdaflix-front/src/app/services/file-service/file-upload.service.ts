@@ -1,6 +1,6 @@
 import { HttpEventType } from '@angular/common/http';
 import { Injectable, Input, OnInit } from '@angular/core';
-import { Event } from '../interfaces/Event';
+import { Event } from '../../interfaces/Event';
 
 @Injectable({
   providedIn: 'root'

@@ -25,25 +25,31 @@
                 true}"
             > Films </a>
         </li>
-        <li class='' *ngIf="userLogged != null">
-            <a routerLink="/cdaflix/user/:id/mylist" 
-                routerLinkActive="active-link" 
-                ariaCurrentWhenActive="page" 
-                [routerLinkActiveOptions]="{exact:
-                    true}"
-            > Ma liste </a>
-        </li>
+        @if (userLogged) {
+            <li class=''>
+                <a routerLink="/cdaflix/user/:id/mylist" 
+                    routerLinkActive="active-link" 
+                    ariaCurrentWhenActive="page" 
+                    [routerLinkActiveOptions]="{exact:
+                        true}"
+                > Ma liste </a>
+            </li>
+        }
+        
     </ul>    
-    <div class="nav_wrap-user-menu" *ngIf="userLogged != null">
-        <div class="nav_user-container-img">
-            <img src="./assets/images/user-profile.jpg" alt="">
-        </div>
-        <div class="nav_user-infos">
-            <h3>Hamidou SOW</h3>
-            <span>admin <button (click)="disconnectUser()">se déconnecter </button> </span>
-        </div>
-    </div>      
-    <button class="nav_btn-login" *ngIf="userLogged == null">
-        <a routerLink="/login"> connexion </a>
-    </button>
+    @if (userLogged) {
+        <div class="nav_wrap-user-menu">
+            <div class="nav_user-container-img">
+                <img src="./assets/images/user-profile.jpg" alt="">
+            </div>
+            <div class="nav_user-infos">
+                <h3>Hamidou SOW</h3>
+                <span>admin <button (click)="disconnectUser()">se déconnecter </button> </span>
+            </div>
+        </div>      
+    } @else {
+        <button class="nav_btn-login">
+            <a routerLink="/login"> connexion </a>
+        </button>
+    }    
 </nav> 

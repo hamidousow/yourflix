@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListCardsComponent } from '../list-cards/list-cards.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { Movie } from '../../models/Movie';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/movie-service/movie.service';
 
 @Component({
   selector: 'app-list-movies',

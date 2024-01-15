@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../models/Movie';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/movie-service/movie.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalUpdatableOptions } from '@ng-bootstrap/ng-bootstrap';
 

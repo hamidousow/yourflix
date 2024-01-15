@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Inject, Injectable, OnInit } from '@angular/core';
+import { Inject, Injectable, OnInit, Signal } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Movie } from '../models/Movie';
+import { Movie } from '../../models/Movie';
+import { tap } from 'rxjs';
+import { SIGNAL, createSignal } from '@angular/core/primitives/signals';
 
 const BASE_URL: string = "http://localhost:8081/api"
 
@@ -11,6 +13,10 @@ const BASE_URL: string = "http://localhost:8081/api"
 export class MovieService {
 
   private movies!: Array<Movie>;
+
+  readonly str = createSignal<string>('');
+
+
   constructor(private http: HttpClient) {}
 
   getAll() {
@@ -69,3 +75,7 @@ export class MovieService {
 
 
 }
+function signal(arg0: never[]): Movie[] {
+  throw new Error('Function not implemented.');
+}
+
