@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../../models/Movie';
 import { ListCardsComponent } from '../../../movie/list-cards/list-cards.component';
 import { UserService } from '../../../services/user-service/user.service';
 import { LocalService } from '../../../services/localstorage-service/local.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MovieService } from '../../../services/movie-service/movie.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-movies-list',
@@ -15,26 +17,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserMoviesListComponent implements OnInit {
 
+  // @Input()
+  // movies!: Array<Movie>
+
+  private localService = inject(LocalService) 
+  private movieService = inject(MovieService) 
+  private route = inject(ActivatedRoute) 
+
+
   @Input()
-  movies!: Array<Movie>
+  movies!: Movie[]
 
-  constructor(private userService: UserService, private localService: LocalService, private route: ActivatedRoute) {
-
-  }
+  
 
   ngOnInit(): void {
     this.getUserMovies()
   }
 
   getUserMovies()  {
-    this.userService.getUserMoviesList(this.localService.getData('user')).subscribe({
-      next: (r) => {
-        this.movies = r
-      },
-      error: (e) => {
-        console.log(e);
-      }
-    }) 
+    const id = this.localService.getData('user');
+    this.movieService.getMoviesByUser(id);
+    this.movieService.favoriteMovies.subscribe((val) => this.movies = val)
     
     // this.router.navigate(['mylist'])   
   }

@@ -19,7 +19,7 @@ import { LocalService } from '../../services/localstorage-service/local.service'
 })
 export class LoginComponent {
 
-  userLogged!: string | null
+  userLogged = this.userService.userLogged
 
 
   loginFormGroup = new FormGroup({
@@ -34,7 +34,7 @@ export class LoginComponent {
   ) {}
 
   onSubmit(form: FormGroup) {
-    this.userService.signin(form.value).subscribe({
+    /*this.userService.signin(form.value).subscribe({
       next: (res) => {
         this.localService.saveData('user', res.id)
         this.userLogged = this.localService.getData('user');
@@ -42,7 +42,9 @@ export class LoginComponent {
         
       },
       error: (error) => console.log(error)
-    })
+    })*/
+    this.userService.login(form.value)
+
   }
   
 }

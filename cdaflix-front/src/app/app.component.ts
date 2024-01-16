@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './public/navigation/navigation.component';
 import { HomeComponent } from './public/home/home.component';
 import { MovieModalComponent } from './public/movie-modal/movie-modal.component';
-import { ListMoviesComponent } from './movie/list-movies/list-movies.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +22,6 @@ import { ListMoviesComponent } from './movie/list-movies/list-movies.component';
     NavigationComponent,
     HomeComponent,
     MovieModalComponent,
-    ListMoviesComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

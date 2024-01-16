@@ -22,7 +22,6 @@ export class CardComponent {
   @Input()
   movie!: Movie 
   
-
   constructor(private modalService: NgbModal, private movieService: MovieService, private localService: LocalService) {}
 
   openModal() {

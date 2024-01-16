@@ -4,6 +4,7 @@ import { CardComponent } from '../card/card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { Movie } from '../../models/Movie';
 import { MovieModalComponent } from '../../public/movie-modal/movie-modal.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-cards',
@@ -19,9 +20,9 @@ import { MovieModalComponent } from '../../public/movie-modal/movie-modal.compon
 export class ListCardsComponent {
 
   @Input()
-  movies!: Array<any>;  
+  movies!: Movie[];  
 
   @Input()
-  movie!: Movie;
+  movie!: Subject<Movie>;
 
 }

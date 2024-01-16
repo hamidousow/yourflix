@@ -3,7 +3,6 @@ import { Inject, Injectable, OnInit, WritableSignal, inject, signal } from '@ang
 import { Observable } from 'rxjs/internal/Observable';
 import { Movie } from '../../models/Movie';
 import { BehaviorSubject, map, tap,  } from 'rxjs';
-import { SIGNAL, createSignal } from '@angular/core/primitives/signals';
 
 const BASE_URL: string = "http://localhost:8081/api"
 
@@ -12,8 +11,9 @@ const BASE_URL: string = "http://localhost:8081/api"
 })
 export class MovieService {
 
-  readonly movies = new BehaviorSubject<Movie[]>([])
   readonly movie = new BehaviorSubject<Movie>(new Movie())
+  readonly movies = new BehaviorSubject<Movie[]>([])
+  readonly favoriteMovies = new BehaviorSubject<Movie[]>([])
   private http = inject(HttpClient)
 
   fetchAll() {
@@ -77,6 +77,18 @@ export class MovieService {
     .get<any>(`${BASE_URL}/film/addMovieToFavoriteList`, options)
     .pipe(map(val => this.movie.next(val)))
     .subscribe();
+  }
+
+  getMoviesByUser(idUser: string | null) {
+    const options = idUser ? {
+      params: new HttpParams().set('idUser', idUser)
+    } : {}
+
+    this.http
+    .get<Movie[]>(`${BASE_URL}/film/getMoviesByUser`, options)
+    .pipe(map((movies) => this.favoriteMovies.next(movies)))
+    .subscribe()
+    
   }
 }
 
