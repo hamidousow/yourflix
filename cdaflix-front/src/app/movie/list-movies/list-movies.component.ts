@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListCardsComponent } from '../list-cards/list-cards.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
@@ -19,7 +19,7 @@ import { MovieService } from '../../services/movie-service/movie.service';
 export class ListMoviesComponent implements OnInit {
 
   @Input()
-  movies!: Array<Movie>
+  movies!: Movie[]
 
   @Input()
   movie!: Movie
@@ -27,21 +27,16 @@ export class ListMoviesComponent implements OnInit {
   @Input()
   args!: string
 
-  constructor(private movieService: MovieService) {}
+  private movieService = inject(MovieService) 
+
 
   ngOnInit(): void {
-    this.movieService.getAll().subscribe({
-      next: (r) => {
-        this.movies = r
-      },
-      error: (e) => {
-        console.log(e)
-      }
-    })
+    this.movieService.fetchAll()
+    this.movieService.movies.subscribe((value) => this.movies = value)
   }
 
-  handleMovies(movies: Array<Movie>) {
+  /*handleMovies(movies: Array<Movie>) {
     this.movies = movies
-  }
+  }*/
 
 }

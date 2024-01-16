@@ -6,11 +6,8 @@ export class Movie {
     img!: string;
     description!: string
 
-    constructor(title:string, actors: Array<string>, img:string, description:string) {
-        this.title = title;
-        this.actors = actors;
-        this.img = img;
-        this.description = description;
+    constructor() {
+        
     }
 
     public setTitre(title: string) {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../../services/movie-service/movie.service';
 import { Movie } from '../../models/Movie';
@@ -21,7 +21,7 @@ export class SearchBarComponent {
 
   movies!: Array<Movie>  
 
-  constructor(private movieService: MovieService) {}
+  private movieService = inject(MovieService);
 
   /**
    * search movies by title within words that matches the searchbar's entries. If no entries in the searchbar, then return all movies
@@ -30,19 +30,11 @@ export class SearchBarComponent {
   handleSearch(args: string) {
     args = args.trim()
     if(args.length > 0 && args !== undefined) {
-      this.movieService.find(args).subscribe({
-        next: (r) => {
-          this.movies = r
-          this.emitter.emit(this.movies)
-        }
-      })
+      this.movieService.search(args);
+      this.movieService.movies.subscribe((values) => this.movies = values)
     } else {
-      this.movieService.getAll().subscribe({
-        next: (r) => {
-          this.movies = r
-          this.emitter.emit(this.movies)
-        }
-      })
+      this.movieService.fetchAll()
+      this.movieService.movies.subscribe((val) => this.movies = val)
     }   
   }
 }

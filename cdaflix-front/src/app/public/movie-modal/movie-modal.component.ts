@@ -22,10 +22,8 @@ export class MovieModalComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
     if(id) {
-      this.movieService.findById(id).subscribe({
-        next: (r) => this.movie = r,
-        error: (e) => console.log(e)
-      })
+      this.movieService.findById(id)
+      this.movieService.movie.subscribe(movie => this.movie = movie)
     }
   }
 

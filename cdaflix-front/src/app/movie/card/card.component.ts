@@ -34,15 +34,8 @@ export class CardComponent {
   handleFavorite(event: any) {
     event.stopPropagation()
     console.log("j'aime le film " + this.movie.title)
-    const res = this.movieService.addMovieInFavorite(JSON.stringify(this.movie.id), this.localService.getData('user'))
-    res.subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (e) => {
-        console.log(e);
-      }
-    })
+    this.movieService.addMovieInFavorite(JSON.stringify(this.movie.id), this.localService.getData('user'))
+    this.movieService.movie.subscribe(val => this.movie = val)
   }
   
 }

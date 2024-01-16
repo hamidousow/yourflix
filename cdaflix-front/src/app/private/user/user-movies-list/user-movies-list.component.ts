@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../../models/Movie';
 import { ListCardsComponent } from '../../../movie/list-cards/list-cards.component';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/user-service/user.service';
 import { LocalService } from '../../../services/localstorage-service/local.service';
 import { ActivatedRoute, Router } from '@angular/router';
 

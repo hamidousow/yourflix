@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user-service/user.service';
 import { Router, RouterModule } from '@angular/router';
-import { User } from '../../models/User';
 import { LocalService } from '../../services/localstorage-service/local.service';
 
 @Component({

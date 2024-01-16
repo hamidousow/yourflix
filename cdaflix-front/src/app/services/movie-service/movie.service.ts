@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Inject, Injectable, OnInit, Signal } from '@angular/core';
+import { Inject, Injectable, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Movie } from '../../models/Movie';
-import { tap } from 'rxjs';
+import { BehaviorSubject, map, tap,  } from 'rxjs';
 import { SIGNAL, createSignal } from '@angular/core/primitives/signals';
 
 const BASE_URL: string = "http://localhost:8081/api"
@@ -12,16 +12,15 @@ const BASE_URL: string = "http://localhost:8081/api"
 })
 export class MovieService {
 
-  private movies!: Array<Movie>;
+  readonly movies = new BehaviorSubject<Movie[]>([])
+  readonly movie = new BehaviorSubject<Movie>(new Movie())
+  private http = inject(HttpClient)
 
-  readonly str = createSignal<string>('');
-
-
-  constructor(private http: HttpClient) {}
-
-  getAll() {
-    const res = this.http.get<any[]>("http://localhost:8081/api/film/all")
-    return res
+  fetchAll() {
+    this.http
+    .get<Movie[]>(`${BASE_URL}/film/all`)
+    .pipe(map((values) => this.movies.next(values)))
+    .subscribe();
   }
 
   create(data: any): Observable<any>{
@@ -41,24 +40,30 @@ export class MovieService {
     return res
   }
 
-  find(args: string) {
+  search(args: string) {
 
     args = args.trim()
     const options = args ? {
       params: new HttpParams().set('title', args)
     } : {}
 
-    const res = this.http.get<any>("http://localhost:8081/api/film/find", options)
-    return res
+    this.http
+    .get<any>(`${BASE_URL}/film/find`, options)
+    .pipe(map((values) => this.movies.next(values)))
+    .subscribe();
   }
+
+  
 
   findById(id: string) {
     const options = id ? {
       params: new HttpParams().set('id', id)
     } : {}
 
-    const res = this.http.get<any>(`${BASE_URL}/film/findOne/`, options)
-    return res
+    this.http
+    .get<Movie>(`${BASE_URL}/film/findOne/`, options)
+    .pipe(map((value) => this.movie.next(value)))
+    .subscribe();
   }
 
   addMovieInFavorite(idMovie: string, idUser: string | null) {
@@ -68,14 +73,11 @@ export class MovieService {
                     .set('idUser', idUser)
     } : {}
 
-    const res = this.http.get<any>(`${BASE_URL}/film/addMovieToFavoriteList`, options)
-    return res
-
+    this.http
+    .get<any>(`${BASE_URL}/film/addMovieToFavoriteList`, options)
+    .pipe(map(val => this.movie.next(val)))
+    .subscribe();
   }
-
-
 }
-function signal(arg0: never[]): Movie[] {
-  throw new Error('Function not implemented.');
-}
+
 
