@@ -1,9 +1,11 @@
 <div id="homepage">
     <app-navigation></app-navigation>
     <div class="main-content_right">
-        <!-- <app-list-movies></app-list-movies> -->
         <app-search-bar ></app-search-bar> 
-        <app-list-cards [movies]="movies"></app-list-cards>
-
+        <div class="container-cards">
+            @for (movie of movies; track $index) {
+                <app-card [movie]="movie"></app-card>
+            }
+        </div>
     </div>
 </div>

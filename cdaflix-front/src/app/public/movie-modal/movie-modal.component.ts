@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, TemplateRef, inject } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, WritableSignal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Movie } from '../../models/Movie';
 import { MovieService } from '../../services/movie-service/movie.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalUpdatableOptions } from '@ng-bootstrap/ng-bootstrap';
+import { TmdbMovie } from '../../models/TmdbMovie';
+import { TmdbService } from '../../services/tmdb-service/tmdb.service';
 
 @Component({
   selector: 'app-movie-modal',
@@ -15,15 +17,15 @@ import { NgbActiveModal, NgbModal, NgbModalUpdatableOptions } from '@ng-bootstra
 export class MovieModalComponent implements OnInit {
 
   @Input()
-  movie!: Movie  
+  movie!: TmdbMovie
 
-  constructor(private movieService: MovieService, private route: ActivatedRoute) {}
+  constructor(private movieService: TmdbService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
     if(id) {
-      this.movieService.findById(id)
-      this.movieService.movie.subscribe(movie => this.movie = movie)
+      this.movieService.getOne(id)
+      this.movie = this.movieService.movie()
     }
   }
 

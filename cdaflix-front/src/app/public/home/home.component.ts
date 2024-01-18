@@ -7,6 +7,9 @@ import { ListCardsComponent } from '../../movie/list-cards/list-cards.component'
 import { Movie } from '../../models/Movie';
 import { MovieService } from '../../services/movie-service/movie.service';
 import { SearchBarComponent } from '../../movie/search-bar/search-bar.component';
+import { CardComponent } from '../shared-public/components/card/card.component';
+import { TmdbMovie } from '../../models/TmdbMovie';
+import { TmdbService } from '../../services/tmdb-service/tmdb.service';
 
 @Component({
   selector: 'app-home',
@@ -19,17 +22,19 @@ import { SearchBarComponent } from '../../movie/search-bar/search-bar.component'
     RouterLinkActive,
     MovieModalComponent,
     ListCardsComponent,
-    SearchBarComponent
+    SearchBarComponent, 
+    CardComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 
-  private movieService = inject(MovieService) 
+  private movieService = inject(TmdbService) 
 
-  @Input()
-  movies!: Movie[]
+  //movies!: TmdbMovie[]
+
+  movies = this.movieService.movies.getValue()
 
   @Input()
   movie!: Movie
@@ -38,9 +43,17 @@ export class HomeComponent {
   args!: string
 
 
-  ngOnInit(): void {
-    this.movieService.fetchAll()
-    this.movieService.movies.subscribe((value) => this.movies = value)
+  ngOnInit() {
+    //this.movieService.fetchAll()
+    this.movieService.getPopularMovies();
+    //this.movieService.movies.subscribe((value) => this.movies = value);
+    // this.movies = this.movieService.movies.value
+    this.movieService.movies.subscribe((movies) => {
+      this.movies = movies
+      console.log(this.movies);
+    });
+    // console.log(this.movies);
+    
   }
 
 }

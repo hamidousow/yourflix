@@ -52,3 +52,10 @@ $nav-width: 300px;
     padding: var(--padding-16-60px);
 }
 
+.container-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem 1rem;
+    padding: 1rem;
+}
+
