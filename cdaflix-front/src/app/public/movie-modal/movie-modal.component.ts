@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalUpdatableOptions } from '@ng-bootstrap/ng-bootstrap';
 import { TmdbMovie } from '../../models/TmdbMovie';
 import { TmdbService } from '../../services/tmdb-service/tmdb.service';
+import { tmdbUtil } from '../../utils/tmdb-util';
 
 @Component({
   selector: 'app-movie-modal',
@@ -18,6 +19,8 @@ export class MovieModalComponent implements OnInit {
 
   @Input()
   movie!: TmdbMovie
+
+  imageBaseurl = tmdbUtil.imageBaseUrl
 
   constructor(private movieService: TmdbService, private route: ActivatedRoute) {}
 

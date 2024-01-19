@@ -6,6 +6,7 @@ import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 import { LocalService } from '../../../../services/localstorage-service/local.service';
 import { MovieModalComponent } from '../../../movie-modal/movie-modal.component';
 import { TmdbMovie } from '../../../../models/TmdbMovie';
+import { tmdbUtil } from '../../../../utils/tmdb-util';
 
 @Component({
   selector: 'app-card',
@@ -19,6 +20,8 @@ export class CardComponent {
   private tmdbServicce = inject(TmdbService)
   private localService = inject(LocalService)
   private modalService = inject(NgbModal)
+
+  imageBaseurl = tmdbUtil.imageBaseUrl
 
   @Input()
   movie!: TmdbMovie

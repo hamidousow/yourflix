@@ -1,7 +1,7 @@
 <div class="card" (click)="openModal()">
     <header>
         <div class="card_header-bg"></div>
-        <img height="100" alt="" src={{movie.poster_path}}/>            
+        <img height="100" alt="" src={{imageBaseurl+movie.poster_path}}/>            
     </header>
     <div class="card-body d-flex justify-content-between gap-2">
         <h2 class="card-body_title"> {{ movie.title }} </h2>

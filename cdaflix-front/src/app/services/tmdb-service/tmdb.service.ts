@@ -30,8 +30,6 @@ export class TmdbService {
     .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/popular`, tmdbUtil.options)
     .pipe(tap((v) => {
       this.movies.next(v.results)
-      console.log(this.movies.value);
-      
     }))
     .subscribe();
   }
