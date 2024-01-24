@@ -5,9 +5,8 @@
 @import "./styles/variables.scss";
 @import "./app/public/views/home/home.component.scss";
 @import "./app/public/views/login/login.component.scss";
-@import "./app/public/navigation/navigation.component.scss";
-@import "./app/public/register/register.component.scss";
-@import "./app/public/movie-modal/movie-view.component.scss";
+@import "./app/public/shared-public/components/navigation/navigation.component.scss";
+@import "./app/public/shared-public/components/movie-modal/movie-view.component.scss";
 @import "./app/movie/form/form-create/form-create.component.scss";
 @import "./app/public/shared-public/components/search-bar/search-bar.component.scss";
 

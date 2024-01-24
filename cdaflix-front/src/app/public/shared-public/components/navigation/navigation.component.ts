@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { User } from '../../models/User';
-import { LocalService } from '../../services/localstorage-service/local.service';
-import { TmdbAuthService } from '../../services/tmdb-service/tmdb-auth.service';
+import { User } from '../../../../models/User';
+import { LocalService } from '../../../../services/localstorage-service/local.service';
+import { TmdbAuthService } from '../../../../services/tmdb-service/tmdb-auth.service';
 
 @Component({
   selector: 'app-navigation',

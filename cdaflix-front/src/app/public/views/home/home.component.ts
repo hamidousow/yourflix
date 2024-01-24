@@ -4,8 +4,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 
 import { toObservable, toSignal } from "@angular/core/rxjs-interop";
-import { NavigationComponent } from '../../navigation/navigation.component';
-import { MovieModalComponent } from '../../movie-modal/movie-modal.component';
+import { NavigationComponent } from '../../shared-public/components/navigation/navigation.component';
+import { MovieModalComponent } from '../../shared-public/components/movie-modal/movie-modal.component';
 import { SearchBarComponent } from '../../shared-public/components/search-bar/search-bar.component';
 import { CardComponent } from '../../shared-public/components/card/card.component';
 import { TmdbService } from '../../../services/tmdb-service/tmdb.service';

@@ -21,10 +21,6 @@ export const routes: Routes = [
         loadComponent: () => import("./public/views/login/login.component")
     },
     {
-        path: 'register', 
-        loadComponent: () => import("./public/register/register.component")
-    }, 
-    {
         path: 'film/create', 
         loadComponent:  () => import('./movie/form/form-create/form-create.component')
     },

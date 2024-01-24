@@ -4,8 +4,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MovieModule } from './movie/movie.module';
 import { FormsModule } from '@angular/forms';
-import { NavigationComponent } from './public/navigation/navigation.component';
-import { MovieModalComponent } from './public/movie-modal/movie-modal.component';
+import { NavigationComponent } from './public/shared-public/components/navigation/navigation.component';
+import { MovieModalComponent } from './public/shared-public/components/movie-modal/movie-modal.component';
 import HomeComponent from './public/views/home/home.component';
 
 @Component({

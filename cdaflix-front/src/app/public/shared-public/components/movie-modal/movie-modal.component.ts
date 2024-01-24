@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, TemplateRef, WritableSignal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Movie } from '../../models/Movie';
-import { MovieService } from '../../services/movie-service/movie.service';
+import { Movie } from '../../../../models/Movie';
+import { MovieService } from '../../../../services/movie-service/movie.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModal, NgbModalUpdatableOptions } from '@ng-bootstrap/ng-bootstrap';
-import { TmdbMovie } from '../../models/TmdbMovie';
-import { TmdbService } from '../../services/tmdb-service/tmdb.service';
-import { tmdbUtil } from '../../utils/tmdb-util';
+import { TmdbMovie } from '../../../../models/TmdbMovie';
+import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
+import { tmdbUtil } from '../../../../utils/tmdb-util';
 
 @Component({
   selector: 'app-movie-modal',

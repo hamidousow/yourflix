@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule, FormStyle } from '@angular/common';
-import { Event } from '../../../interfaces/Event';
+import { Event } from '../../../models/Event';
 import { NgForm, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MovieService } from '../../../services/movie-service/movie.service';
 
