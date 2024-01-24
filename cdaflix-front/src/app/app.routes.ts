@@ -8,24 +8,24 @@ export const routes: Routes = [
     },
     {
         path: 'cdaflix', 
-        loadComponent:  () => import('./public/home/home.component').then(module => module.HomeComponent),
+        loadComponent:  () => import('./public/home/home.component'),
         children: [
             {
                 path: 'user/:id',
-                loadChildren: () => import('./private/user/user.module').then(module => module.UserModule)
+                loadChildren: () => import('./private/user/user.module')
             }
         ]
     },
     {
         path: 'login', 
-        loadComponent: () => import("./public/login/login.component").then(module => module.LoginComponent)
+        loadComponent: () => import("./public/login/login.component")
     },
     {
         path: 'register', 
-        loadComponent: () => import("./public/register/register.component").then(module => module.RegisterComponent)
+        loadComponent: () => import("./public/register/register.component")
     }, 
     {
         path: 'film/create', 
-        loadComponent:  () => import('./movie/form/form-create/form-create.component').then(module => module.FormCreateComponent),
+        loadComponent:  () => import('./movie/form/form-create/form-create.component')
     },
 ];

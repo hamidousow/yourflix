@@ -15,7 +15,7 @@ import { MovieService } from '../../../services/movie-service/movie.service';
   templateUrl: './form-create.component.html',
   styleUrl: './form-create.component.scss'
 })
-export class FormCreateComponent {
+export default class FormCreateComponent {
 
   @Input()
   file!: File

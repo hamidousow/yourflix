@@ -1,14 +1,14 @@
 <main id="sign-page">
     <a class="logo" routerLink="">CDAFLIX</a>
     <div id="container-form" class="form-overlay">
-        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit(loginFormGroup)" >
+        <form [formGroup]="loginFormGroup" (ngSubmit)="handleTok()" >
             <h1>Connexion</h1>
-            <div class="wrap-label-input">
+            <!-- <div class="wrap-label-input">
                 <input type="email" name="mail" id="mail" formControlName="mail" placeholder="Email">
             </div>
             <div class="wrap-label-input">
                 <input type="password" name="passowrd" id="password" formControlName="password" placeholder="Password">
-            </div>
+            </div> -->
             <div class="register-suggestion">
                 <p>Pas encore inscrit ? <a routerLink="/register" >Créer un compte</a></p>
                 

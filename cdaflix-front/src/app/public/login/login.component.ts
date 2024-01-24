@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user-service/user.service';
 import { Router, RouterModule } from '@angular/router';
 import { LocalService } from '../../services/localstorage-service/local.service';
+import { TmdbAuthService } from '../../services/tmdb-service/tmdb-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,34 +18,34 @@ import { LocalService } from '../../services/localstorage-service/local.service'
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export default class LoginComponent {
 
-  userLogged = this.userService.userLogged
-
+  private userService = inject(UserService)  
+  private router = inject(Router) 
+  private localService = inject(LocalService) 
+  private tmdbAuthService = inject(TmdbAuthService)
 
   loginFormGroup = new FormGroup({
     mail: new FormControl(""),
     password: new FormControl("")
-  })
+  })  
 
-  constructor(
-    private userService: UserService, 
-    private router: Router, 
-    private localService: LocalService
-  ) {}
+  @Input()
+  token!: string
 
-  onSubmit(form: FormGroup) {
-    /*this.userService.signin(form.value).subscribe({
-      next: (res) => {
-        this.localService.saveData('user', res.id)
-        this.userLogged = this.localService.getData('user');
-        this.router.navigate([`cdaflix/user/${res.id}`])
-        
-      },
-      error: (error) => console.log(error)
-    })*/
-    this.userService.login(form.value)
+  handleSubmit(form: FormGroup) {
+    
+    this.tmdbAuthService.login(form.value);
 
+  }
+
+  handleTok() {
+    this.tmdbAuthService.reqToken()
+    let token = this.tmdbAuthService._token.value
+    if(token != '') {
+      this.tmdbAuthService.reqToken()
+    }
+    this.tmdbAuthService.login();
   }
   
 }

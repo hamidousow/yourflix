@@ -3,7 +3,8 @@
     <div class="main-content_right">
         <app-search-bar ></app-search-bar> 
         <div class="container-cards">
-            @for (movie of movies; track $index) {
+            
+            @for (movie of movies$ | async; track $index) {
                 <app-card [movie]="movie"></app-card>
             }
         </div>

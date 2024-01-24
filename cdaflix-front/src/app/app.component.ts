@@ -5,8 +5,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MovieModule } from './movie/movie.module';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './public/navigation/navigation.component';
-import { HomeComponent } from './public/home/home.component';
 import { MovieModalComponent } from './public/movie-modal/movie-modal.component';
+import HomeComponent from './public/home/home.component';
 
 @Component({
   selector: 'app-root',

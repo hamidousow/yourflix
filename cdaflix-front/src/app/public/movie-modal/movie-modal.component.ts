@@ -28,7 +28,11 @@ export class MovieModalComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')
     if(id) {
       this.movieService.getOne(id)
+      this.movieService.getImage(id)
       this.movie = this.movieService.movie()
+      this.movie.backdrop = this.movieService.images()
+      console.log(this.movie);
+      
     }
   }
 

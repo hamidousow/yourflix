@@ -9,6 +9,6 @@ import { UserRoutingModule } from './user-routing.module';
     UserRoutingModule
   ]
 })
-export class UserModule {
+export default class UserModule {
   
 }

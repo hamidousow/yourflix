@@ -1,9 +1,10 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { tmdbUtil } from '../../utils/tmdb-util';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, first, map, startWith, tap } from 'rxjs';
 import { Movie } from '../../models/Movie';
 import { TmdbMovie } from '../../models/TmdbMovie';
+import { start } from '@popperjs/core';
 
 const tmdbAttribution = "This product uses the TMDB API but is not endorsed or certified by TMDB.";
 
@@ -11,12 +12,16 @@ const tmdbAttribution = "This product uses the TMDB API but is not endorsed or c
   providedIn: 'root'
 })
 export class TmdbService {
+  
 
   http = inject(HttpClient)
   
-  readonly movies = new BehaviorSubject<TmdbMovie[]>([]);
+  _movies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly movies$: Observable<TmdbMovie[]> = this._movies.asObservable();
 
-  movie = signal<any>(new TmdbMovie())
+  readonly images = signal<[]>([]);
+
+  movie = signal<any>(null)
 
   getOne(id: string) {
     this.http
@@ -25,12 +30,25 @@ export class TmdbService {
     .subscribe();
   }
 
-  async getPopularMovies() {
+  getPopularMovies() {
+    
     this.http
     .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/popular`, tmdbUtil.options)
+    .pipe(
+      map((v) => this._movies.next(v.results))
+    )
+    .subscribe()
+    
+  }
+
+  getImage(id: string) {
+    this.http
+    .get<{ backdrops : []}>(`${tmdbUtil.baseUrl}/movie/${id}/images`, tmdbUtil.options)
     .pipe(tap((v) => {
-      this.movies.next(v.results)
+      this.images.set(v.backdrops)
     }))
     .subscribe();
   }
+
+
 }

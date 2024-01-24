@@ -1,15 +1,14 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MovieModalComponent } from '../movie-modal/movie-modal.component';
 import { ListCardsComponent } from '../../movie/list-cards/list-cards.component';
 import { Movie } from '../../models/Movie';
-import { MovieService } from '../../services/movie-service/movie.service';
 import { SearchBarComponent } from '../../movie/search-bar/search-bar.component';
 import { CardComponent } from '../shared-public/components/card/card.component';
-import { TmdbMovie } from '../../models/TmdbMovie';
 import { TmdbService } from '../../services/tmdb-service/tmdb.service';
+import { toObservable, toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-home',
@@ -28,13 +27,12 @@ import { TmdbService } from '../../services/tmdb-service/tmdb.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export default class HomeComponent implements OnInit {
+  
 
   private movieService = inject(TmdbService) 
 
-  //movies!: TmdbMovie[]
-
-  movies = this.movieService.movies.getValue()
+  movies$ = this.movieService.movies$
 
   @Input()
   movie!: Movie
@@ -42,18 +40,7 @@ export class HomeComponent {
   @Input()
   args!: string
 
-
   ngOnInit() {
-    //this.movieService.fetchAll()
-    this.movieService.getPopularMovies();
-    //this.movieService.movies.subscribe((value) => this.movies = value);
-    // this.movies = this.movieService.movies.value
-    this.movieService.movies.subscribe((movies) => {
-      this.movies = movies
-      console.log(this.movies);
-    });
-    // console.log(this.movies);
-    
+    this.movieService.getPopularMovies()
   }
-
 }

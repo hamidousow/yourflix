@@ -7,7 +7,6 @@ export const tmdbUtil = {
         headers: {
             accept: 'application/json',
             Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YjgwZWE4ZjMzOWEwMzM0ZmQ1OTEzZTA3MWRmMzgwNiIsInN1YiI6IjY1YThlYTJhN2QyYmMxMDEzNmVhNjdmZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.J-mxxHOyyCMy-BP3Fz2wHmnVYQSa-mw9bakQg82lOoY'
-
         }
     },
 }
