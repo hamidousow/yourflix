@@ -8,7 +8,7 @@ export const routes: Routes = [
     },
     {
         path: 'cdaflix', 
-        loadComponent:  () => import('./public/home/home.component'),
+        loadComponent:  () => import('./public/views/home/home.component'),
         children: [
             {
                 path: 'user/:id',
@@ -18,7 +18,7 @@ export const routes: Routes = [
     },
     {
         path: 'login', 
-        loadComponent: () => import("./public/login/login.component")
+        loadComponent: () => import("./public/views/login/login.component")
     },
     {
         path: 'register', 

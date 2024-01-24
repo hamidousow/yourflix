@@ -1,10 +1,10 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from '../../services/user-service/user.service';
+import { UserService } from '../../../services/user-service/user.service';
 import { Router, RouterModule } from '@angular/router';
-import { LocalService } from '../../services/localstorage-service/local.service';
-import { TmdbAuthService } from '../../services/tmdb-service/tmdb-auth.service';
+import { LocalService } from '../../../services/localstorage-service/local.service';
+import { TmdbAuthService } from '../../../services/tmdb-service/tmdb-auth.service';
 
 @Component({
   selector: 'app-login',
