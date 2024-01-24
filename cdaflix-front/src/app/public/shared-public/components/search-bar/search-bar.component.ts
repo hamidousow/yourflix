@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieService } from '../../services/movie-service/movie.service';
-import { Movie } from '../../models/Movie';
+import { MovieService } from '../../../../services/movie-service/movie.service';
+import { Movie } from '../../../../models/Movie';
 
 @Component({
   selector: 'app-search-bar',
