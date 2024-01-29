@@ -53,8 +53,9 @@ $nav-width: 300px;
 }
 
 .container-cards {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    // grid-template-columns: repeat(5, 1fr);
     gap: 1rem 1rem;
     padding: 1rem;
 }
