@@ -1,10 +1,11 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../../services/user-service/user.service';
 import { Router, RouterModule } from '@angular/router';
 import { LocalService } from '../../../services/localstorage-service/local.service';
 import { TmdbAuthService } from '../../../services/tmdb-service/tmdb-auth.service';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -30,22 +31,16 @@ export default class LoginComponent {
     password: new FormControl("")
   })  
 
-  @Input()
-  token!: string
+  token$: any = this.tmdbAuthService.token$
 
   handleSubmit(form: FormGroup) {
-    
-    this.tmdbAuthService.login(form.value);
 
+    this.tmdbAuthService.login(form.value);
   }
 
-  handleTok() {
-    this.tmdbAuthService.reqToken()
-    let token = this.tmdbAuthService._token.value
-    if(token != '') {
-      this.tmdbAuthService.reqToken()
-    }
-    this.tmdbAuthService.login();
+  async handleToken() {
+    //const myToken$ = await this.tmdbAuthService.reqNewToken();
+    this.tmdbAuthService.login()
   }
   
 }

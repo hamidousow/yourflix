@@ -3,19 +3,12 @@
     color: var(--clr-grey-light);
 }
 
-.movie-wrapper {
-    background-color: var(--clr-blue-night);
-    // height: 80dvh;
-}
-
 h1 {
     font-size: 33px;
     font-weight: 700;
 }
 
-.movie_header {
-    height: 25dvh;
-
+.movie_poster {
     img {
         height: 100%;
         width: 100%;
@@ -27,4 +20,5 @@ h1 {
     display: grid;
     grid-template-rows: 1fr auto;
     padding: 25px;
+    background-color: var(--clr-blue-night);
 }

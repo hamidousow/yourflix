@@ -1,11 +1,7 @@
 <div class="movie-wrapper">
-    
-    <header class="movie_header">
-        <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" alt="">
-    </header>
     <div class="movie-content">
-        <div class="movie_video-preview">
-            video
+        <div class="movie_poster">
+            <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" alt="">
         </div>
         <div class="movie_details">
             <div class="movie_details_left">
