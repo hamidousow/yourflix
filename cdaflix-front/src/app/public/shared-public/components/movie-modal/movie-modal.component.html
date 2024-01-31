@@ -1,16 +1,26 @@
-<div class="movie-wrapper">
-    <div class="movie-content">
-        <div class="movie_poster">
-            <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" alt="">
-        </div>
-        <div class="movie_details">
-            <div class="movie_details_left">
-                <h1>{{ movie ? movie.title : ''}}</h1>
-                <p class="movie_description"> {{ movie ? movie.overview : '' }} </p>
+<div class="modal_">
+    <div class="modal_btn-close">
+        <i class="bi bi-x"></i>
+    </div>
+    <div class="modal_movie">
+        <div class="modal_movie_content">
+            <div class="modal_movie_poster">
+                <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" alt="">
             </div>
-            <div class="movie_details_right">
-                <!-- <h3>Acteurs : {{ movie ? movie.actors : '' }}</h3> -->
-            </div>       
+            <div class="modal_movie_details">
+                <div class="modal_movie_details_left">
+                    <h1 class="modal_movie_details_left--title">{{ movie ? movie.original_title : ''}}</h1>
+                    <p class="modal_movie_details_left--description"> {{ movie ? movie.overview : '' }} </p>
+                </div>
+                <div class="modal_movie_details_right">
+                    <!-- <h3>Acteurs : {{ movie ? movie.actors : '' }}</h3> -->
+                    <p>Langue : {{ movie ? movie.original_language : ''}}</p>             
+                    <p>Date de sortie : {{ movie ? movie.original_language : ''}}</p>
+                </div> 
+                <div class="providers">
+                    {{ movieProviders.link }}
+                </div>      
+            </div>
         </div>
     </div>
 </div>

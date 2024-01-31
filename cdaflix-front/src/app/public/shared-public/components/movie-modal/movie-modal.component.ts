@@ -1,12 +1,11 @@
-import { Component, Input, OnInit, TemplateRef, WritableSignal, inject } from '@angular/core';
+import { Component, Input, OnInit, Signal, TemplateRef, WritableSignal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Movie } from '../../../../models/Movie';
-import { MovieService } from '../../../../services/movie-service/movie.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgbActiveModal, NgbModal, NgbModalUpdatableOptions } from '@ng-bootstrap/ng-bootstrap';
-import { TmdbMovie } from '../../../../models/TmdbMovie';
 import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 import { tmdbUtil } from '../../../../utils/tmdb-util';
+import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
+import { MovieProvider } from '../../../../models/MovieProvider';
+
 
 @Component({
   selector: 'app-movie-modal',
@@ -17,22 +16,21 @@ import { tmdbUtil } from '../../../../utils/tmdb-util';
 })
 export class MovieModalComponent implements OnInit {
 
+  private movieService = inject(TmdbService);
+  private route = inject(ActivatedRoute);
+
   @Input()
-  movie!: TmdbMovie
+  movie: TmdbMovieDetails | null = this.movieService.movieDetails()
+
+  movieProviders: MovieProvider = this.movieService.movieProviders()
 
   imageBaseurl = tmdbUtil.imageBaseUrl
-
-  constructor(private movieService: TmdbService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
     if(id) {
-      this.movieService.getOne(id)
-      this.movieService.getImage(id)
-      this.movie = this.movieService.movie()
-      this.movie.backdrop = this.movieService.images()
-      console.log(this.movie);
-      
+      this.movieService.getOne(id)  
+      this.movieService.getMovieProviders(id)  
     }
   }
 

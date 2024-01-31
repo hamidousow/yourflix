@@ -10,6 +10,7 @@ import { SearchBarComponent } from '../../shared-public/components/search-bar/se
 import { CardComponent } from '../../shared-public/components/card/card.component';
 import { TmdbService } from '../../../services/tmdb-service/tmdb.service';
 import { Movie } from '../../../models/Movie';
+import { CarouselComponent } from '../../shared-public/carousel/carousel.component';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ import { Movie } from '../../../models/Movie';
     RouterLinkActive,
     MovieModalComponent,
     SearchBarComponent, 
-    CardComponent
+    CardComponent,
+    CarouselComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

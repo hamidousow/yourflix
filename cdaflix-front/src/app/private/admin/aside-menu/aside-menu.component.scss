@@ -1,0 +1,38 @@
+// #aside-menu {
+//     position: fixed;
+//     height: 100dvh;
+//     width: $nav-width;
+//     display: flex;
+//     flex-direction: column;
+//     row-gap: 150px;
+//     background-color: $clr-blue-night;
+//     color: $clr-white-light;
+//     padding: 25px;
+// }
+// .aside-menu_logo{
+//     text-align: center;
+//     text-transform: uppercase;
+// }
+// .aside-menu_nav {
+//     display: flex;
+//     flex-direction: column;
+//     row-gap: 5px;
+
+//     li {
+//         border-radius: 5px;
+//     }
+
+//     li a {
+//         padding: 12px 25px;
+//         color: $clr-grey-light;
+//         font-weight: 600;
+//         text-decoration: none;
+//         text-wrap: nowrap;
+//         display: block;
+//     }    
+// }
+
+// .active-link {
+//     color: $clr-red!important;
+//     border-radius: 5px;
+// }
