@@ -16,7 +16,6 @@ import HomeComponent from './public/views/home/home.component';
     RouterOutlet,
     RouterLink, 
     RouterLinkActive,
-    MovieModule,
     HttpClientModule,
     FormsModule, 
     NavigationComponent,
