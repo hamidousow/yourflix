@@ -23,18 +23,18 @@ export class TmdbService {
   readonly movies$: Observable<TmdbMovie[]> = this._movies.asObservable();
 
   _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movieDetails: Signal<TmdbMovieDetails | null>  = toSignal<TmdbMovieDetails>(this._movies.asObservable(), {initialValue: null});
+  readonly movieDetails$: Signal<TmdbMovieDetails | null>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {initialValue: null});
 
   _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movieProviders: Signal<MovieProvider>  = toSignal<any>(this._movieProviders.asObservable(), {initialValue: null});
-
-  //readonly images = signal<[]>([]);
+  readonly movieProviders$ = toSignal<any>(this._movieProviders.asObservable(), {initialValue: null});
 
 
   getOne(id: string) {
     this.http
     .get<TmdbMovieDetails>(`${tmdbUtil.baseUrl}/movie/${id}`)
-    .pipe(map((v) => this._movieDetails.next(v)))
+    .pipe(map((v) =>{ 
+      this._movieDetails.next(v) 
+    }))
     .subscribe();
   }
 
@@ -43,30 +43,34 @@ export class TmdbService {
     this.http
     .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/popular`, tmdbUtil.options)
     .pipe(
-      map((v) => this._movies.next(v.results))
+      map((v) => 
+      {
+        this._movies.next(v.results)        
+      }
+      )
     )
     .subscribe()
     
   }
 
-  // getImage(id: string) {
-  //   this.http
-  //   .get<{ backdrops : []}>(`${tmdbUtil.baseUrl}/movie/${id}/images`, tmdbUtil.options)
-  //   .pipe(tap((v) => {
-  //     this.images.set(v.backdrops)
-  //   }))
-  //   .subscribe();
-  // }
-
   /**
    * get the list of streaming providers for a movie
    * @param id of the film
    */
-  getMovieProviders(id: string) {
+  getMovieProviders(id: number | null) {
     this.http
-    .get<{results : any}>(`${tmdbUtil.baseUrl}/movie/${id}/watch/providers`)
-    .pipe(map((v) => this._movieProviders.next(v.results)))
-    .subscribe();
+    .get<{
+      results: {
+        FR: string
+      }
+    }>(`${tmdbUtil.baseUrl}/movie/${id}/watch/providers`, tmdbUtil.options)
+    .pipe(
+      map((v) => {
+        this._movieProviders.next(v.results.FR)  
+        console.log(v.results.FR);
+      })
+    )
+    .subscribe()
   }
 
 

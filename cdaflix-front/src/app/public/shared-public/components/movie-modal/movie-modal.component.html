@@ -15,10 +15,10 @@
                 <div class="modal_movie_details_right">
                     <!-- <h3>Acteurs : {{ movie ? movie.actors : '' }}</h3> -->
                     <p>Langue : {{ movie ? movie.original_language : ''}}</p>             
-                    <p>Date de sortie : {{ movie ? movie.original_language : ''}}</p>
+                    <p>Date de sortie : {{ movie ? movie.release_date : ''}}</p>
                 </div> 
-                <div class="providers">
-                    {{ movieProviders.link }}
+                <div class="providers"> movie provider id :
+                    {{ movieProviders() }}
                 </div>      
             </div>
         </div>

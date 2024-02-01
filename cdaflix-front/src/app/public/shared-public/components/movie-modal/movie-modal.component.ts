@@ -20,18 +20,16 @@ export class MovieModalComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
   @Input()
-  movie: TmdbMovieDetails | null = this.movieService.movieDetails()
+  movie: TmdbMovieDetails | null = this.movieService.movieDetails$()
 
-  movieProviders: MovieProvider = this.movieService.movieProviders()
-
+  movieProviders = this.movieService.movieProviders$
   imageBaseurl = tmdbUtil.imageBaseUrl
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    if(id) {
-      this.movieService.getOne(id)  
-      this.movieService.getMovieProviders(id)  
-    }
+  ngOnInit() {
+    const id = this.movie?.id
+    if(id != null) {
+      this.movieService.getMovieProviders(id);
+    } 
   }
 
 

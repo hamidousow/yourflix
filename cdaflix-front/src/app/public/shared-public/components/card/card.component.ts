@@ -28,7 +28,6 @@ export class CardComponent {
   
 
   openModal() {
-    console.log('ouvre modal')
     const movieNg =  this.modalService.open(MovieModalComponent, { size: 'xl' });
     movieNg.componentInstance.movie = this.movie
   }
