@@ -17,8 +17,20 @@
                     <p>Langue : {{ movie ? movie.original_language : ''}}</p>             
                     <p>Date de sortie : {{ movie ? movie.release_date : ''}}</p>
                 </div> 
-                <div class="providers"> movie provider id :
-                    {{ movieProviders() }}
+                <div class="providers"> 
+                    @for (provider of movieProviders(); track $index) {
+                        <div class="movie-provider"> {{ provider.link }}</div>
+
+                        <div class="d-flex flex-row">
+                            
+                            @for (buyItem of provider.buy; track $index) {
+                                <div>
+                                    <img src="{{ imageBaseurl + buyItem.logo_path }}" alt="{{buyItem.provider_name}}" height="35">
+                                </div>
+                                
+                            }
+                        </div>
+                    }
                 </div>      
             </div>
         </div>

@@ -8,6 +8,8 @@ import { start } from '@popperjs/core';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
 import { MovieProvider } from '../../models/MovieProvider';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Provider } from '../../models/Provider';
+import { MediaStreamingOptions } from '../../models/MovieStreamingOptions';
 
 const tmdbAttribution = "This product uses the TMDB API but is not endorsed or certified by TMDB.";
 
@@ -26,7 +28,7 @@ export class TmdbService {
   readonly movieDetails$: Signal<TmdbMovieDetails | null>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {initialValue: null});
 
   _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movieProviders$ = toSignal<any>(this._movieProviders.asObservable(), {initialValue: null});
+  readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
 
 
   getOne(id: string) {
@@ -58,20 +60,26 @@ export class TmdbService {
    * @param id of the film
    */
   getMovieProviders(id: number | null) {
+
+    let language = "CA"
     this.http
-    .get<{
-      results: {
-        FR: string
-      }
-    }>(`${tmdbUtil.baseUrl}/movie/${id}/watch/providers`, tmdbUtil.options)
+    .get<{ results : {}}>(`${tmdbUtil.baseUrl}/movie/${id}/watch/providers`, tmdbUtil.options)
     .pipe(
       map((v) => {
-        this._movieProviders.next(v.results.FR)  
-        console.log(v.results.FR);
+        
+        const r: any = {
+          *[Symbol.iterator]() {
+            yield v.results;
+          }
+        }
+        const res = [...r]
+        return res
+        
+      }), tap((r) => {
+        this._movieProviders.next(Object.keys(r[0]).map(p => r[0][p]))
+        Object.keys(r[0]).map(p => console.log(r[0][p]))
       })
     )
     .subscribe()
   }
-
-
 }

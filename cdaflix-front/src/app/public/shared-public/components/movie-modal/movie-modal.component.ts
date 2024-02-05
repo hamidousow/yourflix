@@ -21,9 +21,11 @@ export class MovieModalComponent implements OnInit {
 
   @Input()
   movie: TmdbMovieDetails | null = this.movieService.movieDetails$()
-
-  movieProviders = this.movieService.movieProviders$
+  
   imageBaseurl = tmdbUtil.imageBaseUrl
+  
+  movieProviders = this.movieService.movieProviders$
+  
 
   ngOnInit() {
     const id = this.movie?.id
