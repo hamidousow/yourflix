@@ -5,6 +5,7 @@ import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 import { tmdbUtil } from '../../../../utils/tmdb-util';
 import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
 import { MovieProvider } from '../../../../models/MovieProvider';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class MovieModalComponent implements OnInit {
 
   private movieService = inject(TmdbService);
   private route = inject(ActivatedRoute);
+  private modalService = inject(NgbModal)
 
   @Input()
   movie: TmdbMovieDetails | null = this.movieService.movieDetails$()
@@ -25,6 +27,10 @@ export class MovieModalComponent implements OnInit {
   imageBaseurl = tmdbUtil.imageBaseUrl
   
   movieProviders = this.movieService.movieProviders$
+
+  closeModal() {
+    this.modalService.dismissAll()
+  } 
   
 
   ngOnInit() {
