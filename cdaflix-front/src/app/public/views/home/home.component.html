@@ -2,12 +2,6 @@
     <app-navigation></app-navigation>
     <div class="main-content_right">
         <app-search-bar ></app-search-bar> 
-        <!-- <div class="container-cards">
-            @for (movie of movies$ | async; track $index) {
-                <app-card [movie]="movie"></app-card>
-            }
-        </div> -->
-
         <app-carousel [movies]="movies$ | async"></app-carousel>
     </div>
 </div>

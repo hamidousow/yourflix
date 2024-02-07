@@ -1,22 +1,5 @@
-// @import 'styles';
-
-$navbar-height: 55px;
-$nav-width: 300px;
-
-#main-content {
-    background-color: var(--clr-blue-dark);
-}
-
 .main-content_right {
-    // margin-left: $nav-width;
     min-height: 100dvh;
-    padding: var(--padding-16-60px);
 }
 
-.container-cards {
-    display: flex;
-    // flex-wrap: wrap;
-    gap: 1rem 1rem;
-    padding: 1rem;
-}
 
