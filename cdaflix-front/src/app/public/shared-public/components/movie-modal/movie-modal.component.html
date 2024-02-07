@@ -10,18 +10,18 @@
                 <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" alt="">
             </div>
             <div class="modal_movie_details">
-                <div class="modal_movie_details_left">
+                <section class="modal_movie_details_left movie-description">
                     <h1 class="modal_movie_details_left--title">{{ movie ? movie.original_title : ''}}</h1>
                     <p class="modal_movie_details_left--description"> {{ movie ? movie.overview : '' }} </p>
-                </div>
-                <div class="modal_movie_details_right">
+                </section>
+                <section class="modal_movie_details_right">
                     <!-- <h3>Acteurs : {{ movie ? movie.actors : '' }}</h3> -->
-                    <p>Langue : {{ movie ? movie.original_language : ''}}</p>             
-                    <p>Date de sortie : {{ movie ? movie.release_date : ''}}</p>
-                </div> 
-                <div class="providers"> 
+                    <p class="movie-language">Langue : <br> {{ movie ? movie.original_language : ''}}</p>             
+                    <p class="movie-release_date">Date de sortie : <br> {{ movie ? movie.release_date : ''}}</p>
+                </section> 
+                <section class="providers"> 
                     @for (provider of movieProviders(); track $index) {
-                        <div class="movie-provider"> {{ provider.link }}</div>
+                        <a href="{{ provider.link }}"> LIEN </a>
 
                         <div class="d-flex flex-row">
                             
@@ -33,7 +33,7 @@
                             }
                         </div>
                     }
-                </div>      
+                </section>      
             </div>
         </div>
     </div>

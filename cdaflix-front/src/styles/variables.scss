@@ -1,14 +1,3 @@
-// $clr-blue-dark: #1C2137;
-// $clr-blue-night: #171B2B;
-// $clr-blue-navigation: #202945;
-// $clr-blue-light: rgb(62, 85, 149);
-
-// $clr-white: #ffffff;
-// $clr-white-light: #CED2E8;
-// $clr-grey-light: #F1F1F1;
-// $clr-red: #B61A1A;
-// $padding-16-60px: 1rem 3.75rem;
-
 :root {
 
 --clr-blue-dark: #1C2137;
@@ -22,4 +11,21 @@
 --clr-red: #B61A1A;
 
 --padding-16-60px: 1rem 3.75rem;
+
+// --mobile-small-font-size: 13px;
+// --mobile-normal-font-size: 15px;
+// --mobile-large-font-size: 17px;
+
+// --tablet-small-font-size: 16px;
+// --tablet-normal-font-size: 18px;
+// --tablet-large-font-size: 21px;
+
+// --desktop-small-font-size: 18px;
+// --desktop-normal-font-size: 21px;
+// --desktop-large-font-size: 23px;
+
+--small-font-size: clamp(13px, 1vw, 16px);
+--normal-font-size: clamp(15px, 1vw, 21px);
+--large-font-size: clamp(17px, 1vw, 24px);
+
 }

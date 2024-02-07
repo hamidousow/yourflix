@@ -13,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './movie-modal.component.html',
-  styleUrl: './movie-view.component.scss'
+  styleUrl: './movie-modal.component.scss'
 })
 export class MovieModalComponent implements OnInit {
 
