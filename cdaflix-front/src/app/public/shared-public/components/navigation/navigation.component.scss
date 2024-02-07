@@ -19,20 +19,24 @@ nav {
     .nav_menu {
         display: flex;
         flex-direction: row;
-        column-gap: 5px;
-    
-        li {
-            border-radius: 5px;
-        }
+        column-gap: 12px;
+        align-items: center;
+        padding: 0 5px;
     
         li a {
-            padding: 12px 25px;
+            font-size: var(--small-font-size);
             color: var(--clr-grey-light);
-            font-weight: 600;
+            font-weight: 500;
             text-decoration: none;
             text-wrap: nowrap;
             display: block;
         }    
+    }
+
+    .nav_menu.open {
+        display: flex;
+        flex-direction: column;
+        column-gap: 5px;
     }
     
     .active-link {
@@ -73,9 +77,8 @@ nav {
     }
     
     .nav_btn-login {
-        
-        background-color: var(--clr-blue-light);
-        
+        background-color: transparent;
+        height: 30px;
         a {
             color: var(--clr-white);
             text-decoration: none;

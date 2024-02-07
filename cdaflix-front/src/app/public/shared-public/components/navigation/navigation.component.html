@@ -1,4 +1,5 @@
 <nav id="nav" class="nav">
+    <!-- <button id="btn-open-menu " class="button"> menu </button> -->
     <ul class='nav_menu'>
         <li class=''>
             <a routerLink="/cdaflix" 
@@ -6,7 +7,7 @@
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
                 true}"
-            > Nouveautés </a>
+            > Home </a>
         </li>
         <!-- fonctionnalité accessible que pour l'admin -->
         <!-- <li class=''>
@@ -18,12 +19,20 @@
             >Ajouter un film</a>
         </li> -->
         <li class=''>
-            <a routerLink="/films" 
+            <a routerLink="/movies" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
                 true}"
             > Films </a>
+        </li>
+        <li class=''>
+            <a routerLink="/movies" 
+                routerLinkActive="active-link" 
+                ariaCurrentWhenActive="page" 
+                [routerLinkActiveOptions]="{exact:
+                true}"
+            > Series </a>
         </li>
         @if (userLogged) {
             <li class=''>

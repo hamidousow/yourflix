@@ -2,14 +2,9 @@ import { Injectable, Signal, inject, signal } from '@angular/core';
 import { tmdbUtil } from '../../utils/tmdb-util';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, first, map, startWith, tap } from 'rxjs';
-import { Movie } from '../../models/Movie';
 import { TmdbMovie } from '../../models/TmdbMovie';
-import { start } from '@popperjs/core';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
-import { MovieProvider } from '../../models/MovieProvider';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Provider } from '../../models/Provider';
-import { MediaStreamingOptions } from '../../models/MovieStreamingOptions';
 
 const tmdbAttribution = "This product uses the TMDB API but is not endorsed or certified by TMDB.";
 
