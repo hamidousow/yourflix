@@ -1,0 +1,12 @@
+
+@media screen and (min-width: 320px) {
+
+    .rounded-btn {
+        border-radius: 50px;
+        border: transparent;
+        padding: .1rem 1rem;
+        font-size: clamp(10px, 1vw, 14px);
+    }
+}
+
+
