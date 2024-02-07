@@ -7,6 +7,18 @@
         padding: .1rem 1rem;
         font-size: clamp(10px, 1vw, 14px);
     }
+
+    .title {
+        color: var(--clr-white);
+        font-size: var(--large-font-size);
+        font-weight: 700;
+    }
+
+    // .subtitle
+    // .header-title
+    // .section-title
+    // .headline
+    // .subheadline
 }
 
 

@@ -34,15 +34,20 @@ export default class HomeComponent implements OnInit {
 
   private movieService = inject(TmdbService) 
 
-  movies$ = this.movieService.movies$
+  popularMovies$ = this.movieService.popularMovies$
+  topRatedMovies$ = this.movieService.topRatedMovies$
+  upcomingMovies$ = this.movieService.upcomingMovies$
 
-  @Input()
-  movie!: Movie
+  // @Input()
+  // movie!: Movie
 
   @Input()
   args!: string
 
   ngOnInit() {
     this.movieService.getPopularMovies()
+    this.movieService.getTopRatedMovies()
+    this.movieService.getUpcomingMovies()
+
   }
 }

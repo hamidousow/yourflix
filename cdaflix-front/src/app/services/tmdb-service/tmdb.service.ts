@@ -21,13 +21,19 @@ export class TmdbService {
 
   http = inject(HttpClient)
   
-  _movies: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movies$: Observable<TmdbMovie[]> = this._movies.asObservable();
+  private _popularMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly popularMovies$: Observable<TmdbMovie[]> = this._popularMovies.asObservable();
 
-  _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
+  private _topRatedMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly topRatedMovies$: Observable<TmdbMovie[]> = this._topRatedMovies.asObservable();
+
+  private _upcomingMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly upcomingMovies$: Observable<TmdbMovie[]> = this._upcomingMovies.asObservable();
+
+  private _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieDetails$: Signal<TmdbMovieDetails | null>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {initialValue: null});
 
-  _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
+  private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
 
 
@@ -40,19 +46,43 @@ export class TmdbService {
     .subscribe();
   }
 
-  getPopularMovies() {
-    
+  getPopularMovies() {    
     this.http
     .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/popular`, tmdbUtil.options)
     .pipe(
       map((v) => 
       {
-        this._movies.next(v.results)        
+        this._popularMovies.next(v.results)        
       }
       )
     )
     .subscribe()
-    
+  }
+
+  getTopRatedMovies() {    
+    this.http
+    .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/top_rated`, tmdbUtil.options)
+    .pipe(
+      map((v) => 
+      {
+        this._topRatedMovies.next(v.results)        
+      }
+      )
+    )
+    .subscribe()
+  }
+
+  getUpcomingMovies() {    
+    this.http
+    .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/upcoming`, tmdbUtil.options)
+    .pipe(
+      map((v) => 
+      {
+        this._upcomingMovies.next(v.results)        
+      }
+      )
+    )
+    .subscribe()
   }
 
   /**

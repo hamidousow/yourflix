@@ -1,5 +1,11 @@
-.main-content_right {
+.main-content {
     min-height: 100dvh;
+}
+
+@media screen and (min-width: 320px) {
+    .section-movie {
+        margin: 1.5rem 0;
+    }
 }
 
 

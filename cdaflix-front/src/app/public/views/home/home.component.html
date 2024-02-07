@@ -1,7 +1,19 @@
 <div id="homepage">
     <app-navigation></app-navigation>
-    <div class="main-content_right">
+    <div class="main-content">
         <app-search-bar ></app-search-bar> 
-        <app-carousel [movies]="movies$ | async"></app-carousel>
+        <section id="popular-movies" class="section-movie">
+            <h2 class="title">Popular movies</h2>
+            <app-carousel [movies]="popularMovies$ | async"></app-carousel>
+        </section>
+        <section id="to-rated-movies" class="section-movie">
+            <h2 class="title">Les mieux notés</h2>
+            <app-carousel [movies]="topRatedMovies$ | async"></app-carousel>
+        </section>
+        <section id="upcoming-movies" class="section-movie">
+            <h2 class="title">Prochaines sorties</h2>
+            <app-carousel [movies]="upcomingMovies$ | async"></app-carousel>
+        </section>
+        
     </div>
 </div>
