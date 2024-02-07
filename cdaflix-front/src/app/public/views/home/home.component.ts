@@ -10,7 +10,7 @@ import { SearchBarComponent } from '../../shared-public/components/search-bar/se
 import { CardComponent } from '../../shared-public/components/card/card.component';
 import { TmdbService } from '../../../services/tmdb-service/tmdb.service';
 import { Movie } from '../../../models/Movie';
-import { CarouselComponent } from '../../shared-public/carousel/carousel.component';
+import { CarouselComponent } from '../../shared-public/components/carousel/carousel.component';
 
 @Component({
   selector: 'app-home',
