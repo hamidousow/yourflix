@@ -1,9 +1,7 @@
 <div class="modal_">
-    <!-- <div class="modal_btn-close">
+    <div class="modal_btn-close" (click)="closeModal()">
         <i class="bi bi-x"></i>
-    </div> -->
-    <button type="button" class="btn-close bi bi-x"  aria-label="Close" (click)="closeModal()"></button>
-
+    </div>
     <div class="modal_movie">
         <div class="modal_movie_content">
             <div class="modal_movie_poster">
@@ -21,18 +19,42 @@
                 </section> 
                 <section class="providers"> 
                     @for (provider of movieProviders(); track $index) {
-                        <a href="{{ provider.link }}"> LIEN </a>
-
-                        <div class="d-flex flex-row">
-                            
-                            @for (buyItem of provider.buy; track $index) {
-                                <div>
-                                    <img src="{{ imageBaseurl + buyItem.logo_path }}" alt="{{buyItem.provider_name}}" height="35">
-                                </div>
-                                
-                            }
+                        <div>
+                            lien : <a href="{{provider.link}}">lien</a>
                         </div>
+                        <div class="d-flex flex-column">  
+                            <h3>En vente</h3>              
+                            <div class="d-flex flex-row gap-2">         
+                                @for (buyItem of provider.buy; track $index) { 
+                                    <img src="{{ imageBaseurl + buyItem.logo_path }}" alt="{{buyItem.provider_name}}" width="35">                                 
+                                }
+                            </div> 
+                        </div>
+                        <div class="d-flex flex-column">  
+                            <h3>En location</h3> 
+                            <div class="d-flex flex-row gap-2">                       
+                                @for (item of provider.rent; track $index) {                                   
+                                    <img src="{{ imageBaseurl + item.logo_path }}" alt="{{item.provider_name}}" width="35">
+                                }
+                            </div>
+                        </div>
+                        
                     }
+                    <!-- @for (item of movieProviders() | keyvalue; track $index) {
+                        @if (item.key == languageSelected) {
+                            <div>
+                                key: {{item.key}}
+                            </div>
+                            @for(i of item.value | keyvalue; track $index) {
+                                <div> key of CA : {{i.key}}</div>
+                                <div> value of the key of CA : {{i.value}}</div>
+                                @for(j of item.value | keyvalue; track $index) {
+                                    {{j.value}}
+                                }
+                            
+                            }
+                        }                        
+                    } -->
                 </section>      
             </div>
         </div>

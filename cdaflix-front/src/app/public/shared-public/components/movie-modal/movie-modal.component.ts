@@ -22,11 +22,13 @@ export class MovieModalComponent implements OnInit {
   private modalService = inject(NgbModal)
 
   @Input()
-  movie: TmdbMovieDetails | null = this.movieService.movieDetails$()
+  movie: TmdbMovieDetails | null = this.movieService.movieDetails$();
   
-  imageBaseurl = tmdbUtil.imageBaseUrl
+  imageBaseurl = tmdbUtil.imageBaseUrl;
   
-  movieProviders = this.movieService.movieProviders$
+  movieProviders = this.movieService.movieProviders$;
+
+  languageSelected = 'CA'
 
   closeModal() {
     this.modalService.dismissAll()

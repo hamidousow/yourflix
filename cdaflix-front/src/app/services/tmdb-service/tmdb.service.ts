@@ -92,17 +92,29 @@ export class TmdbService {
     .pipe(
       map((v) => {
         
+        /** return an iterator */
         const r: any = {
           *[Symbol.iterator]() {
             yield v.results;
           }
         }
-        const res = [...r]
+        const res = [...r]        
         return res
         
-      }), tap((r) => {
-        this._movieProviders.next(Object.keys(r[0]).map(p => r[0][p]))
-        Object.keys(r[0]).map(p => console.log(r[0][p]))
+      }),
+      tap((r) => {
+        
+        Object.keys(r[0]).map(l => {
+          if(l == language) {
+            const iterableObj = {
+              *[Symbol.iterator]() {
+                yield r[0][l];
+              }
+            }
+            this._movieProviders.next([...iterableObj])
+            console.log(r[0][l]);
+          }          
+        })
       })
     )
     .subscribe()
