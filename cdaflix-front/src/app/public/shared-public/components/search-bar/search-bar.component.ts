@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnI
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../../../../services/movie-service/movie.service';
 import { Movie } from '../../../../models/Movie';
+import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -21,7 +22,7 @@ export class SearchBarComponent {
 
   movies!: Array<Movie>  
 
-  private movieService = inject(MovieService);
+  private movieService = inject(TmdbService);
 
   /**
    * search movies by title within words that matches the searchbar's entries. If no entries in the searchbar, then return all movies
@@ -31,10 +32,9 @@ export class SearchBarComponent {
     args = args.trim()
     if(args.length > 0 && args !== undefined) {
       this.movieService.search(args);
-      this.movieService.movies.subscribe((values) => this.movies = values)
     } else {
-      this.movieService.fetchAll()
-      this.movieService.movies.subscribe((val) => this.movies = val)
+      this.movieService.allMovies$
+      //this.movieService.movies.subscribe((val) => this.movies = val)
     }   
   }
 }

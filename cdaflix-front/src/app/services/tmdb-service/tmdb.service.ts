@@ -1,6 +1,6 @@
 import { Injectable, Signal, inject, signal } from '@angular/core';
 import { tmdbUtil } from '../../utils/tmdb-util';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, first, map, startWith, tap } from 'rxjs';
 import { TmdbMovie } from '../../models/TmdbMovie';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
@@ -16,6 +16,9 @@ export class TmdbService {
 
   http = inject(HttpClient)
   
+  private _allMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly allMovies$: Observable<TmdbMovie[]> = this._allMovies.asObservable();
+
   private _popularMovies: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly popularMovies$: Observable<TmdbMovie[]> = this._popularMovies.asObservable();
 
@@ -118,5 +121,29 @@ export class TmdbService {
       })
     )
     .subscribe()
+  }
+
+  searchMulti(str: string) {
+      }
+
+  search(query: string) {
+
+    const url = "https://api.themoviedb.org/3/search/movie"
+
+    query = query.trim()
+
+    const options = query ? {
+      params: new HttpParams().set('query', query),
+      ...tmdbUtil.options   
+    } : {}
+
+    this.http
+    .get<{ results : []}>(`${tmdbUtil.baseUrl}/search/multi`, options)
+    .pipe(map((values) => {
+      this._allMovies.next(values.results)
+      console.log(this._allMovies.value);
+      
+    }))
+    .subscribe();
   }
 }

@@ -1,7 +1,9 @@
 <div id="homepage">
     <app-navigation></app-navigation>
     <div class="main-content">
-        <app-search-bar ></app-search-bar> 
+        <app-search-bar></app-search-bar> 
+        <app-search-movies-view [movies]="resultsSearchMovies$ | async"></app-search-movies-view>
+        
         <section id="popular-movies" class="section-movie">
             <h2 class="title">Popular movies</h2>
             <app-carousel [movies]="popularMovies$ | async"></app-carousel>

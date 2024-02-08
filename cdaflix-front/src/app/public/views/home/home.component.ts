@@ -11,6 +11,7 @@ import { CardComponent } from '../../shared-public/components/card/card.componen
 import { TmdbService } from '../../../services/tmdb-service/tmdb.service';
 import { Movie } from '../../../models/Movie';
 import { CarouselComponent } from '../../shared-public/components/carousel/carousel.component';
+import { SearchMoviesViewComponent } from '../search-movies-view/search-movies-view.component';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ import { CarouselComponent } from '../../shared-public/components/carousel/carou
     MovieModalComponent,
     SearchBarComponent, 
     CardComponent,
-    CarouselComponent
+    CarouselComponent,
+    SearchMoviesViewComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -37,6 +39,7 @@ export default class HomeComponent implements OnInit {
   popularMovies$ = this.movieService.popularMovies$
   topRatedMovies$ = this.movieService.topRatedMovies$
   upcomingMovies$ = this.movieService.upcomingMovies$
+  resultsSearchMovies$ = this.movieService.allMovies$
 
   // @Input()
   // movie!: Movie
@@ -48,6 +51,6 @@ export default class HomeComponent implements OnInit {
     this.movieService.getPopularMovies()
     this.movieService.getTopRatedMovies()
     this.movieService.getUpcomingMovies()
-
+    
   }
 }
