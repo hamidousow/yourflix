@@ -15,9 +15,6 @@ export class TmdbService {
   
 
   http = inject(HttpClient)
-  
-  private _allMovies: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly allMovies$: Observable<TmdbMovie[]> = this._allMovies.asObservable();
 
   private _popularMovies: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly popularMovies$: Observable<TmdbMovie[]> = this._popularMovies.asObservable();
@@ -33,6 +30,9 @@ export class TmdbService {
 
   private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
+
+  private _resultsSearchMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly resultsSearchMovies$ = toSignal<any[]>(this._resultsSearchMovies.asObservable(), {initialValue: null});
 
 
   getOne(id: string) {
@@ -123,9 +123,6 @@ export class TmdbService {
     .subscribe()
   }
 
-  searchMulti(str: string) {
-      }
-
   search(query: string) {
 
     const url = "https://api.themoviedb.org/3/search/movie"
@@ -138,11 +135,9 @@ export class TmdbService {
     } : {}
 
     this.http
-    .get<{ results : []}>(`${tmdbUtil.baseUrl}/search/multi`, options)
+    .get<{ results : []}>(`${tmdbUtil.baseUrl}/search/movie`, options)
     .pipe(map((values) => {
-      this._allMovies.next(values.results)
-      console.log(this._allMovies.value);
-      
+      this._resultsSearchMovies.next(values.results)      
     }))
     .subscribe();
   }
