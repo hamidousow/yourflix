@@ -1,8 +1,10 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, Signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TmdbService } from '../../../services/tmdb-service/tmdb.service';
 import { CardComponent } from '../../shared-public/components/card/card.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search-movies-view',
@@ -20,7 +22,6 @@ export default class SearchMoviesViewComponent {
   private movieService = inject(TmdbService) 
   private route = inject(ActivatedRoute) 
 
-  @Input()
-  movies = this.movieService.resultsSearchMovies$()
+  movies: Signal<any[]> = toSignal(this.movieService._resultsSearchMovies, { requireSync: true})
 
 }

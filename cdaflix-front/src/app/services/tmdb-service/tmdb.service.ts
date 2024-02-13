@@ -31,7 +31,7 @@ export class TmdbService {
   private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
 
-  private _resultsSearchMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly _resultsSearchMovies: BehaviorSubject<any> = new BehaviorSubject(undefined);
   readonly resultsSearchMovies$ = toSignal<any[]>(this._resultsSearchMovies.asObservable(), {initialValue: null});
 
 
@@ -125,8 +125,6 @@ export class TmdbService {
 
   search(query: string) {
 
-    const url = "https://api.themoviedb.org/3/search/movie"
-
     query = query.trim()
 
     const options = query ? {
@@ -136,9 +134,16 @@ export class TmdbService {
 
     this.http
     .get<{ results : []}>(`${tmdbUtil.baseUrl}/search/movie`, options)
-    .pipe(map((values) => {
-      this._resultsSearchMovies.next(values.results)      
-    }))
+    .pipe(
+      map((values) => {
+        const r: any = {
+          *[Symbol.iterator]() {
+            yield values.results;
+          }
+        }      
+        this._resultsSearchMovies.next([...r][0])         
+      }
+    ))
     .subscribe();
   }
 }
