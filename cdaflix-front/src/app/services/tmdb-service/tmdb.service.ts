@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, Subject, first, map, startWith, tap } from
 import { TmdbMovie } from '../../models/TmdbMovie';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ResultSearch } from '../../models/ResultSearch';
 
 const tmdbAttribution = "This product uses the TMDB API but is not endorsed or certified by TMDB.";
 
@@ -31,8 +32,12 @@ export class TmdbService {
   private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
 
+  //todo: delete resultsSearchMovies and use searchResults instead
   readonly _resultsSearchMovies: BehaviorSubject<any> = new BehaviorSubject(undefined);
   readonly resultsSearchMovies$ = toSignal<any[]>(this._resultsSearchMovies.asObservable(), {initialValue: null});
+
+  private _searchResults: BehaviorSubject<any> = new BehaviorSubject(undefined);
+  public readonly searchResults = toSignal<any>(this._searchResults, {requireSync: true})
 
 
   getOne(id: string) {
@@ -123,25 +128,30 @@ export class TmdbService {
     .subscribe()
   }
 
-  search(query: string) {
+  search(query: string, page: number) {
 
     query = query.trim()
 
     const options = query ? {
-      params: new HttpParams().set('query', query),
+      params: new HttpParams().set('query', query)
+                              .set('page', page)
+      ,
       ...tmdbUtil.options   
     } : {}
 
     this.http
-    .get<{ results : []}>(`${tmdbUtil.baseUrl}/search/movie`, options)
+    .get<ResultSearch>(`${tmdbUtil.baseUrl}/search/movie`, options)
     .pipe(
       map((values) => {
         const r: any = {
           *[Symbol.iterator]() {
             yield values.results;
           }
-        }      
-        this._resultsSearchMovies.next([...r][0])         
+        }   
+        
+        this._resultsSearchMovies.next([...r][0])     
+        this._searchResults.next(values) 
+        console.log(this.searchResults().results);   
       }
     ))
     .subscribe();

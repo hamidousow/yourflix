@@ -3,15 +3,13 @@ import { Backdrop } from "./Backdrop";
 export interface TmdbMovie {
 
     id: number;
-    imdb_id: string;
+    adult: boolean;
+    genre_ids: [];
     original_title: string;
+    original_language: string;
     popularity: number;
     poster_path: string;
     release_date: string;
-    revenue: number;
-    runtime: number;
-    status: string;
-    tagline: string;
     title: string;
     video: boolean;
     vote_average:number;

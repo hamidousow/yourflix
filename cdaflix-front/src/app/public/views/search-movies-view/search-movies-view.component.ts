@@ -5,13 +5,15 @@ import { CardComponent } from '../../shared-public/components/card/card.componen
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-search-movies-view',
   standalone: true,
   imports: [
     CommonModule,
-    CardComponent
+    CardComponent,
+    InfiniteScrollModule
 
   ],
   templateUrl: './search-movies-view.component.html',
@@ -22,6 +24,8 @@ export default class SearchMoviesViewComponent {
   private movieService = inject(TmdbService) 
   private route = inject(ActivatedRoute) 
 
-  movies: Signal<any[]> = toSignal(this.movieService._resultsSearchMovies, { requireSync: true})
+  // movies: Signal<any[]> = toSignal(this.movieService._resultsSearchMovies, { requireSync: true})
+
+  searchResults: Signal<any> = this.movieService.searchResults
 
 }

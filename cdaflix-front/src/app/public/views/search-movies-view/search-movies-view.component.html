@@ -1,7 +1,11 @@
 <section id="search-results">
-    <h2 class="title">Recherche : </h2>
+    @if(searchResults()?.total_results) {
+        <span class="title">total results: {{ searchResults().total_results }}</span>
+    } @else {
+        <span>aucun resultat</span>
+    }   
     <div class="container-cards">
-        @for (item of movies(); track $index) {
+        @for (item of searchResults()?.results; track $index) {
             <app-card [movie]="item"></app-card>
         }
     </div>
