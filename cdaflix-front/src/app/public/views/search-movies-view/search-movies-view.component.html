@@ -1,11 +1,17 @@
 <section id="search-results">
-    @if(searchResults()?.total_results) {
+    <!-- @if(searchResults()?.total_results) {
         <span class="title">total results: {{ searchResults().total_results }}</span>
     } @else {
         <span>aucun resultat</span>
-    }   
-    <div class="container-cards">
-        @for (item of searchResults()?.results; track $index) {
+    }    -->
+    <div class="container-cards"
+        infinite-scroll
+        [infiniteScrollDistance]="scrollDistance"
+        [infiniteScrollUpDistance]="scrollUpDistance"
+        [infiniteScrollThrottle]="throttle"
+        (scrolled)="onScrollDown()"
+    >
+        @for (item of searchResults(); track $index) {
             <app-card [movie]="item"></app-card>
         }
     </div>

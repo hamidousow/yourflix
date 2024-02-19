@@ -1,7 +1,7 @@
 import { Injectable, Signal, inject, signal } from '@angular/core';
 import { tmdbUtil } from '../../utils/tmdb-util';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, first, map, startWith, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatestWith, first, map, startWith, tap } from 'rxjs';
 import { TmdbMovie } from '../../models/TmdbMovie';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -32,13 +32,22 @@ export class TmdbService {
   private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
 
-  //todo: delete resultsSearchMovies and use searchResults instead
-  readonly _resultsSearchMovies: BehaviorSubject<any> = new BehaviorSubject(undefined);
-  readonly resultsSearchMovies$ = toSignal<any[]>(this._resultsSearchMovies.asObservable(), {initialValue: null});
+  // private _searchResults: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  // public readonly searchResults = toSignal<ResultSearch>(this._searchResults, {requireSync: true});
 
-  private _searchResults: BehaviorSubject<any> = new BehaviorSubject(undefined);
-  public readonly searchResults = toSignal<any>(this._searchResults, {requireSync: true})
+  private _searchResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public readonly searchResults = toSignal<TmdbMovie[]>(this._searchResults$, {requireSync: true});
 
+  private _nextPageResults: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public readonly nextPageResults = toSignal<TmdbMovie[]>(this._nextPageResults, {requireSync: true});
+
+  private readonly _currentPage$ : BehaviorSubject<number> = new BehaviorSubject(1);
+  public currentPage = toSignal<number>(this._currentPage$, { requireSync: true});
+
+  private readonly _totalPages$ : BehaviorSubject<number> = new BehaviorSubject(0);
+  public totalPages = toSignal<number>(this._totalPages$, { requireSync: true});
+
+// loadNextPage()
 
   getOne(id: string) {
     this.http
@@ -128,13 +137,13 @@ export class TmdbService {
     .subscribe()
   }
 
-  search(query: string, page: number) {
+  search(query: string, currentPage?: number) {
 
     query = query.trim()
-
+    
     const options = query ? {
       params: new HttpParams().set('query', query)
-                              .set('page', page)
+                              .set('page', currentPage? currentPage : '')
       ,
       ...tmdbUtil.options   
     } : {}
@@ -148,12 +157,36 @@ export class TmdbService {
             yield values.results;
           }
         }   
+
+        // this._resultsSearchMovies.next([...r][0])     
+        //this._searchResults.next(values) 
+        this._currentPage$.next(values.page);
+        this._totalPages$.next(values.total_pages);
+        this._searchResults$.next([...r][0]);
+        // if( this._searchResults.value != null) {
+        //   this._nextPageResults.next([...r][0]);
+        //   this._searchResults.pipe(
+        //     combineLatestWith(this._nextPageResults),
+        //     map(([res1, res2]) => {
+        //       console.log([...res1, ...res2]);
+              
+        //     })
+        //   ).subscribe()
+        // } else {
+        //   this._searchResults.next([...r][0]);
+        // }
         
-        this._resultsSearchMovies.next([...r][0])     
-        this._searchResults.next(values) 
-        console.log(this.searchResults().results);   
-      }
+
+        },
+      
     ))
     .subscribe();
+  } 
+  
+  loadNextPage(args: string, currentPage: number, totalPages: number) {
+    if(currentPage < totalPages) {
+      currentPage = currentPage + 1;
+      this.search(args, currentPage);
+    }
   }
 }

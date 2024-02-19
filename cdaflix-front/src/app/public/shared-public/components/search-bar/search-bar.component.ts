@@ -26,7 +26,7 @@ export class SearchBarComponent {
 
   movies!: Array<Movie>    
 
-  resultsSearchMovies$ = this.movieService.resultsSearchMovies$
+  resultsSearchMovies$ = this.movieService.searchResults
 
   //todo: change with page from the store
   nbrPage = 1
@@ -35,10 +35,10 @@ export class SearchBarComponent {
    * @param args used to search movies
    */
   handleSearch(args: string) {
-    this.router.navigate(['search']);
+    this.router.navigate(['search'], { queryParams: {'query' : args}});
     args = args.trim()
     if(args.length > 0 && args !== undefined) {
-      this.movieService.search(args, this.nbrPage);
+      this.movieService.search(args, 1);
     } else {
       this.router.navigateByUrl('cdaflix');
     }   
