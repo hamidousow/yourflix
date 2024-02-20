@@ -4,17 +4,20 @@
     } @else {
         <span>aucun resultat</span>
     }    -->
-    <div class="container-cards"
-        infinite-scroll
-        [infiniteScrollDistance]="scrollDistance"
-        [infiniteScrollUpDistance]="scrollUpDistance"
-        [infiniteScrollThrottle]="throttle"
-        (scrolled)="onScrollDown()"
-    >
+    <div class="container-cards">
         @for (item of searchResults(); track $index) {
-            <app-card [movie]="item"></app-card>
+            <app-card [movie]="item"></app-card>           
         }
+        
     </div>
-    
-    
+    <div class="container-pagination">
+        <ngb-pagination 
+            [collectionSize]="totalResults" 
+            [page]="currentPage" 
+            [pageSize]="20" 
+            [maxSize]="3"
+            [boundaryLinks]="true"
+            [directionLinks]="true" 
+        />
+    </div>    
 </section>

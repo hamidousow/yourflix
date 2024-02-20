@@ -1,7 +1,7 @@
 import { Injectable, Signal, inject, signal } from '@angular/core';
 import { tmdbUtil } from '../../utils/tmdb-util';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, combineLatestWith, first, map, startWith, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, combineLatestWith, concat, concatAll, first, forkJoin, map, merge, startWith, switchMap, tap } from 'rxjs';
 import { TmdbMovie } from '../../models/TmdbMovie';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -32,14 +32,14 @@ export class TmdbService {
   private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
 
-  // private _searchResults: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  // public readonly searchResults = toSignal<ResultSearch>(this._searchResults, {requireSync: true});
+  private _currentResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public readonly searchResults = toSignal<TmdbMovie[]>(this._currentResults$, {requireSync: true});
 
-  private _searchResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public readonly searchResults = toSignal<TmdbMovie[]>(this._searchResults$, {requireSync: true});
+  private _previousResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public readonly nextPageResults = toSignal<TmdbMovie[]>(this._previousResults$, {requireSync: true});
 
-  private _nextPageResults: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public readonly nextPageResults = toSignal<TmdbMovie[]>(this._nextPageResults, {requireSync: true});
+  private _totalResults$: BehaviorSubject<any> = new BehaviorSubject<any>(0);
+  public readonly totalResults = toSignal<number>(this._totalResults$, {requireSync: true});
 
   private readonly _currentPage$ : BehaviorSubject<number> = new BehaviorSubject(1);
   public currentPage = toSignal<number>(this._currentPage$, { requireSync: true});
@@ -141,10 +141,10 @@ export class TmdbService {
 
     query = query.trim()
     
-    const options = query ? {
+    
+    let options = query ? {
       params: new HttpParams().set('query', query)
-                              .set('page', currentPage? currentPage : '')
-      ,
+                              .set('page', currentPage? currentPage : ''),
       ...tmdbUtil.options   
     } : {}
 
@@ -152,41 +152,22 @@ export class TmdbService {
     .get<ResultSearch>(`${tmdbUtil.baseUrl}/search/movie`, options)
     .pipe(
       map((values) => {
-        const r: any = {
-          *[Symbol.iterator]() {
-            yield values.results;
-          }
-        }   
-
-        // this._resultsSearchMovies.next([...r][0])     
-        //this._searchResults.next(values) 
         this._currentPage$.next(values.page);
         this._totalPages$.next(values.total_pages);
-        this._searchResults$.next([...r][0]);
-        // if( this._searchResults.value != null) {
-        //   this._nextPageResults.next([...r][0]);
-        //   this._searchResults.pipe(
-        //     combineLatestWith(this._nextPageResults),
-        //     map(([res1, res2]) => {
-        //       console.log([...res1, ...res2]);
-              
-        //     })
-        //   ).subscribe()
-        // } else {
-        //   this._searchResults.next([...r][0]);
-        // }
-        
-
-        },
-      
-    ))
+        this._currentResults$.next(values.results);  
+        this._totalResults$.next(values.total_results);      
+      }),      
+    )
     .subscribe();
   } 
-  
-  loadNextPage(args: string, currentPage: number, totalPages: number) {
-    if(currentPage < totalPages) {
-      currentPage = currentPage + 1;
-      this.search(args, currentPage);
-    }
+
+
+  loadNextPage(query: string) {
+    if(this.currentPage() < this.totalPages()) {      
+      this._currentPage$.next(this.currentPage() + 1);
+
+      this.search(query, this.currentPage())
+      
+    }   
   }
 }
