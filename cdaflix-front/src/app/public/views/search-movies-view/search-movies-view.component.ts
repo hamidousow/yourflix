@@ -15,7 +15,9 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     CardComponent,
-    NgbPaginationModule
+    NgbPaginationModule,
+    InfiniteScrollModule,
+    
   ],
   templateUrl: './search-movies-view.component.html',
   styleUrl: './search-movies-view.component.scss'

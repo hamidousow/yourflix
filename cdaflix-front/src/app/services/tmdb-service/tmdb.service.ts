@@ -1,7 +1,7 @@
 import { Injectable, Signal, inject, signal } from '@angular/core';
 import { tmdbUtil } from '../../utils/tmdb-util';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, combineLatest, combineLatestWith, concat, concatAll, first, forkJoin, map, merge, startWith, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, combineLatestWith, concat, concatAll, first, forkJoin, from, map, merge, mergeMap, scan, startWith, switchMap, tap } from 'rxjs';
 import { TmdbMovie } from '../../models/TmdbMovie';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -47,7 +47,8 @@ export class TmdbService {
   private readonly _totalPages$ : BehaviorSubject<number> = new BehaviorSubject(0);
   public totalPages = toSignal<number>(this._totalPages$, { requireSync: true});
 
-// loadNextPage()
+  resultsSearch: [] = []
+  
 
   getOne(id: string) {
     this.http
@@ -161,12 +162,39 @@ export class TmdbService {
     .subscribe();
   } 
 
+  searchMovie(query: string, page: number) {
+    query = query.trim()   
+    
+    let options = query ? {
+      params: new HttpParams().set('query', query)
+                              .set('page', page? page : ''),
+      ...tmdbUtil.options   
+    } : {}
+
+    this.http
+    .get<ResultSearch>(`${tmdbUtil.baseUrl}/search/movie`, options)
+    .pipe(
+
+      map((values) => {
+        this._currentPage$.next(values.page);
+        this._totalPages$.next(values.total_pages);       
+        this._currentResults$.next(values.results);
+        return values;   
+      }),  
+
+      scan((accumulator: any, values) => {   
+        return [...accumulator, ...values.results]
+      })  
+    )
+    .subscribe(val => console.log(val));
+  }
+
 
   loadNextPage(query: string) {
     if(this.currentPage() < this.totalPages()) {      
       this._currentPage$.next(this.currentPage() + 1);
 
-      this.search(query, this.currentPage())
+      this.searchMovie(query, this.currentPage())
       
     }   
   }
