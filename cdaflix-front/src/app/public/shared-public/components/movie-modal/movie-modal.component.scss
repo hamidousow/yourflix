@@ -19,6 +19,17 @@
         font-size: var(--normal-font-size);
     }
 
+    section {
+        margin-bottom: 1em;
+    }
+
+    .modal_movie_content {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        padding: 25px;
+        row-gap: 2em;
+    }
+
     .modal_movie_poster {
         img {
             height: 100%;
@@ -33,19 +44,21 @@
 
     .modal_movie_details_left--title {
         font-weight: 700;
-        padding: .8rem;
+        margin-bottom: 1em;
+        // padding: .8rem;
     }
 
     .modal_movie_details_left--description {
         line-height: 120%;
         font-weight: 500;
-        padding: 1rem;        
-    }       
-    
-    .modal_movie_content {
-        display: grid;
-        grid-template-rows: 1fr auto;
-        padding: 25px;
+        margin-bottom: 1em;
+        // padding: 1rem;        
+    }   
+
+    .modal_movie_details_right {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
     }
 }
 

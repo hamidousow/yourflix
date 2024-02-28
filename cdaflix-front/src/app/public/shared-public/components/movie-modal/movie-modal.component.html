@@ -55,7 +55,17 @@
                             }
                         }                        
                     } -->
-                </section>      
+                </section>   
+                <section class="movies-suggestion">
+                    <h2>Films similaires</h2>
+                    <div>
+                        @for(movie of moviesSuggestions(); track $index) {
+                            <!-- <app-card [movie]="movie"></app-card> -->
+                            <!-- <h3> {{movie.original_title}} </h3> -->
+                        }
+                        
+                    </div>
+                </section>   
             </div>
         </div>
     </div>
