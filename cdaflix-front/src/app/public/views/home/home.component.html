@@ -1,5 +1,18 @@
 <div id="homepage">
-    
+    <div class="hero">
+        <ngb-carousel class="hero_carousel">
+            @for (movie of nowPlayingMovies$(); track $index) {
+                <ng-template ngbSlide>
+                    <div class="slide-backdrop">
+                        <img [src]="imgBaseUrl+movie.backdrop_path" alt="Random first slide" />
+                    </div>
+                    <div class="carousel-caption">
+                        <h2 class="title">{{movie.original_title}}</h2>                        
+                    </div>
+                </ng-template>
+            }
+        </ngb-carousel>
+    </div>
     <section id="popular-movies" class="section-movie">
         <h2 class="title">Popular movies</h2>
         <app-carousel [movies]="popularMovies$ | async"></app-carousel>
