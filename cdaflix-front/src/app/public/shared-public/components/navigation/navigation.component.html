@@ -1,6 +1,14 @@
-<nav id="nav" class="nav">
+<nav id="nav" class="navigation">
     <!-- <button id="btn-open-menu " class="button"> menu </button> -->
-    <ul class='nav_menu'>
+    <ul class='nav_menu first-menu'>
+        <li class='me-5'>
+            <a routerLink="/cdaflix" 
+                routerLinkActive="active-link" 
+                ariaCurrentWhenActive="page" 
+                [routerLinkActiveOptions]="{exact:
+                true}"
+            > <img src="../../../../../assets/images/youflix-logo-red-white.png" alt="logo youflix" height="25px"> </a>
+        </li>
         <li class=''>
             <a routerLink="/cdaflix" 
                 routerLinkActive="active-link" 
@@ -26,6 +34,7 @@
                 true}"
             > Films </a>
         </li>
+
         <!-- <li class=''>
             <a routerLink="/series" 
                 routerLinkActive="active-link" 
@@ -34,31 +43,34 @@
                 true}"
             > Series </a>
         </li> -->
-        @if (userLogged) {
-            <li class=''>
-                <a routerLink="/cdaflix/user/:id/mylist" 
-                    routerLinkActive="active-link" 
-                    ariaCurrentWhenActive="page" 
-                    [routerLinkActiveOptions]="{exact:
-                        true}"
-                > Ma liste </a>
-            </li>
-        }
-        
-    </ul>    
-    @if (userLogged) {
-        <div class="nav_wrap-user-menu">
-            <div class="nav_user-container-img">
-                <img src="./assets/images/user-profile.jpg" alt="">
-            </div>
-            <div class="nav_user-infos">
-                <h3>Hamidou SOW</h3>
-                <span>admin <button (click)="disconnectUser()">se déconnecter </button> </span>
-            </div>
-        </div>      
-    } @else {
-        <button class="nav_btn-login rounded-btn">
-            <a routerLink="/login"> connexion </a>
-        </button>
-    }    
+        </ul> 
+        <ul class='nav_menu secondary-menu'>
+            <app-search-bar></app-search-bar> 
+            <button (click)="toogleMenu()"><i class="bi bi-search"></i></button>
+            @if (userLogged) {
+                <li class=''>
+                    <a routerLink="/cdaflix/user/:id/mylist" 
+                        routerLinkActive="active-link" 
+                        ariaCurrentWhenActive="page" 
+                        [routerLinkActiveOptions]="{exact:
+                            true}"
+                    > Ma liste </a>
+                </li>
+            }
+            @if (userLogged) {
+                <div class="nav_wrap-user-menu">
+                    <div class="nav_user-container-img">
+                        <img src="./assets/images/user-profile.jpg" alt="">
+                    </div>
+                    <div class="nav_user-infos">
+                        <h3>Hamidou SOW</h3>
+                        <span>admin <button (click)="disconnectUser()">se déconnecter </button> </span>
+                    </div>
+                </div>      
+            } @else {
+                <button class="nav_btn-login rounded-btn">
+                    <a routerLink="/login"> connexion </a>
+                </button>
+            }    
+        </ul>
 </nav> 

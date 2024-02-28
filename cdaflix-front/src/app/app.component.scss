@@ -4,9 +4,23 @@
     padding: var(--padding-desktop-page);
 }
 
+footer {
+    background-color: var(--clr-blue-dark);
+    height: 300px;
+    position: relative;
+    bottom: 0;
+}
+
 @media screen and (min-width: 320px) {
     #main-content {
         padding: var(--padding-mobile-page);
+        padding-top: var(--nav-height);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #main-content {
+        padding: 0 60px 60px;
         padding-top: var(--nav-height);
     }
 }

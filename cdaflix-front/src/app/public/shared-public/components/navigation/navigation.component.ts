@@ -4,6 +4,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { User } from '../../../../models/User';
 import { LocalService } from '../../../../services/localstorage-service/local.service';
 import { TmdbAuthService } from '../../../../services/tmdb-service/tmdb-auth.service';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-navigation',
@@ -13,6 +14,7 @@ import { TmdbAuthService } from '../../../../services/tmdb-service/tmdb-auth.ser
     RouterOutlet,
     RouterLink, 
     RouterLinkActive,
+    SearchBarComponent
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
@@ -35,5 +37,9 @@ export class NavigationComponent {
   disconnectUser() {
     this.localService.removeData('user')
     window.location.reload()
+  }
+
+  toogleMenu() {
+    console.log('hello search');
   }
 }
