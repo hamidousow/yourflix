@@ -12,6 +12,8 @@ import { TmdbService } from '../../../services/tmdb-service/tmdb.service';
 import { Movie } from '../../../models/Movie';
 import { CarouselComponent } from '../../shared-public/components/carousel/carousel.component';
 import SearchMoviesViewComponent from '../search-movies-view/search-movies-view.component';
+import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { tmdbUtil } from '../../../utils/tmdb-util';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +28,8 @@ import SearchMoviesViewComponent from '../search-movies-view/search-movies-view.
     SearchBarComponent, 
     CardComponent,
     CarouselComponent,
-    SearchMoviesViewComponent
+    SearchMoviesViewComponent,
+    NgbCarouselModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -35,21 +38,29 @@ export default class HomeComponent implements OnInit {
   
 
   private movieService = inject(TmdbService) 
+  private ngConfig = inject(NgbCarouselConfig)
 
+  nowPlayingMovies$ = this.movieService.nowPlayingMovies$
   popularMovies$ = this.movieService.popularMovies$
   topRatedMovies$ = this.movieService.topRatedMovies$
   upcomingMovies$ = this.movieService.upcomingMovies$ 
-
-  // @Input()
-  // movie!: Movie
+  imgBaseUrl = tmdbUtil.imageBaseUrl
 
   @Input()
   args!: string
+
+  constructor() {
+    this.ngConfig.interval = 3000;
+		this.ngConfig.wrap = false;
+		this.ngConfig.keyboard = false;
+		this.ngConfig.pauseOnHover = true;
+  }
 
   ngOnInit() {
     this.movieService.getPopularMovies()
     this.movieService.getTopRatedMovies()
     this.movieService.getUpcomingMovies()
+    this.movieService.getNowPlayingMovies()
   }
 
   

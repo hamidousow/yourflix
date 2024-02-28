@@ -26,8 +26,14 @@ export class TmdbService {
   private _upcomingMovies: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly upcomingMovies$: Observable<TmdbMovie[]> = this._upcomingMovies.asObservable();
 
+  private _nowPlayingMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly nowPlayingMovies$: Signal<TmdbMovie[] | null> = toSignal<TmdbMovie[]>(this._nowPlayingMovies.asObservable(), {requireSync: true});
+
+  private _moviesSuggestions: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly moviesSuggestions$: Signal<TmdbMovie[] | null> = toSignal<TmdbMovie[]>(this._moviesSuggestions.asObservable(), {requireSync: true});
+
   private _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movieDetails$: Signal<TmdbMovieDetails | null>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {initialValue: null});
+  readonly movieDetails$: Signal<TmdbMovieDetails>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {requireSync: true});
 
   private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
@@ -50,13 +56,27 @@ export class TmdbService {
   resultsSearch: [] = []
   
 
-  getOne(id: string) {
+  //todo: a verifier, anciennement nommée 'getOne()'
+  findById(id: number) {
     this.http
-    .get<TmdbMovieDetails>(`${tmdbUtil.baseUrl}/movie/${id}`)
-    .pipe(map((v) =>{ 
+    .get<TmdbMovieDetails>(`${tmdbUtil.baseUrl}/movie/${id}`, tmdbUtil.options)
+    .pipe(map((v) =>{       
       this._movieDetails.next(v) 
     }))
     .subscribe();
+  }
+
+  getNowPlayingMovies() {
+    this.http
+    .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/now_playing`, tmdbUtil.options)
+    .pipe(
+      map((v) => 
+        {
+          this._nowPlayingMovies.next(v.results)        
+        }
+      )
+    )
+    .subscribe()
   }
 
   getPopularMovies() {    
@@ -130,7 +150,6 @@ export class TmdbService {
               }
             }
             this._movieProviders.next([...iterableObj])
-            console.log(r[0][l]);
           }          
         })
       })
@@ -197,5 +216,21 @@ export class TmdbService {
       this.searchMovie(query, this.currentPage())
       
     }   
+  }
+
+  getMovieSuggestions(id: number) {
+    this.http
+    .get<{ results : {}}>(`https://api.themoviedb.org/3/movie/${id}/recommendations`, tmdbUtil.options)
+    .pipe(
+      map((v) => {
+        const iterableObj = {
+          *[Symbol.iterator]() {
+            yield v.results
+          }
+        }
+        this._moviesSuggestions.next([...iterableObj][0])   
+      })
+    )
+    .subscribe();
   }
 }

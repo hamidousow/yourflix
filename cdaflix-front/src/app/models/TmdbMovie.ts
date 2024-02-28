@@ -16,5 +16,6 @@ export interface TmdbMovie {
     vote_count: number;
     overview: string;
     backdrop: Backdrop[];
+    backdrop_path: string;
 
 }
