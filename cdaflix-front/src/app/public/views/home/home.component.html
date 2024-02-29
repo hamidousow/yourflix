@@ -1,13 +1,30 @@
 <div id="homepage">
-    <app-navigation></app-navigation>
-    <div class="main-content_right">
-        <app-search-bar ></app-search-bar> 
-        <!-- <div class="container-cards">
-            @for (movie of movies$ | async; track $index) {
-                <app-card [movie]="movie"></app-card>
+    <div class="hero">
+        <ngb-carousel class="hero_carousel">
+            @for (movie of nowPlayingMovies$(); track $index) {
+                <ng-template ngbSlide>
+                    <div class="slide-backdrop">
+                        <img [src]="imgBaseUrl+movie.backdrop_path" alt="Random first slide" />
+                    </div>
+                    <div class="carousel-caption">
+                        <h2 class="title">{{movie.original_title}}</h2>                        
+                    </div>
+                </ng-template>
             }
-        </div> -->
-
-        <app-carousel [movies]="movies$ | async"></app-carousel>
+        </ngb-carousel>
     </div>
+    <section id="popular-movies" class="section-movie">
+        <h2 class="title">Popular movies</h2>
+        <app-carousel [movies]="popularMovies$ | async"></app-carousel>
+    </section>
+    <section id="to-rated-movies" class="section-movie">
+        <h2 class="title">Les mieux notés</h2>
+        <app-carousel [movies]="topRatedMovies$ | async"></app-carousel>
+    </section>
+    <section id="upcoming-movies" class="section-movie">
+        <h2 class="title">Prochaines sorties</h2>
+        <app-carousel [movies]="upcomingMovies$ | async"></app-carousel>
+    </section>
+    <!-- <router-outlet></router-outlet> -->
+    
 </div>

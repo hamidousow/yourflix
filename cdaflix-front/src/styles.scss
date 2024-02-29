@@ -1,14 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 @import "bootstrap/scss/bootstrap";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import "./styles/variables.scss";
+@import "./styles/classes.scss";
 @import "./app/public/views/home/home.component.scss";
 @import "./app/public/views/login/login.component.scss";
 @import "./app/public/shared-public/components/navigation/navigation.component.scss";
-@import "./app/public/shared-public/components/movie-modal/movie-view.component.scss";
 @import "./app/movie/form/form-create/form-create.component.scss";
 @import "./app/public/shared-public/components/search-bar/search-bar.component.scss";
+
 
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

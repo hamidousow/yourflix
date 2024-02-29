@@ -10,7 +10,10 @@ import { SearchBarComponent } from '../../shared-public/components/search-bar/se
 import { CardComponent } from '../../shared-public/components/card/card.component';
 import { TmdbService } from '../../../services/tmdb-service/tmdb.service';
 import { Movie } from '../../../models/Movie';
-import { CarouselComponent } from '../../shared-public/carousel/carousel.component';
+import { CarouselComponent } from '../../shared-public/components/carousel/carousel.component';
+import SearchMoviesViewComponent from '../search-movies-view/search-movies-view.component';
+import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { tmdbUtil } from '../../../utils/tmdb-util';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +27,9 @@ import { CarouselComponent } from '../../shared-public/carousel/carousel.compone
     MovieModalComponent,
     SearchBarComponent, 
     CardComponent,
-    CarouselComponent
+    CarouselComponent,
+    SearchMoviesViewComponent,
+    NgbCarouselModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -33,16 +38,30 @@ export default class HomeComponent implements OnInit {
   
 
   private movieService = inject(TmdbService) 
+  private ngConfig = inject(NgbCarouselConfig)
 
-  movies$ = this.movieService.movies$
-
-  @Input()
-  movie!: Movie
+  nowPlayingMovies$ = this.movieService.nowPlayingMovies$
+  popularMovies$ = this.movieService.popularMovies$
+  topRatedMovies$ = this.movieService.topRatedMovies$
+  upcomingMovies$ = this.movieService.upcomingMovies$ 
+  imgBaseUrl = tmdbUtil.imageBaseUrl
 
   @Input()
   args!: string
 
+  constructor() {
+    this.ngConfig.interval = 3000;
+		this.ngConfig.wrap = false;
+		this.ngConfig.keyboard = false;
+		this.ngConfig.pauseOnHover = true;
+  }
+
   ngOnInit() {
     this.movieService.getPopularMovies()
+    this.movieService.getTopRatedMovies()
+    this.movieService.getUpcomingMovies()
+    this.movieService.getNowPlayingMovies()
   }
+
+  
 }

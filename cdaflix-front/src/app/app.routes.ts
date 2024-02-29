@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {
@@ -9,19 +10,23 @@ export const routes: Routes = [
     {
         path: 'cdaflix', 
         loadComponent:  () => import('./public/views/home/home.component'),
-        children: [
-            {
-                path: 'user/:id',
-                loadChildren: () => import('./private/user/user.module')
-            }
-        ]
     },
     {
         path: 'login', 
         loadComponent: () => import("./public/views/login/login.component")
     },
+
     {
-        path: 'film/create', 
-        loadComponent:  () => import('./movie/form/form-create/form-create.component')
+        path: 'movies', 
+        loadComponent:  () => import('./public/views/movies-view/movies-view.component')
     },
+    {
+        path: 'search',
+        title: 'search-page',
+        loadComponent: () => import('./public/views/search-movies-view/search-movies-view.component')
+    },
+    {
+        path: '**', 
+        loadComponent: () => import('./public/views/page-not-found-component/page-not-found-component.component')
+    }
 ];

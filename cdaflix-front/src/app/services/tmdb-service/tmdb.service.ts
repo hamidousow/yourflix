@@ -1,13 +1,11 @@
 import { Injectable, Signal, inject, signal } from '@angular/core';
 import { tmdbUtil } from '../../utils/tmdb-util';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, first, map, startWith, tap } from 'rxjs';
-import { Movie } from '../../models/Movie';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable, Subject, combineLatest, combineLatestWith, concat, concatAll, first, forkJoin, from, map, merge, mergeMap, scan, startWith, switchMap, tap } from 'rxjs';
 import { TmdbMovie } from '../../models/TmdbMovie';
-import { start } from '@popperjs/core';
 import { TmdbMovieDetails } from '../../models/TmdbMovieDetails';
-import { MovieProvider } from '../../models/MovieProvider';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ResultSearch } from '../../models/ResultSearch';
 
 const tmdbAttribution = "This product uses the TMDB API but is not endorsed or certified by TMDB.";
 
@@ -18,39 +16,106 @@ export class TmdbService {
   
 
   http = inject(HttpClient)
+
+  private _popularMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly popularMovies$: Observable<TmdbMovie[]> = this._popularMovies.asObservable();
+
+  private _topRatedMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly topRatedMovies$: Observable<TmdbMovie[]> = this._topRatedMovies.asObservable();
+
+  private _upcomingMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly upcomingMovies$: Observable<TmdbMovie[]> = this._upcomingMovies.asObservable();
+
+  private _nowPlayingMovies: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly nowPlayingMovies$: Signal<TmdbMovie[] | null> = toSignal<TmdbMovie[]>(this._nowPlayingMovies.asObservable(), {requireSync: true});
+
+  private _moviesSuggestions: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly moviesSuggestions$: Signal<TmdbMovie[] | null> = toSignal<TmdbMovie[]>(this._moviesSuggestions.asObservable(), {requireSync: true});
+
+  private _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly movieDetails$: Signal<TmdbMovieDetails>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {requireSync: true});
+
+  private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
+  readonly movieProviders$ = toSignal<any[]>(this._movieProviders.asObservable(), {initialValue: null});
+
+  private _currentResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public readonly searchResults = toSignal<TmdbMovie[]>(this._currentResults$, {requireSync: true});
+
+  private _previousResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public readonly nextPageResults = toSignal<TmdbMovie[]>(this._previousResults$, {requireSync: true});
+
+  private _totalResults$: BehaviorSubject<any> = new BehaviorSubject<any>(0);
+  public readonly totalResults = toSignal<number>(this._totalResults$, {requireSync: true});
+
+  private readonly _currentPage$ : BehaviorSubject<number> = new BehaviorSubject(1);
+  public currentPage = toSignal<number>(this._currentPage$, { requireSync: true});
+
+  private readonly _totalPages$ : BehaviorSubject<number> = new BehaviorSubject(0);
+  public totalPages = toSignal<number>(this._totalPages$, { requireSync: true});
+
+  resultsSearch: [] = []
   
-  _movies: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movies$: Observable<TmdbMovie[]> = this._movies.asObservable();
 
-  _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movieDetails$: Signal<TmdbMovieDetails | null>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {initialValue: null});
-
-  _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
-  readonly movieProviders$ = toSignal<any>(this._movieProviders.asObservable(), {initialValue: null});
-
-
-  getOne(id: string) {
+  //todo: a verifier, anciennement nommée 'getOne()'
+  findById(id: number) {
     this.http
-    .get<TmdbMovieDetails>(`${tmdbUtil.baseUrl}/movie/${id}`)
-    .pipe(map((v) =>{ 
+    .get<TmdbMovieDetails>(`${tmdbUtil.baseUrl}/movie/${id}`, tmdbUtil.options)
+    .pipe(map((v) =>{       
       this._movieDetails.next(v) 
     }))
     .subscribe();
   }
 
-  getPopularMovies() {
-    
+  getNowPlayingMovies() {
+    this.http
+    .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/now_playing`, tmdbUtil.options)
+    .pipe(
+      map((v) => 
+        {
+          this._nowPlayingMovies.next(v.results)        
+        }
+      )
+    )
+    .subscribe()
+  }
+
+  getPopularMovies() {    
     this.http
     .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/popular`, tmdbUtil.options)
     .pipe(
       map((v) => 
       {
-        this._movies.next(v.results)        
+        this._popularMovies.next(v.results)        
       }
       )
     )
     .subscribe()
-    
+  }
+
+  getTopRatedMovies() {    
+    this.http
+    .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/top_rated`, tmdbUtil.options)
+    .pipe(
+      map((v) => 
+      {
+        this._topRatedMovies.next(v.results)        
+      }
+      )
+    )
+    .subscribe()
+  }
+
+  getUpcomingMovies() {    
+    this.http
+    .get<{ results : TmdbMovie[]}>(`${tmdbUtil.baseUrl}/movie/upcoming`, tmdbUtil.options)
+    .pipe(
+      map((v) => 
+      {
+        this._upcomingMovies.next(v.results)        
+      }
+      )
+    )
+    .subscribe()
   }
 
   /**
@@ -58,20 +123,114 @@ export class TmdbService {
    * @param id of the film
    */
   getMovieProviders(id: number | null) {
+
+    let language = "CA"
     this.http
-    .get<{
-      results: {
-        FR: string
-      }
-    }>(`${tmdbUtil.baseUrl}/movie/${id}/watch/providers`, tmdbUtil.options)
+    .get<{ results : {}}>(`${tmdbUtil.baseUrl}/movie/${id}/watch/providers`, tmdbUtil.options)
     .pipe(
       map((v) => {
-        this._movieProviders.next(v.results.FR)  
-        console.log(v.results.FR);
+        
+        /** return an iterator */
+        const r: any = {
+          *[Symbol.iterator]() {
+            yield v.results;
+          }
+        }
+        const res = [...r]        
+        return res
+        
+      }),
+      tap((r) => {
+        
+        Object.keys(r[0]).map(l => {
+          if(l == language) {
+            const iterableObj = {
+              *[Symbol.iterator]() {
+                yield r[0][l];
+              }
+            }
+            this._movieProviders.next([...iterableObj])
+          }          
+        })
       })
     )
     .subscribe()
   }
 
+  search(query: string, currentPage?: number) {
 
+    query = query.trim()
+    
+    
+    let options = query ? {
+      params: new HttpParams().set('query', query)
+                              .set('page', currentPage? currentPage : ''),
+      ...tmdbUtil.options   
+    } : {}
+
+    this.http
+    .get<ResultSearch>(`${tmdbUtil.baseUrl}/search/movie`, options)
+    .pipe(
+      map((values) => {
+        this._currentPage$.next(values.page);
+        this._totalPages$.next(values.total_pages);
+        this._currentResults$.next(values.results);  
+        this._totalResults$.next(values.total_results);      
+      }),      
+    )
+    .subscribe();
+  } 
+
+  searchMovie(query: string, page: number) {
+    query = query.trim()   
+    
+    let options = query ? {
+      params: new HttpParams().set('query', query)
+                              .set('page', page? page : ''),
+      ...tmdbUtil.options   
+    } : {}
+
+    this.http
+    .get<ResultSearch>(`${tmdbUtil.baseUrl}/search/movie`, options)
+    .pipe(
+
+      map((values) => {
+        this._currentPage$.next(values.page);
+        this._totalPages$.next(values.total_pages);       
+        this._currentResults$.next(values.results);
+        return values;   
+      }),  
+
+      scan((accumulator: any, values) => {   
+        return [...accumulator, ...values.results]
+      })  
+    )
+    .subscribe(val => console.log(val));
+  }
+
+
+  loadNextPage(query: string) {
+    if(this.currentPage() < this.totalPages()) {      
+      this._currentPage$.next(this.currentPage() + 1);
+
+      this.searchMovie(query, this.currentPage())
+      
+    }   
+  }
+
+  getMovieSuggestions(id: number) {
+    this.http
+    .get<{ results : {}}>(`https://api.themoviedb.org/3/movie/${id}/recommendations`, tmdbUtil.options)
+    .pipe(
+      map((v) => {
+        const iterableObj = {
+          *[Symbol.iterator]() {
+            yield v.results
+          }
+        }
+        this._moviesSuggestions.next([...iterableObj][0])   
+      })
+    )
+    .subscribe();
+  }
 }

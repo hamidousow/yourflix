@@ -27,10 +27,14 @@ export class CardComponent {
   movie!: TmdbMovie
   
 
-  openModal() {
-    const movieNg =  this.modalService.open(MovieModalComponent, { size: 'xl' });
-    movieNg.componentInstance.movie = this.movie
-  }
+  // openModal() {
+  //   if(this.modalService.hasOpenModals()) {
+  //     this.modalService.dismissAll();
+  //   }
+  //   console.log(this.modalService.hasOpenModals());
+  //   const movieNg =  this.modalService.open(MovieModalComponent, { size: 'xl' });
+  //   movieNg.componentInstance.movie = this.movie
+  // }
 
   handleFavorite(event: any) {
     event.stopPropagation()

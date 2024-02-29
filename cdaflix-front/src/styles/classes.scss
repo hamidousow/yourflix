@@ -1,0 +1,29 @@
+
+@media screen and (min-width: 320px) {
+
+    .button {
+        background-color: transparent;
+    }
+
+    .rounded-btn {
+        border-radius: 50px;
+        border: transparent;
+        padding: .1rem .8rem;
+        font-size: clamp(10px, 1vw, 14px);
+    }
+
+    .title {
+        color: var(--clr-white);
+        font-size: var(--large-font-size);
+        font-weight: 700;
+        margin: 0 0 2% 0;
+    }
+
+    // .subtitle
+    // .header-title
+    // .section-title
+    // .headline
+    // .subheadline
+}
+
+
