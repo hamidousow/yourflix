@@ -39,9 +39,6 @@ export class AppComponent {
   topRatedMovies$ = this.movieService.topRatedMovies$
   upcomingMovies$ = this.movieService.upcomingMovies$ 
 
-  // @Input()
-  // movie!: Movie
-
   @Input()
   args!: string
 
