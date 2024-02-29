@@ -40,7 +40,7 @@ export class SearchBarComponent {
     if(args.length > 0 && args !== undefined) {      
       this.movieService.search(args, 1);
     } else {
-      this.router.navigateByUrl('cdaflix');
+      this.router.navigateByUrl('yourflix');
     }   
   }
 }

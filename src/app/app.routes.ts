@@ -4,11 +4,11 @@ import { AppComponent } from './app.component';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'cdaflix',
+        redirectTo: 'yourflix',
         pathMatch: 'full' 
     },
     {
-        path: 'cdaflix', 
+        path: 'yourflix', 
         loadComponent:  () => import('./public/views/home/home.component'),
     },
     {

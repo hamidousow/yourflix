@@ -2,7 +2,7 @@
     <!-- <button id="btn-open-menu " class="button"> menu </button> -->
     <ul class='nav_menu first-menu'>
         <li class='me-5'>
-            <a routerLink="/cdaflix" 
+            <a routerLink="/yourflix" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
@@ -10,7 +10,7 @@
             > <img src="../../../../../assets/images/youflix-logo-red-white.png" alt="logo youflix" height="25px"> </a>
         </li>
         <li class=''>
-            <a routerLink="/cdaflix" 
+            <a routerLink="/yourflix" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
@@ -40,7 +40,7 @@
             <button (click)="toogleMenu()"><i class="bi bi-search"></i></button>
             @if (userLogged) {
                 <li class=''>
-                    <a routerLink="/cdaflix/user/:id/mylist" 
+                    <a routerLink="/yourflix/user/:id/mylist" 
                         routerLinkActive="active-link" 
                         ariaCurrentWhenActive="page" 
                         [routerLinkActiveOptions]="{exact:
