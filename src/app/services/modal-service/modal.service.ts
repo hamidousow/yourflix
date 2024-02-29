@@ -13,18 +13,13 @@ export class ModalService {
   private ngbModal = inject(NgbModal)
   private movieService = inject(TmdbService)
 
-  openModal(movieId: number) {
-
-    // if(this.modalService.hasOpenModals()) {
-    //   this.modalService.dismissAll();
-    // }
-
-    // const id = (event.target as HTMLElement).id;
-    console.log(movieId);
+  async openModal(movieId: number) {
     
     this.movieService.findById(movieId)
-    const movieNg =  this.ngbModal.open(MovieModalComponent, { size: 'xl' });
+    const movieNg = this.ngbModal.open(MovieModalComponent, { size: 'xl' });
     
-    movieNg.componentInstance.movie = this.movieService.movieDetails$()
+    //todo: await movieDetails 
+    // movieNg.componentInstance.movie = this.movieService.movieDetails$()
+    movieNg.componentInstance.movie = await this.movieService.findById(movieId)
   }
 }
