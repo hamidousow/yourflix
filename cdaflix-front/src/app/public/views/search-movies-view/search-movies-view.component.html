@@ -11,7 +11,7 @@
         (scrolled)="onScrollDown()"    
     >
         @for (item of searchResults(); track $index) {
-            <app-card [movie]="item"></app-card>           
+            <app-card [movie]="item" (click)="openModal(card.movie.id)" #card></app-card>           
         }
         
     </div>

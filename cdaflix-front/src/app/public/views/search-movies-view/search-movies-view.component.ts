@@ -1,13 +1,11 @@
-import { Component, Input, OnInit, Signal, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TmdbService } from '../../../services/tmdb-service/tmdb.service';
 import { CardComponent } from '../../shared-public/components/card/card.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { ResultSearch } from '../../../models/ResultSearch';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from '../../../services/modal-service/modal.service';
 
 @Component({
   selector: 'app-search-movies-view',
@@ -22,27 +20,19 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './search-movies-view.component.html',
   styleUrl: './search-movies-view.component.scss'
 })
-export default class SearchMoviesViewComponent implements OnInit {
+export default class SearchMoviesViewComponent {
 
   private movieService = inject(TmdbService) 
   private route = inject(ActivatedRoute) 
+  private modalService = inject(ModalService)
   searchResults = this.movieService.searchResults
   totalPages = this.movieService.totalPages()
   currentPage = this.movieService.currentPage()
   totalResults = this.movieService.totalResults()
-
- 
-
-  // movies: Signal<any[]> = toSignal(this.movieService._resultsSearchMovies, { requireSync: true})
-
   
-  ngOnInit(): void {
-    
-  }
+  
   onScrollDown() {
     let query = this.route.snapshot.queryParams['query']
-    
-      // this.movieService.loadNextPage(query, this.currentPage, this.totalPages)    
       
     this.movieService.loadNextPage(query)    
 
@@ -52,6 +42,10 @@ export default class SearchMoviesViewComponent implements OnInit {
     
     //this.appendItems(start, this.sum);
 
+  }
+
+  openModal(movieId: number) {
+    this.modalService.openModal(movieId);
   }
 
 }

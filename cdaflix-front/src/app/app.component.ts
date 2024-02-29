@@ -25,7 +25,7 @@ import { TmdbService } from './services/tmdb-service/tmdb.service';
     FormsModule, 
     NavigationComponent,
     HomeComponent,
-    MovieModalComponent,
+    MovieModalComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
