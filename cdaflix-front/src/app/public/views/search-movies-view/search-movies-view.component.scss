@@ -9,3 +9,10 @@
         gap: 8px;
     }
 }
+
+@media screen and (min-width: 992px) {
+    .container-cards {
+        grid-template-columns: repeat(5, 1fr);
+        padding: 60px 0;
+    }
+}
