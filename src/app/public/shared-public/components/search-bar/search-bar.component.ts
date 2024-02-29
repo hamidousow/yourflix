@@ -36,10 +36,8 @@ export class SearchBarComponent {
    */
   handleSearch(args: string) {
     this.router.navigate(['search'], { queryParams: {'query' : args}});
-    args = args.trim()
-    if(args.length > 0 && args !== undefined) {
-      console.log(args);
-      
+    args = args.trim();
+    if(args.length > 0 && args !== undefined) {      
       this.movieService.search(args, 1);
     } else {
       this.router.navigateByUrl('cdaflix');

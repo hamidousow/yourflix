@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovieModalComponent } from '../movie-modal/movie-modal.component';
 import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 import { ActivatedRoute } from '@angular/router';
+import { ModalService } from '../../../../services/modal-service/modal.service';
 
 @Component({
   selector: 'app-carousel',
@@ -18,27 +19,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CarouselComponent {
 
-  private modalService = inject(NgbModal)
-  private movieService = inject(TmdbService)
-  private route = inject(ActivatedRoute)
+  private modalService = inject(ModalService)
 
   @Input()
   movies!: any
 
   openModal(elt: any) {
-
-    // if(this.modalService.hasOpenModals()) {
-    //   this.modalService.dismissAll();
-    // }
-
-    // const id = (event.target as HTMLElement).id;
-    
-    
-    console.log(elt.movie.id);
-    this.movieService.findById(elt.movie.id)
-    const movieNg =  this.modalService.open(MovieModalComponent, { size: 'xl' });
-    
-    movieNg.componentInstance.movie = this.movieService.movieDetails$()
+    this.modalService.openModal(elt.movie.id)
   }
 
 

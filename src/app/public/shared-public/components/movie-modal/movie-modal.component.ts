@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 import { tmdbUtil } from '../../../../utils/tmdb-util';
-import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
-import { MovieProvider } from '../../../../models/MovieProvider';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from '../card/card.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
 
 
 @Component({
@@ -25,8 +25,7 @@ export class MovieModalComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private modalService = inject(NgbModal)
 
-  @Input()
-  movie: TmdbMovieDetails = this.movieService.movieDetails$();
+  movie!: any
   
   imageBaseurl = tmdbUtil.imageBaseUrl;
   
@@ -50,11 +49,15 @@ export class MovieModalComponent implements OnInit {
 
   ngOnInit() {
     const id = this.movie?.id
-    if(id != null) {
+    
+    
+    if(id != undefined) {
       this.movieService.getMovieProviders(id);
       this.movieService.getMovieSuggestions(id);
     } 
   }
+
+  
 
 
 

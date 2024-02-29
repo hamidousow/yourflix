@@ -32,7 +32,7 @@ export class TmdbService {
   private _moviesSuggestions: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly moviesSuggestions$: Signal<TmdbMovie[] | null> = toSignal<TmdbMovie[]>(this._moviesSuggestions.asObservable(), {requireSync: true});
 
-  private _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
+  private readonly _movieDetails: BehaviorSubject<any> = new BehaviorSubject(null);
   readonly movieDetails$: Signal<TmdbMovieDetails>  = toSignal<TmdbMovieDetails>(this._movieDetails.asObservable(), {requireSync: true});
 
   private _movieProviders: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -55,15 +55,16 @@ export class TmdbService {
 
   resultsSearch: [] = []
   
-
-  //todo: a verifier, anciennement nommée 'getOne()'
-  findById(id: number) {
-    this.http
-    .get<TmdbMovieDetails>(`${tmdbUtil.baseUrl}/movie/${id}`, tmdbUtil.options)
-    .pipe(map((v) =>{       
-      this._movieDetails.next(v) 
-    }))
-    .subscribe();
+  async findById(id: number) {
+    const result = await fetch(`${tmdbUtil.baseUrl}/movie/${id}`, tmdbUtil.options)
+    .then((v) =>{ 
+      return v.json()
+    })
+    .then((v) => {     
+      return v
+    })
+    .catch((e) => console.log(e));
+    return result;
   }
 
   getNowPlayingMovies() {
