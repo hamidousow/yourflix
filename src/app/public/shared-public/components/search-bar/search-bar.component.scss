@@ -14,30 +14,27 @@
 .container-search-bar input[type=search] {
     border: transparent;
     padding: 10px;
+
     background-image: var(--search-icon);
     background-size: 20px;
     background-repeat: no-repeat;
     background-position-y: center;
+
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 
+    &::placeholder {
+        margin-left: 15px;
+    }
+
     &:focus-visible {
         outline: 1px solid var(--clr-blue-light);
-    }
+        width: 100%;
+        background: var(--clr-blue-night);
+        border: transparent;
+        color: var(--clr-white);
+    }    
 }
-
-.container-search-bar input[type=search]:focus {
-    width: 100%;
-    background: var(--clr-blue-night);
-    border: transparent;
-    color: var(--clr-white);
-
-    &::placeholder {
-        content: 'chercher un film';
-    }
-    
-}
-
 
 .search-btn {
 
