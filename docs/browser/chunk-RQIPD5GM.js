@@ -1,0 +1,1 @@
+import{$a as a,Ub as m,_a as i,ba as n,jb as r,pb as s}from"./chunk-YEQ72UKM.js";var l=(()=>{let e=class e{};e.\u0275fac=function(o){return new(o||e)},e.\u0275cmp=n({type:e,selectors:[["app-movies-view"]],standalone:!0,features:[s],decls:2,vars:0,template:function(o,d){o&1&&(i(0,"p"),r(1,"movies-view works!"),a())},dependencies:[m]});let t=e;return t})();export{l as default};
