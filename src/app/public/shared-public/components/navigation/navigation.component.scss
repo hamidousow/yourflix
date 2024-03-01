@@ -33,12 +33,6 @@
             display: block;
         }    
     }
-
-    .nav_menu.open {
-        display: flex;
-        flex-direction: column;
-        column-gap: 5px;
-    }
     
     .active-link {
         color: var(--clr-red)!important;

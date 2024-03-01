@@ -28,11 +28,13 @@ export class SearchBarComponent {
 
   resultsSearchMovies$ = this.movieService.searchResults
 
+  
+
   //todo: change with page from the store
   nbrPage = 1
   /**
    * search movies by title within words that matches the searchbar's entries.
-   * @param args used to search movies
+   * @param args - query to search movies
    */
   handleSearch(args: string) {
     this.router.navigate(['search'], { queryParams: {'query' : args}});

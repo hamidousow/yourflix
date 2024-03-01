@@ -23,6 +23,10 @@ export class NavigationComponent {
 
   private tmdbAuthService = inject(TmdbAuthService)
 
+
+  searchbarActived: boolean = false;
+
+
   @Input()
   userLogged = this.localService.getData('user')
 
@@ -39,7 +43,7 @@ export class NavigationComponent {
     window.location.reload()
   }
 
-  toogleMenu() {
-    console.log('hello search');
+  toogleSearchBar() {
+    this.searchbarActived = !this.searchbarActived
   }
 }

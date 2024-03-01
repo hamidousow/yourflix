@@ -36,8 +36,8 @@
         </li> -->
         </ul> 
         <ul class='nav_menu secondary-menu'>
-            <app-search-bar></app-search-bar> 
-            <button (click)="toogleMenu()"><i class="bi bi-search"></i></button>
+            
+            <app-search-bar (click)="toogleSearchBar()"></app-search-bar>             
             @if (userLogged) {
                 <li class=''>
                     <a routerLink="/yourflix/user/:id/mylist" 
