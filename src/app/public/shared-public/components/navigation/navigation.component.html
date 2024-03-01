@@ -1,13 +1,16 @@
 <nav id="nav" class="navigation">
     <!-- <button id="btn-open-menu " class="button"> menu </button> -->
+    <a routerLink="/yourflix" 
+        routerLinkActive="active-link" 
+        ariaCurrentWhenActive="page" 
+        class="nav_logo"
+        [routerLinkActiveOptions]="{exact:true}"
+    > 
+        <img src="assets/images/youflix-logo-red-white.png" alt="logo youflix" height="20px"> 
+    </a>
     <ul class='nav_menu first-menu'>
         <li class='me-5'>
-            <a routerLink="/yourflix" 
-                routerLinkActive="active-link" 
-                ariaCurrentWhenActive="page" 
-                [routerLinkActiveOptions]="{exact:
-                true}"
-            > <img src="assets/images/youflix-logo-red-white.png" alt="logo youflix" height="25px"> </a>
+            
         </li>
         <li class=''>
             <a routerLink="/yourflix" 
