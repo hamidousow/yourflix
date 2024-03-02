@@ -31,17 +31,14 @@ export default class SearchMoviesViewComponent {
   totalResults = this.movieService.totalResults()
   
   
-  onScrollDown() {
-    let query = this.route.snapshot.queryParams['query']
-      
-    this.movieService.loadNextPage(query)    
+  // onScrollDown() {
+  //   let query = this.route.snapshot.queryParams['query'];
+  //   this.movieService.loadNextPage(query);
+  // }
 
-    // add another 20 items
-    //const start = this.sum;
-    
-    
-    //this.appendItems(start, this.sum);
-
+  loadMoreResults() {
+    let query = this.route.snapshot.queryParams['query'];
+    this.movieService.loadNextPage(query);
   }
 
   openModal(movieId: number) {

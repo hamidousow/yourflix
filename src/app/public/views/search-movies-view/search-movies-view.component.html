@@ -4,15 +4,19 @@
     } @else {
         <span>aucun resultat</span>
     }    -->
-    <div class="container-cards"
+    <!-- <div class="container-cards"
         infiniteScroll
         [infiniteScrollDistance]="2"
         [infiniteScrollThrottle]="50"
         (scrolled)="onScrollDown()"    
-    >
+    > -->
+    <div class="container-cards">
         @for (item of searchResults(); track $index) {
             <app-card [movie]="item" (click)="openModal(card.movie.id)" #card></app-card>           
         }
         
     </div>
+    @if(currentPage < totalPages) {
+        <button (click)="loadMoreResults()">Charger plus de résultats</button>
+    }
 </section>

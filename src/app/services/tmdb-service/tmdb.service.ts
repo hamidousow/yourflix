@@ -53,7 +53,7 @@ export class TmdbService {
   private readonly _totalPages$ : BehaviorSubject<number> = new BehaviorSubject(0);
   public totalPages = toSignal<number>(this._totalPages$, { requireSync: true});
 
-  resultsSearch: [] = []
+  resultsSearch : TmdbMovie[][] = []
   
   async findById(id: number) {
     const result = await fetch(`${tmdbUtil.baseUrl}/movie/${id}`, tmdbUtil.options)
@@ -175,7 +175,12 @@ export class TmdbService {
       map((values) => {
         this._currentPage$.next(values.page);
         this._totalPages$.next(values.total_pages);
-        this._currentResults$.next(values.results);  
+        this._currentResults$.next(values.results); 
+        this.resultsSearch.reduce((prev, curr) => {
+          return this.resultsSearch.length == 0 ?  curr : [...prev, ...curr]
+        }, []);
+        console.log(this.resultsSearch);
+        
         this._totalResults$.next(values.total_results);      
       }),      
     )

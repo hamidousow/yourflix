@@ -6,9 +6,15 @@
 
 footer {
     background-color: var(--clr-blue-dark);
-    height: 300px;
+    height: 150px;
     position: relative;
     bottom: 0;
+    padding: 60px 20px;
+
+    .footer_text {
+        color: var(--clr-blue-light);
+        font-size: 14px;
+    }
 }
 
 @media screen and (min-width: 320px) {
