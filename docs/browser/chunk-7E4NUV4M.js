@@ -1,0 +1,1 @@
+import{$a as a,_a as i,_b as m,aa as n,kb as r,qb as s}from"./chunk-QR7DLDQS.js";var l=(()=>{let e=class e{};e.\u0275fac=function(o){return new(o||e)},e.\u0275cmp=n({type:e,selectors:[["app-movies-view"]],standalone:!0,features:[s],decls:2,vars:0,template:function(o,d){o&1&&(i(0,"p"),r(1,"movies-view works!"),a())},dependencies:[m]});let t=e;return t})();export{l as default};
