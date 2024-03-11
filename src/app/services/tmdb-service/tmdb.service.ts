@@ -50,7 +50,7 @@ export class TmdbService {
   private readonly _currentPage$ : BehaviorSubject<number> = new BehaviorSubject(1);
   public currentPage = toSignal<number>(this._currentPage$, { requireSync: true});
 
-  private readonly _totalPages$ : BehaviorSubject<number> = new BehaviorSubject(0);
+  private readonly _totalPages$ : BehaviorSubject<number> = new BehaviorSubject(1);
   public totalPages = toSignal<number>(this._totalPages$, { requireSync: true});
 
   resultsSearch : TmdbMovie[][] = []
@@ -158,35 +158,6 @@ export class TmdbService {
     .subscribe()
   }
 
-  search(query: string, currentPage?: number) {
-
-    query = query.trim()
-    
-    
-    let options = query ? {
-      params: new HttpParams().set('query', query)
-                              .set('page', currentPage? currentPage : ''),
-      ...tmdbUtil.options   
-    } : {}
-
-    this.http
-    .get<ResultSearch>(`${tmdbUtil.baseUrl}/search/movie`, options)
-    .pipe(
-      map((values) => {
-        this._currentPage$.next(values.page);
-        this._totalPages$.next(values.total_pages);
-        this._currentResults$.next(values.results); 
-        this.resultsSearch.reduce((prev, curr) => {
-          return this.resultsSearch.length == 0 ?  curr : [...prev, ...curr]
-        }, []);
-        console.log(this.resultsSearch);
-        
-        this._totalResults$.next(values.total_results);      
-      }),      
-    )
-    .subscribe();
-  } 
-
   searchMovie(query: string, page: number) {
     query = query.trim()   
     
@@ -202,8 +173,9 @@ export class TmdbService {
 
       map((values) => {
         this._currentPage$.next(values.page);
-        this._totalPages$.next(values.total_pages);       
-        this._currentResults$.next(values.results);
+        this._totalPages$.next(values.total_pages);      
+        this._currentResults$.next(values.results);  
+        this._totalResults$.next(values.total_results);           
         return values;   
       }),  
 
@@ -218,10 +190,13 @@ export class TmdbService {
   loadNextPage(query: string) {
     if(this.currentPage() < this.totalPages()) {      
       this._currentPage$.next(this.currentPage() + 1);
-
-      this.searchMovie(query, this.currentPage())
-      
+      this.searchMovie(query, this.currentPage());
     }   
+  }
+
+  loadPreviousPage(query: string) { 
+    this._currentPage$.next(this.currentPage() - 1);
+    this.searchMovie(query, this.currentPage());
   }
 
   getMovieSuggestions(id: number) {

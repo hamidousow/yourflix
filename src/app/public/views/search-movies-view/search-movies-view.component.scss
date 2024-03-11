@@ -3,6 +3,20 @@
     padding: 60px 0;
 }
 
+.container-cards {
+    height: 100%;
+}
+
+.container-pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-btn {
+    height: 30px;
+    background-color: var(--clr-grey-light);
+}
+
 @media screen and (min-width: 320px) {
     .container-cards {
         display: grid;

@@ -40,7 +40,7 @@ export class SearchBarComponent {
     this.router.navigate(['search'], { queryParams: {'query' : args}});
     args = args.trim();
     if(args.length > 0 && args !== undefined) {      
-      this.movieService.search(args, 1);
+      this.movieService.searchMovie(args, 1);
     } else {
       this.router.navigateByUrl('yourflix');
     }   
