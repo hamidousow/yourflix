@@ -1,6 +1,7 @@
 {
   "name": "yourflix",
   "version": "0.0.0",
+  "homepage": "https://hamidousow.github.io/yourflix",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
