@@ -13,7 +13,7 @@
             
         </li>
         <li class=''>
-            <a routerLink="/yourflix" 
+            <a routerLink="/" 
                 routerLinkActive="active-link" 
                 ariaCurrentWhenActive="page" 
                 [routerLinkActiveOptions]="{exact:
@@ -43,7 +43,7 @@
             <app-search-bar (click)="toogleSearchBar()"></app-search-bar>             
             @if (userLogged) {
                 <li class=''>
-                    <a routerLink="/yourflix/user/:id/mylist" 
+                    <a routerLink="/user/:id/mylist" 
                         routerLinkActive="active-link" 
                         ariaCurrentWhenActive="page" 
                         [routerLinkActiveOptions]="{exact:

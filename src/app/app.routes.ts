@@ -2,13 +2,13 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 export const routes: Routes = [
+    // {
+    //     path: '',
+    //     redirectTo: 'yourflix',
+    //     pathMatch: 'full' 
+    // },
     {
-        path: '',
-        redirectTo: 'yourflix',
-        pathMatch: 'full' 
-    },
-    {
-        path: 'yourflix', 
+        path: '', 
         loadComponent:  () => import('./public/views/home/home.component'),
     },
     {
