@@ -11,41 +11,45 @@
             <app-card [movie]="item" (click)="openModal(card.movie.id)" #card></app-card>           
         }
     </div>
-    <div class="container-pagination">
-        <ngbPaginationPrevious class="pagination-btn" (click)="loadPreviousPage()">prev</ngbPaginationPrevious>
-        <ngb-pagination 
-            [collectionSize]="totalResults()" 
-            [page]="this.currentPage()" 
-            [boundaryLinks]="false"
-            [directionLinks]="false"     
-        >
+    @if (this.totalPages() > 1) {
+        <div class="container-pagination">
             
-            <ng-template ngbPaginationPages let-page let-pages="pages">
-                @if (this.totalPages() > 0) {
-                    <li class="ngb-custom-pages-item">
-                        <div class="mb-3 d-flex flex-nowrap px-2">
-                            <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
-                            <input
-                                #i
-                                type="text"
-                                inputmode="numeric"
-                                pattern="[0-9]*"
-                                class="form-control custom-pages-input"
-                                id="paginationInput"
-                                [value]="page"
-                                (keyup.enter)="selectPage(i.value)"
-                                (blur)="selectPage(i.value)"
-                                (input)="formatInput($any($event).target)"
-                                aria-labelledby="paginationInputLabel paginationDescription"
-                                style="width: 3rem"
-                            />
-                            <span id="paginationDescription" class="col-form-label text-nowrap px-2 color-grey-light"> of {{ this.totalPages() }}</span>
-                        </div>
-                    </li>
-                }
-            </ng-template>
-            
-        </ngb-pagination>
-        <ngbPaginationNext class="pagination-btn" (click)="loadNextPage()">next</ngbPaginationNext>
-    </div>    
+            <ngbPaginationPrevious class="pagination-btn" (click)="loadPreviousPage()">prev</ngbPaginationPrevious>
+            <ngb-pagination 
+                [collectionSize]="totalResults()" 
+                [page]="this.currentPage()" 
+                [boundaryLinks]="false"
+                [directionLinks]="false"     
+            >
+                
+                <ng-template ngbPaginationPages let-page let-pages="pages">
+                    
+                        <li class="ngb-custom-pages-item">
+                            <div class="mb-3 d-flex flex-nowrap px-2">
+                                <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+                                <input
+                                    #i
+                                    type="text"
+                                    inputmode="numeric"
+                                    pattern="[0-9]*"
+                                    class="form-control custom-pages-input"
+                                    id="paginationInput"
+                                    [value]="page"
+                                    (keyup.enter)="selectPage(i.value)"
+                                    (blur)="selectPage(i.value)"
+                                    (input)="formatInput($any($event).target)"
+                                    aria-labelledby="paginationInputLabel paginationDescription"
+                                    style="width: 3rem"
+                                />
+                                <span id="paginationDescription" class="col-form-label text-nowrap px-2 color-grey-light"> of {{ this.totalPages() }}</span>
+                            </div>
+                        </li>
+                    
+                </ng-template>
+                
+            </ngb-pagination>
+            <ngbPaginationNext class="pagination-btn" (click)="loadNextPage()">next</ngbPaginationNext>
+        
+        </div>  
+    } 
 </section>

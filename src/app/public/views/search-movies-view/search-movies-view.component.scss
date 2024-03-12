@@ -14,7 +14,12 @@
 
 .pagination-btn {
     height: 30px;
-    background-color: var(--clr-grey-light);
+    background-color: var(--clr-blue-navigation);
+    color: var(--clr-white);
+    width: 50px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 2;
 }
 
 @media screen and (min-width: 320px) {

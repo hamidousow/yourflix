@@ -28,10 +28,6 @@ export class SearchBarComponent {
 
   resultsSearchMovies$ = this.movieService.searchResults
 
-  
-
-  //todo: change with page from the store
-  nbrPage = 1
   /**
    * search movies by title within words that matches the searchbar's entries.
    * @param args - query to search movies
@@ -42,7 +38,7 @@ export class SearchBarComponent {
     if(args.length > 0 && args !== undefined) {      
       this.movieService.searchMovie(args, 1);
     } else {
-      this.router.navigateByUrl('yourflix');
+      this.router.navigateByUrl('/');
     }   
   }
 }

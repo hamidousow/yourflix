@@ -48,6 +48,7 @@
 
         p {
             font-size: clamp(8px, 1vw, 11px);
+            color: var(--clr-white);
         }
     }
     
@@ -67,11 +68,13 @@
 @media screen and (min-width: 992px) {
     .card {
         transition: 0.5s;
+        height: 100%;
+        min-width: 13rem;
+        max-width: 350px;
+        box-shadow: 0px 0px 5px 0px #00000040;
     }
     .card:hover {
-        transition-delay: .8s;
-        transform: scale(1.05);
-        z-index: 10;
+        filter: brightness(.5);
     }
 }
 
