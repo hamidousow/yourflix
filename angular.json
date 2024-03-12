@@ -15,9 +15,10 @@
       "prefix": "app",
       "architect": {
         "build": {
+          
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/yourflix",
+            "outputPath": "dist",
             "baseHref": "/",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -42,6 +43,7 @@
           },
           "configurations": {
             "production": {
+              "deleteOutputPath": true,
               "budgets": [
                 {
                   "type": "initial",
