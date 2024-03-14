@@ -24,7 +24,7 @@ export const routes: Routes = [
         path: 'search',
         title: 'search-page',
         loadComponent: () => import('./public/views/search-movies-view/search-movies-view.component')
-    },
+    },    
     {
         path: '**', 
         loadComponent: () => import('./public/views/page-not-found-component/page-not-found-component.component')

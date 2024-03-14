@@ -1,7 +1,10 @@
 <div class="carousel">
     <div class="carousel_inner">            
         @for (movie of movies; track $index) {
-            <app-card [movie]="movie"  (click)="openModal(cardElement)" #cardElement></app-card>
+            <app-card 
+                [movie]="movie"  
+                (click)="getMovieId(cardElement)" #cardElement
+            ></app-card>
         }           
     </div>
 </div>

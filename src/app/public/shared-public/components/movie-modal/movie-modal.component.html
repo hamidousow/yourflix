@@ -14,24 +14,24 @@
                 </section>
                 <section class="modal_movie_details_right">
                     <!-- <h3>Acteurs : {{ movie ? movie.actors : '' }}</h3> -->
-                    <p class="movie-language">Langue : <br> {{ movie ? movie.original_language : ''}}</p>             
-                    <p class="movie-release_date">Date de sortie : <br> {{ movie ? movie.release_date : ''}}</p>
+                    <p class="movie-language">Langue <br> {{ movie ? movie.original_language : ''}}</p>             
+                    <p class="movie-release_date">Date de sortie <br> {{ movie ? movie.release_date : ''}}</p>
                 </section> 
                 <section class="providers"> 
                     @for (provider of movieProviders(); track $index) {
-                        <div>
+                        <!-- <div>
                             lien : <a href="{{provider.link}}">lien</a>
-                        </div>
-                        <div class="d-flex flex-column">  
-                            <h3>En vente</h3>              
+                        </div> -->
+                        <div class="d-flex flex-column mb-4">  
+                            <h3 class="fw-bolder mb-2">En vente</h3>              
                             <div class="d-flex flex-row gap-2">         
                                 @for (buyItem of provider.buy; track $index) { 
                                     <img src="{{ imageBaseurl + buyItem.logo_path }}" alt="{{buyItem.provider_name}}" width="35">                                 
                                 }
                             </div> 
                         </div>
-                        <div class="d-flex flex-column">  
-                            <h3>En location</h3> 
+                        <div class="d-flex flex-column mb-4">  
+                            <h3 class="fw-bolder mb-2">En location</h3> 
                             <div class="d-flex flex-row gap-2">                       
                                 @for (item of provider.rent; track $index) {                                   
                                     <img src="{{ imageBaseurl + item.logo_path }}" alt="{{item.provider_name}}" width="35">
@@ -40,32 +40,19 @@
                         </div>
                         
                     }
-                    <!-- @for (item of movieProviders() | keyvalue; track $index) {
-                        @if (item.key == languageSelected) {
-                            <div>
-                                key: {{item.key}}
-                            </div>
-                            @for(i of item.value | keyvalue; track $index) {
-                                <div> key of CA : {{i.key}}</div>
-                                <div> value of the key of CA : {{i.value}}</div>
-                                @for(j of item.value | keyvalue; track $index) {
-                                    {{j.value}}
-                                }
-                            
+                </section>
+                @if(moviesSuggestions()) {
+                    <section class="suggestions">
+                        <h2 class="fw-bolder mb-2">Suggestions</h2>
+                        <div class="movies-suggestions">
+                            @for(movie of moviesSuggestions(); track $index) {
+                                <app-card [movie]="movie"></app-card>
+                                <!-- <h3> {{movie.original_title}} </h3> -->
                             }
-                        }                        
-                    } -->
-                </section>   
-                <section class="movies-suggestion">
-                    <h2>Films similaires</h2>
-                    <div>
-                        @for(movie of moviesSuggestions(); track $index) {
-                            <!-- <app-card [movie]="movie"></app-card> -->
-                            <!-- <h3> {{movie.original_title}} </h3> -->
-                        }
-                        
-                    </div>
-                </section>   
+                            
+                        </div>
+                    </section> 
+                }
             </div>
         </div>
     </div>
