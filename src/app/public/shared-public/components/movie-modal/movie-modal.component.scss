@@ -23,14 +23,19 @@
         margin-bottom: 1em;
     }
 
-    .modal_movie_content {
+    .modal_content {
         display: grid;
         grid-template-rows: 1fr auto;
         padding: 25px;
         row-gap: 2em;
     }
 
-    .modal_movie_poster {
+    .movie-details {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .movie_poster {
         img {
             height: 100%;
             width: 100%;
@@ -42,13 +47,13 @@
         };
     }
 
-    .modal_movie_details_left--title {
+    .movie-title {
         font-weight: 700;
         margin-bottom: 1em;
         // padding: .8rem;
     }
 
-    .modal_movie_details_left--description {
+    .movie-overview {
         line-height: 120%;
         font-weight: 500;
         margin-bottom: 1em;
@@ -59,6 +64,26 @@
         display: flex;
         flex-direction: column;
         row-gap: 1em;
+    }
+
+    //todo: faire un composant "average-component"
+    .card_header--vote-average {
+        height: 100%;
+        width: 100%;
+        max-height: 25px;
+        max-width: 25px;
+        border-radius: 50%;
+        border: 2px solid var(--clr-blue-light);
+        background: var(--clr-blue-night);
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-size: clamp(8px, 1vw, 11px);
+            color: var(--clr-white);
+        }
     }
 
     .movies-suggestions {

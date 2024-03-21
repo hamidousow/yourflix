@@ -1,15 +1,15 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, Input, OnInit, Signal, TemplateRef, WritableSignal, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 import { tmdbUtil } from '../../../../utils/tmdb-util';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from '../card/card.component';
+import { NoteFormatPipe } from '../../pipes/note-format/note-format.pipe';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
 import { LocalService } from '../../../../services/localstorage-service/local.service';
 import { ModalService } from '../../../../services/modal-service/modal.service';
-
 
 @Component({
   selector: 'app-movie-modal',
@@ -17,6 +17,7 @@ import { ModalService } from '../../../../services/modal-service/modal.service';
   imports: [
     CommonModule, 
     CardComponent,
+    NoteFormatPipe
   ],
   templateUrl: './movie-modal.component.html',
   styleUrl: './movie-modal.component.scss'
@@ -42,11 +43,6 @@ export class MovieModalComponent implements OnInit{
 
   movieId = this.storageService.getData('movieId');
 
-  ngOnInit(): void {
-    const movieIdInt = parseInt(this.movieId || '')
-    this.movieService.getMovieProviders(movieIdInt, this.languageSelected);
-    this.movieService.getMovieSuggestions(movieIdInt);
-  }
 
   closeModal() {
     this.storageService.clearData()
@@ -59,4 +55,18 @@ export class MovieModalComponent implements OnInit{
   //     this.modalService.open()
   //   }
   // }
+  
+
+  ngOnInit() {
+    const movieIdInt = parseInt(this.movieId || '')
+    
+    
+    if(movieIdInt != undefined) {
+      this.movieService.getMovieProviders(movieIdInt, this.languageSelected);
+      this.movieService.getMovieSuggestions(movieIdInt);
+    } else {
+      console.log('id inconnu');
+      
+    }
+  }
 }
