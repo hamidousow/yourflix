@@ -1,19 +1,12 @@
 <div class="card" id="{{movie.id}}">
     <div class="card_header">
-        
-        <img alt="" src={{imageBaseurl+movie.poster_path}}/>  
-        <div class="card_header--vote-average">
-            <p> {{ movie.vote_average | noteFormat: 1 }} </p>   
-        </div> 
-    </div>
-    
-    <div class="card_body d-flex flex-column flex-1 mt-2">        
-        
-        <h2 class="card_body--title"> {{ movie.title }} </h2>
-        <!-- <p> {{movie.release_date}} </p> -->
-
         <!-- <button class="btn-fav" (click)="handleFavorite($event)">
             <i class="bi bi-heart"></i>
         </button>         -->
+        <img alt="" src={{imageBaseurl+movie.poster_path}}/>  
+        <!-- <div class="card_header--vote-average">
+            <p> {{ movie.vote_average | noteFormat: 1 }} </p>   
+        </div>  -->
     </div>
+    
 </div>
