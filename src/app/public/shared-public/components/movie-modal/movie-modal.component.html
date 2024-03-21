@@ -2,59 +2,75 @@
     <div class="modal_btn-close" (click)="closeModal()">
         <i class="bi bi-x"></i>
     </div>
-    <div class="modal_movie">
-        <div class="modal_movie_content">
-            <div class="modal_movie_poster">
+    <div class="modal_content">
+        <section class="movie-details">
+            <div class="movie-poster">
                 <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" alt="">
             </div>
-            <div class="modal_movie_details">
-                <section class="modal_movie_details_left movie-description">
-                    <h1 class="modal_movie_details_left--title">{{ movie ? movie.original_title : ''}}</h1>
-                    <p class="modal_movie_details_left--description"> {{ movie ? movie.overview : '' }} </p>
-                </section>
-                <section class="modal_movie_details_right">
-                    <!-- <h3>Acteurs : {{ movie ? movie.actors : '' }}</h3> -->
-                    <p class="movie-language">Langue <br> {{ movie ? movie.original_language : ''}}</p>             
-                    <p class="movie-release_date">Date de sortie <br> {{ movie ? movie.release_date : ''}}</p>
-                </section> 
-                <section class="providers"> 
-                    @for (provider of movieProviders(); track $index) {
-                        <!-- <div>
-                            lien : <a href="{{provider.link}}">lien</a>
-                        </div> -->
-                        <div class="d-flex flex-column mb-4">  
-                            <h3 class="fw-bolder mb-2">En vente</h3>              
-                            <div class="d-flex flex-row gap-2">         
-                                @for (buyItem of provider.buy; track $index) { 
-                                    <img src="{{ imageBaseurl + buyItem.logo_path }}" alt="{{buyItem.provider_name}}" width="35">                                 
-                                }
-                            </div> 
-                        </div>
-                        <div class="d-flex flex-column mb-4">  
-                            <h3 class="fw-bolder mb-2">En location</h3> 
-                            <div class="d-flex flex-row gap-2">                       
-                                @for (item of provider.rent; track $index) {                                   
-                                    <img src="{{ imageBaseurl + item.logo_path }}" alt="{{item.provider_name}}" width="35">
-                                }
-                            </div>
-                        </div>
-                        
-                    }
-                </section>
-                @if(moviesSuggestions()) {
-                    <section class="suggestions">
-                        <h2 class="fw-bolder mb-2">Suggestions</h2>
-                        <div class="movies-suggestions">
-                            @for(movie of moviesSuggestions(); track $index) {
-                                <app-card [movie]="movie"></app-card>
-                                <!-- <h3> {{movie.original_title}} </h3> -->
-                            }
-                            
-                        </div>
-                    </section> 
+            <div>
+                <h1 class="movie-title">{{ movie ? movie.original_title : ''}}</h1>
+                <p class="movie-language">Langue : {{ movie ? movie.original_language : ''}}</p>             
+                <p class="movie-release_date">Date de sortie : {{ movie ? movie.release_date : ''}}</p>
+                @if(movie) {
+                    <span class="card_header--vote-average">
+                        <p>{{ movie.vote_average  | noteFormat: 1}}</p>
+                    </span>
                 }
             </div>
-        </div>
+        </section>
+        <section class="modal_overview">
+            <h2 class="title">Synopsis</h2>
+            <p class="movie_overview"> {{ movie ? movie.overview : '' }} </p>
+        </section> 
+        <section class="providers"> 
+            @for (provider of movieProviders(); track $index) {
+                
+                <a href="{{provider.link}}" target="_blank">Où regarder {{ movie ? movie.title + ' ? ' : '' }}</a>
+                
+                <div class="d-flex flex-column">  
+                    <h3>En vente</h3>              
+                    <div class="d-flex flex-row gap-2">         
+                        @for (buyItem of provider.buy; track $index) { 
+                            <img src="{{ imageBaseurl + buyItem.logo_path }}" alt="{{buyItem.provider_name}}" width="35">                                 
+                        }
+                    </div> 
+                </div>
+                <div class="d-flex flex-column">  
+                    <h3>En location</h3> 
+                    <div class="d-flex flex-row gap-2">                       
+                        @for (item of provider.rent; track $index) {                                   
+                            <img src="{{ imageBaseurl + item.logo_path }}" alt="{{item.provider_name}}" width="35">
+                        }
+                    </div>
+                </div>
+                
+            }
+            <!-- @for (item of movieProviders() | keyvalue; track $index) {
+                @if (item.key == languageSelected) {
+                    <div>
+                        key: {{item.key}}
+                    </div>
+                    @for(i of item.value | keyvalue; track $index) {
+                        <div> key of CA : {{i.key}}</div>
+                        <div> value of the key of CA : {{i.value}}</div>
+                        @for(j of item.value | keyvalue; track $index) {
+                            {{j.value}}
+                        }
+                    
+                    }
+                }                        
+            } -->
+        </section>   
+        <section class="movies-suggestion">
+            <h2>Films similaires</h2>
+            <div>
+                @for(movie of moviesSuggestions(); track $index) {
+                    <!-- <app-card [movie]="movie"></app-card> -->
+                    <!-- <h3> {{movie.original_title}} </h3> -->
+                }
+                
+            </div>
+        </section>   
     </div>
 </div>
 

@@ -30,27 +30,27 @@
         height: 100%;
     }
 
-    .card_header--vote-average {
-        height: 100%;
-        width: 100%;
-        max-height: 25px;
-        max-width: 25px;
-        border-radius: 50%;
-        border: 2px solid var(--clr-blue-light);
-        background: var(--clr-blue-night);
+    // .card_header--vote-average {
+    //     height: 100%;
+    //     width: 100%;
+    //     max-height: 25px;
+    //     max-width: 25px;
+    //     border-radius: 50%;
+    //     border: 2px solid var(--clr-blue-light);
+    //     background: var(--clr-blue-night);
     
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        bottom: -7px;
-        right: 15px;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     position: absolute;
+    //     top: 15px;
+    //     right: 15px;
 
-        p {
-            font-size: clamp(8px, 1vw, 11px);
-            color: var(--clr-white);
-        }
-    }
+    //     p {
+    //         font-size: clamp(8px, 1vw, 11px);
+    //         color: var(--clr-white);
+    //     }
+    // }
     
     .card_body {
         flex: 1;
