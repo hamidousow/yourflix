@@ -24,9 +24,9 @@
         </section> 
         <section class="providers"> 
             @for (provider of movieProviders(); track $index) {
-                <div>
-                    lien : <a href="{{provider.link}}">lien</a>
-                </div>
+                
+                <a href="{{provider.link}}" target="_blank">Où regarder {{ movie ? movie.title + ' ? ' : '' }}</a>
+                
                 <div class="d-flex flex-column">  
                     <h3>En vente</h3>              
                     <div class="d-flex flex-row gap-2">         

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Signal, TemplateRef, WritableSignal, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
@@ -6,6 +6,10 @@ import { tmdbUtil } from '../../../../utils/tmdb-util';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from '../card/card.component';
 import { NoteFormatPipe } from '../../pipes/note-format/note-format.pipe';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
+import { LocalService } from '../../../../services/localstorage-service/local.service';
+import { ModalService } from '../../../../services/modal-service/modal.service';
 
 @Component({
   selector: 'app-movie-modal',
@@ -18,24 +22,31 @@ import { NoteFormatPipe } from '../../pipes/note-format/note-format.pipe';
   templateUrl: './movie-modal.component.html',
   styleUrl: './movie-modal.component.scss'
 })
-export class MovieModalComponent implements OnInit {
+export class MovieModalComponent implements OnInit{
+  
 
   private movieService = inject(TmdbService);
   private route = inject(ActivatedRoute);
-  private modalService = inject(NgbModal)
+  private modalService = inject(ModalService);
+  private storageService = inject(LocalService);
 
-  movie!: any
-  
+
+  movie!: TmdbMovieDetails 
+
   imageBaseurl = tmdbUtil.imageBaseUrl;
   
   movieProviders = this.movieService.movieProviders$;
 
   moviesSuggestions = this.movieService.moviesSuggestions$;
 
-  languageSelected = 'CA'
+  languageSelected = 'US'
+
+  movieId = this.storageService.getData('movieId');
+
 
   closeModal() {
-    this.modalService.dismissAll()
+    this.storageService.clearData()
+    this.modalService.closeModal()
   } 
 
   // switchModal() {
@@ -47,20 +58,15 @@ export class MovieModalComponent implements OnInit {
   
 
   ngOnInit() {
-    const id = this.movie?.id
+    const movieIdInt = parseInt(this.movieId || '')
     
     
-    if(id != undefined) {
-      this.movieService.getMovieProviders(id);
-      this.movieService.getMovieSuggestions(id);
+    if(movieIdInt != undefined) {
+      this.movieService.getMovieProviders(movieIdInt, this.languageSelected);
+      this.movieService.getMovieSuggestions(movieIdInt);
     } else {
       console.log('id inconnu');
       
     }
   }
-
-  
-
-
-
 }

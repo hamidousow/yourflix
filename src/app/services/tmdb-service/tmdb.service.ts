@@ -41,9 +41,6 @@ export class TmdbService {
   private _currentResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public readonly searchResults = toSignal<TmdbMovie[]>(this._currentResults$, {requireSync: true});
 
-  private _previousResults$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public readonly nextPageResults = toSignal<TmdbMovie[]>(this._previousResults$, {requireSync: true});
-
   private _totalResults$: BehaviorSubject<any> = new BehaviorSubject<any>(0);
   public readonly totalResults = toSignal<number>(this._totalResults$, {requireSync: true});
 
@@ -53,15 +50,15 @@ export class TmdbService {
   private readonly _totalPages$ : BehaviorSubject<number> = new BehaviorSubject(1);
   public totalPages = toSignal<number>(this._totalPages$, { requireSync: true});
 
-  resultsSearch : TmdbMovie[][] = []
   
   async findById(id: number) {
     const result = await fetch(`${tmdbUtil.baseUrl}/movie/${id}`, tmdbUtil.options)
     .then((v) =>{ 
       return v.json()
     })
-    .then((v) => {     
-      return v
+    .then((v) => { 
+      this._movieDetails.next(v);        
+      return v;
     })
     .catch((e) => console.log(e));
     return result;
@@ -123,15 +120,13 @@ export class TmdbService {
    * get the list of streaming providers for a movie
    * @param id of the film
    */
-  getMovieProviders(id: number | null) {
+  getMovieProviders(id: number | null, language: string) {
 
-    let language = "CA"
     this.http
     .get<{ results : {}}>(`${tmdbUtil.baseUrl}/movie/${id}/watch/providers`, tmdbUtil.options)
     .pipe(
       map((v) => {
         
-        /** return an iterator */
         const r: any = {
           *[Symbol.iterator]() {
             yield v.results;
@@ -150,7 +145,7 @@ export class TmdbService {
                 yield r[0][l];
               }
             }
-            this._movieProviders.next([...iterableObj])
+            this._movieProviders.next([...iterableObj]);            
           }          
         })
       })

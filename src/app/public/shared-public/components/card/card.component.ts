@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
@@ -25,22 +25,14 @@ export class CardComponent {
 
   @Input()
   movie!: TmdbMovie
-  
 
-  // openModal() {
-  //   if(this.modalService.hasOpenModals()) {
-  //     this.modalService.dismissAll();
-  //   }
-  //   console.log(this.modalService.hasOpenModals());
-  //   const movieNg =  this.modalService.open(MovieModalComponent, { size: 'xl' });
-  //   movieNg.componentInstance.movie = this.movie
-  // }
+  @Output()
+  movieId = new EventEmitter<number>()
 
   handleFavorite(event: any) {
     event.stopPropagation()
-    //console.log("j'aime le film " + this.movie.title)
-    // this.tmdbServicce.addMovieInFavorite(JSON.stringify(this.movie.id), this.localService.getData('user'))
-    // this.tmdbServicce.movie.subscribe(val => this.movie = val)
   }
+
+
 
 }

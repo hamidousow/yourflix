@@ -27,7 +27,7 @@ export const routes: Routes = [
         path: 'search',
         title: 'yourflix - search results',
         loadComponent: () => import('./public/views/search-movies-view/search-movies-view.component')
-    },
+    },    
     {
         path: '**', 
         title: 'yourflix - page not found',

@@ -8,18 +8,16 @@ import { MovieModalComponent } from '../../public/shared-public/components/movie
 })
 export class ModalService {
 
-  constructor() { }
-
   private ngbModal = inject(NgbModal)
   private movieService = inject(TmdbService)
 
-  async openModal(movieId: number) {
+  async openModal(movieId: number) {  
     
-    this.movieService.findById(movieId)
     const movieNg = this.ngbModal.open(MovieModalComponent, { size: 'xl' });
-    
-    //todo: await movieDetails 
-    // movieNg.componentInstance.movie = this.movieService.movieDetails$()
-    movieNg.componentInstance.movie = await this.movieService.findById(movieId)
+    movieNg.componentInstance.movie = await this.movieService.findById(movieId);
+  }
+
+  closeModal() {
+    this.ngbModal.dismissAll()
   }
 }
