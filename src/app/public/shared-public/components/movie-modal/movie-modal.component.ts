@@ -5,9 +5,7 @@ import { TmdbService } from '../../../../services/tmdb-service/tmdb.service';
 import { tmdbUtil } from '../../../../utils/tmdb-util';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from '../card/card.component';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
-
+import { NoteFormatPipe } from '../../pipes/note-format/note-format.pipe';
 
 @Component({
   selector: 'app-movie-modal',
@@ -15,6 +13,7 @@ import { TmdbMovieDetails } from '../../../../models/TmdbMovieDetails';
   imports: [
     CommonModule, 
     CardComponent,
+    NoteFormatPipe
   ],
   templateUrl: './movie-modal.component.html',
   styleUrl: './movie-modal.component.scss'
