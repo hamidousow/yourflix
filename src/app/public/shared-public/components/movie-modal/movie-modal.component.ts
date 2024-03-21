@@ -53,7 +53,10 @@ export class MovieModalComponent implements OnInit {
     if(id != undefined) {
       this.movieService.getMovieProviders(id);
       this.movieService.getMovieSuggestions(id);
-    } 
+    } else {
+      console.log('id inconnu');
+      
+    }
   }
 
   
