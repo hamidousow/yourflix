@@ -14,6 +14,7 @@ import { CarouselComponent } from '../../shared-public/components/carousel/carou
 import SearchMoviesViewComponent from '../search-movies-view/search-movies-view.component';
 import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { tmdbUtil } from '../../../utils/tmdb-util';
+import { MovieService } from '../../../services/movie-service/movie.service';
 
 @Component({
   selector: 'app-home',
@@ -37,14 +38,18 @@ import { tmdbUtil } from '../../../utils/tmdb-util';
 export default class HomeComponent implements OnInit {
   
 
-  private movieService = inject(TmdbService) 
+  private tmdbService = inject(TmdbService) 
   private ngConfig = inject(NgbCarouselConfig)
+  private movieService = inject(MovieService)
 
-  nowPlayingMovies$ = this.movieService.nowPlayingMovies$
-  popularMovies$ = this.movieService.popularMovies$
-  topRatedMovies$ = this.movieService.topRatedMovies$
-  upcomingMovies$ = this.movieService.upcomingMovies$ 
+
+  nowPlayingMovies$ = this.tmdbService.nowPlayingMovies$
+  popularMovies$ = this.tmdbService.popularMovies$
+  topRatedMovies$ = this.tmdbService.topRatedMovies$
+  upcomingMovies$ = this.tmdbService.upcomingMovies$ 
   imgBaseUrl = tmdbUtil.imageBaseUrl
+  cdaflixMovies$ = this.movieService.movies$
+
 
   @Input()
   args!: string
@@ -57,10 +62,11 @@ export default class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.movieService.getPopularMovies()
-    this.movieService.getTopRatedMovies()
-    this.movieService.getUpcomingMovies()
-    this.movieService.getNowPlayingMovies()
+    this.tmdbService.getPopularMovies()
+    this.tmdbService.getTopRatedMovies()
+    this.tmdbService.getUpcomingMovies()
+    this.tmdbService.getNowPlayingMovies()
+    this.movieService.fetchAll()    
   }
 
   

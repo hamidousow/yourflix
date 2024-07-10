@@ -25,5 +25,9 @@
     <section id="upcoming-movies" class="section-movie">
         <h2 class="title">Prochaines sorties</h2>
         <app-carousel [movies]="upcomingMovies$ | async"></app-carousel>
-    </section>    
+    </section> 
+    <section class="section-movie">
+        <h2>cdaflix films </h2>
+        <app-carousel [movies]="cdaflixMovies$ | async"></app-carousel>
+    </section>
 </div>

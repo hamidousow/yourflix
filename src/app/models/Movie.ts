@@ -3,6 +3,7 @@ export class Movie {
     id!: number;
     title!: string;
     actors!: Array<string>;
+    //todo: modifier l'attribut img dans le composant carte ou dans le dto recu du serveur
     img!: string;
     description!: string
 

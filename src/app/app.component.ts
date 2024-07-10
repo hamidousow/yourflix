@@ -9,6 +9,7 @@ import HomeComponent from './public/views/home/home.component';
 import { SearchBarComponent } from './public/shared-public/components/search-bar/search-bar.component';
 import { CarouselComponent } from './public/shared-public/components/carousel/carousel.component';
 import { TmdbService } from './services/tmdb-service/tmdb.service';
+import { MovieService } from './services/movie-service/movie.service';
 
 @Component({
   selector: 'app-root',
@@ -30,20 +31,6 @@ import { TmdbService } from './services/tmdb-service/tmdb.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'cdaflix-dashboard';
 
-  private movieService = inject(TmdbService) 
 
-  popularMovies$ = this.movieService.popularMovies$
-  topRatedMovies$ = this.movieService.topRatedMovies$
-  upcomingMovies$ = this.movieService.upcomingMovies$ 
-
-  @Input()
-  args!: string
-
-  ngOnInit() {
-    this.movieService.getPopularMovies()
-    this.movieService.getTopRatedMovies()
-    this.movieService.getUpcomingMovies()
-  }
 }
