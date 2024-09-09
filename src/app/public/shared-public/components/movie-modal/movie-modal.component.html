@@ -5,16 +5,14 @@
     <div class="modal_content">
         <section class="movie-details">
             <div class="movie-poster">
-                <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" alt="">
+                <img src="{{movie ? imageBaseurl+movie.poster_path: ''}}" class="movie-poster_img" alt="">
             </div>
             <div>
-                <h1 class="movie-title">{{ movie ? movie.original_title : ''}}</h1>
-                <p class="movie-language">Langue : {{ movie ? movie.original_language : ''}}</p>             
-                <p class="movie-release_date">Date de sortie : {{ movie ? movie.release_date : ''}}</p>
+                <h3 class="movie-title h3">{{ movie ? movie.original_title : ''}}</h3>
+                <p class="movie-language">{{ movie ? movie.original_language : ''}}</p>             
+                <p class="movie-release_date">{{ movie ? movie.release_date : ''}}</p>
                 @if(movie) {
-                    <span class="card_header--vote-average">
-                        <p>{{ movie.vote_average  | noteFormat: 1}}</p>
-                    </span>
+                    <p class="note-average">Note {{ movie.vote_average  | noteFormat: 1}}</p>                   
                 }
             </div>
         </section>
